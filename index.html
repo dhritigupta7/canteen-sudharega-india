@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Canteen Sudharega India — Sign the petition</title>
+<meta name="description" content="We are demanding clean and healthy food options in every school and college canteen in India. Sign the petition anonymously and grade your canteen.">
+<meta property="og:title" content="Canteen Sudharega India">
+<meta property="og:description" content="Clean and healthy food in every school and college canteen. Sign the petition and grade your canteen.">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* white + butter yellow + sage green + burgundy */
+  --bg:#FFFFFF; --paper:#FFF8DC; --ink:#2B1B1C; --muted:#6E5F55;
+  --red:#7E1F30; --red-d:#5F1522; --green:#5A7D5F; --green-d:#445F48;
+  --butter:#F5D46A; --line:#EADFB8; --sage-l:#DDE7D6;
+  --gA:#71B88C; --gB:#B1C884; --gC:#FAD877; --gD:#E8AC76; --gF:#D78076;
+  --shadow:4px 4px 0 var(--ink);
+  --font:"Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:var(--font);font-weight:700;letter-spacing:-.025em;line-height:1.08;margin:0}
+a{color:inherit}
+button{font:inherit;cursor:pointer;color:inherit}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+
+.demo{background:var(--ink);color:#fff;font-size:13px;text-align:center;padding:7px 12px}
+.demo b{color:var(--butter)}
+
+/* logo */
+.top{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
+.logo{display:inline-flex;flex-direction:column;text-decoration:none;font-family:"Anton",Impact,sans-serif;text-transform:uppercase;line-height:1;text-align:center;border:2.5px solid var(--ink);box-shadow:3px 3px 0 var(--ink);background:#fff;width:132px}
+.logo span{display:block;padding:4px 6px 3px;letter-spacing:.02em}
+.logo .l1{background:#E8762B;color:#fff;font-size:21px}
+.logo .l2{color:#111;font-size:17px;letter-spacing:.01em}
+.logo .l3{background:#2E8B3E;color:#fff;font-size:22px;letter-spacing:.08em}
+.logo.sm{width:104px;box-shadow:none;border-width:2px}
+.logo.sm .l1{font-size:16px}.logo.sm .l2{font-size:13px}.logo.sm .l3{font-size:17px}
+.top a.jump{font-size:14px;font-weight:700;text-decoration:none;border-bottom:2px solid var(--ink)}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.2fr .8fr;gap:44px;align-items:center;padding:22px 0 60px}
+.tag{display:inline-block;background:var(--butter);border:2px solid var(--ink);padding:3px 12px;border-radius:999px;font-weight:700;font-size:13px;letter-spacing:.04em;text-transform:uppercase;transform:rotate(-2deg);margin-bottom:20px}
+.hero h1{font-size:clamp(34px,5.2vw,58px);letter-spacing:-.035em;margin-bottom:30px}
+.hero h1 em{font-style:normal;color:var(--red);background:linear-gradient(transparent 62%,var(--butter) 62%,var(--butter) 90%,transparent 90%)}
+.ctas{max-width:480px}
+.cta{display:flex;align-items:center;gap:14px;width:100%;text-align:left;border:2.5px solid var(--ink);border-radius:16px;padding:16px 18px;box-shadow:var(--shadow);transition:transform .12s,box-shadow .12s;color:#fff;background:var(--red)}
+.cta:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)}
+.cta:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--ink)}
+.cta .ico{font-size:30px;flex:none;width:48px;height:48px;border-radius:12px;background:rgba(255,255,255,.18);display:grid;place-items:center}
+.cta b{display:block;font-size:22px;line-height:1.15;letter-spacing:-.02em}
+.cta small{display:block;font-size:14px;opacity:.9}
+.cta .go{margin-left:auto;flex:none;width:44px;height:44px;border-radius:50%;background:#fff;color:var(--ink);border:2px solid var(--ink);display:grid;place-items:center;font-size:24px;font-weight:700;line-height:1;animation:nudge 1.4s ease-in-out infinite}
+.cta:hover .go{animation:none;transform:translateX(4px)}
+@keyframes nudge{0%,100%{transform:translateX(0)}50%{transform:translateX(6px)}}
+.anon{display:inline-flex;align-items:center;gap:8px;background:var(--sage-l);border:2px solid var(--green);color:var(--green-d);font-weight:700;font-size:14px;border-radius:999px;padding:6px 14px;margin-top:18px}
+
+/* counter */
+.counter{background:var(--paper);border:2.5px solid var(--ink);border-radius:22px;padding:26px;box-shadow:8px 8px 0 var(--ink)}
+.counter .live{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--red)}
+.counter .live::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--red);animation:pulse 1.6s infinite}
+@keyframes pulse{50%{opacity:.25}}
+.counter .num{font-weight:700;letter-spacing:-.04em;font-size:clamp(52px,8vw,76px);line-height:1;margin:10px 0 4px;font-variant-numeric:tabular-nums}
+.counter .lbl{font-weight:500;color:var(--muted)}
+.split{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:20px}
+.split div{border:2px solid var(--ink);border-radius:12px;padding:10px 10px;background:#fff}
+.split b{font-size:24px;display:block;line-height:1.15;letter-spacing:-.02em}
+.split span{font-size:12.5px;color:var(--muted);line-height:1.3;display:block}
+.split .grade{display:grid;font-size:18px;width:34px;height:34px;margin:0 0 3px;color:var(--ink);line-height:1}
+.split .grade.A,.split .grade.B,.split .grade.none{color:var(--ink)}
+
+/* demands */
+.band{background:var(--red);color:#fff;padding:58px 0}
+.band h2{font-size:clamp(30px,4.4vw,44px);margin-bottom:26px}
+.band h2 span{color:var(--butter)}
+.demands{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.dm{border:2px solid rgba(255,255,255,.25);border-radius:18px;padding:22px;background:rgba(0,0,0,.12)}
+.dm .ic{font-size:30px}
+.dm .n{font-weight:700;font-size:13px;color:var(--butter);letter-spacing:.1em;margin-top:6px}
+.dm h3{font-size:23px;margin:6px 0 8px}
+.dm p{margin:0;color:#F1DFD2;font-size:15px}
+
+/* board */
+.board{padding:60px 0 40px}
+.board h2{font-size:clamp(32px,4.6vw,48px)}
+.board-sub{margin:8px 0 22px;color:var(--muted);max-width:40em}
+.tools{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:22px}
+.search{flex:1 1 240px;max-width:360px;border:2px solid var(--ink);border-radius:12px;padding:10px 14px;font:inherit;background:#fff}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{border:2px solid var(--ink);background:#fff;border-radius:999px;padding:6px 14px;font-weight:500;font-size:14px}
+.chip[aria-pressed=true]{background:var(--ink);color:#fff}
+.cities{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:18px;align-items:start}
+.city{background:var(--paper);border:2px solid var(--ink);border-radius:18px;padding:18px 18px 10px}
+.city header{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:10px}
+.city h3{font-size:26px}
+.city header span{font-size:13px;color:var(--muted);text-align:right}
+.cols,.city li{display:grid;grid-template-columns:22px 1fr 62px 46px;gap:10px;align-items:center}
+.cols{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);padding:6px 0;border-top:2px solid var(--ink);border-bottom:2px dashed var(--line)}
+.cols span:nth-child(3),.cols span:nth-child(4){text-align:center}
+.city ol{list-style:none;margin:0;padding:0}
+.city li{padding:10px 0;border-bottom:1px solid var(--line)}
+.city li:last-child{border-bottom:0}
+.city .rk{font-weight:700;color:var(--muted);font-size:15px}
+.city .nm{font-weight:500;line-height:1.3;overflow-wrap:anywhere}
+.city .ty{display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.city .ct{text-align:center;font-weight:700;font-size:19px;color:var(--red);font-variant-numeric:tabular-nums;line-height:1.1}
+.city .ct small{display:block;font-size:10.5px;font-weight:500;color:var(--muted)}
+.grade{width:38px;height:38px;margin:0 auto;border-radius:9px;border:2px solid var(--ink);display:grid;place-items:center;font-weight:800;font-size:19px;color:var(--ink)}
+.grade.A{background:var(--gA);color:var(--ink)}.grade.B{background:var(--gB);color:var(--ink)}.grade.C{background:var(--gC)}.grade.D{background:var(--gD)}.grade.F{background:var(--gF)}.grade.none{background:#fff;color:var(--muted);border-style:dashed}
+.more{display:block;width:100%;margin:8px 0 6px;border:2px solid var(--ink);background:#fff;border-radius:10px;padding:9px;font-weight:700;font-size:14px}
+.more:hover{background:var(--butter)}
+.empty{border:2px dashed var(--ink);border-radius:18px;padding:30px;text-align:center;color:var(--muted)}
+.status{color:var(--muted);font-size:14px;margin:0 0 14px}
+
+footer{padding:40px 0 60px;border-top:2px solid var(--ink);margin-top:30px;font-size:14px;color:var(--muted)}
+footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px}
+footer b{color:var(--ink)}
+
+.sticky{position:fixed;left:12px;right:12px;bottom:12px;display:none;z-index:20;transition:transform .25s,opacity .25s}
+.sticky.hide{transform:translateY(120%);opacity:0;pointer-events:none}
+.sticky button{width:100%;border:2.5px solid var(--ink);border-radius:14px;padding:14px;font-weight:700;color:#fff;background:var(--red);box-shadow:3px 3px 0 var(--ink);font-size:16px}
+
+/* sheet */
+.scrim{position:fixed;inset:0;background:rgba(30,26,21,.55);display:none;align-items:flex-end;justify-content:center;z-index:50}
+.scrim.open{display:flex}
+.sheet{background:#fff;width:100%;max-width:560px;max-height:94vh;overflow:auto;border:2.5px solid var(--ink);border-bottom:0;border-radius:24px 24px 0 0;padding:22px 22px 26px;animation:up .28s cubic-bezier(.2,.8,.2,1)}
+@keyframes up{from{transform:translateY(40px);opacity:0}}
+@media(min-width:700px){.scrim{align-items:center;padding:20px}.sheet{border-radius:24px;border-bottom:2.5px solid var(--ink);box-shadow:8px 8px 0 var(--ink)}}
+.sheet-top{display:flex;justify-content:space-between;align-items:start;gap:12px;margin-bottom:16px}
+.sheet h2{font-size:28px}
+.sheet .sub{color:var(--muted);font-size:14px;margin:4px 0 0}
+.x{border:2px solid var(--ink);background:#fff;border-radius:50%;width:36px;height:36px;flex:none;font-size:18px;line-height:1}
+.seg{display:grid;grid-template-columns:1fr 1fr;border:2px solid var(--ink);border-radius:12px;overflow:hidden;margin-bottom:6px}
+.seg button{border:0;background:#fff;padding:10px;font-weight:700}
+.seg button[aria-pressed=true]{background:var(--ink);color:#fff}
+label.f,.flabel{display:block;font-weight:700;font-size:14px;margin:14px 0 6px}
+label.f small,.flabel small{font-weight:400;color:var(--muted)}
+.in{width:100%;border:2px solid var(--ink);border-radius:12px;padding:12px 14px;font:inherit;font-size:16px;background:#fff}
+.in:focus,.search:focus{outline:3px solid var(--butter);outline-offset:1px}
+textarea.in{min-height:84px;resize:vertical}
+.grades{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.grades button{border:2px solid var(--ink);background:#fff;border-radius:12px;padding:8px 2px 6px;text-align:center;line-height:1.1}
+.grades button b{display:block;font-size:26px}
+.grades button small{display:block;font-size:11px;color:var(--muted);margin-top:2px}
+.grades button[aria-pressed=true]{color:var(--ink);transform:translateY(-2px);box-shadow:2px 3px 0 var(--ink)}
+.grades button[aria-pressed=true] small{color:inherit;opacity:.9}
+.grades button[data-grade=A][aria-pressed=true]{background:var(--gA);color:var(--ink)}
+.grades button[data-grade=B][aria-pressed=true]{background:var(--gB);color:var(--ink)}
+.grades button[data-grade=C][aria-pressed=true]{background:var(--gC)}
+.grades button[data-grade=D][aria-pressed=true]{background:var(--gD)}
+.grades button[data-grade=F][aria-pressed=true]{background:var(--gF)}
+.qtags{display:flex;flex-wrap:wrap;gap:7px;margin:2px 0 8px}
+.qtag{border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:5px 11px;font-size:13px;font-weight:500}
+.qtag[aria-pressed=true]{background:var(--butter)}
+.photos{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.addph{display:inline-flex;align-items:center;gap:8px;border:2px dashed var(--ink);border-radius:12px;padding:12px 14px;font-weight:700;font-size:14px;background:#fff}
+.thumb{position:relative;width:64px;height:64px;border-radius:10px;border:2px solid var(--ink);overflow:hidden}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.thumb button{position:absolute;top:2px;right:2px;width:20px;height:20px;border-radius:50%;border:0;background:var(--ink);color:#fff;font-size:11px;line-height:20px;padding:0}
+.hint{font-size:12.5px;color:var(--muted);margin:6px 0 0}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.err{color:var(--red-d);font-weight:700;font-size:14px;min-height:20px;margin:12px 0 0}
+.submit{width:100%;margin-top:6px;border:2.5px solid var(--ink);border-radius:14px;padding:15px;font-size:20px;font-weight:700;color:#fff;background:var(--red);box-shadow:var(--shadow)}
+.submit:disabled{opacity:.6;cursor:wait}
+.privacy{font-size:12.5px;color:var(--muted);margin:12px 0 0;text-align:center}
+
+/* thank-you certificate */
+.cert{position:relative;border:2.5px solid var(--ink);border-radius:18px;background:var(--paper);padding:26px 22px 20px;text-align:center;margin-bottom:16px;overflow:hidden}
+.cert::before{content:"";position:absolute;inset:7px;border:1.5px dashed var(--red);border-radius:12px;pointer-events:none}
+.stamp{display:inline-block;border:3px solid var(--green);color:var(--green);font-weight:800;letter-spacing:.14em;font-size:15px;padding:5px 14px;border-radius:8px;transform:rotate(-4deg);margin-bottom:14px;animation:stamp .5s cubic-bezier(.2,1.6,.4,1)}
+@keyframes stamp{from{transform:rotate(-4deg) scale(2.2);opacity:0}}
+.cert h2{font-size:28px;margin-bottom:8px}
+.cert p{margin:0 auto;max-width:30em;color:#3A332B;text-wrap:balance}
+.cert dl{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:18px 0 0;text-align:left}
+.cert dl div{background:#fff;border:1.5px solid var(--ink);border-radius:10px;padding:8px 10px}
+.cert dt{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.cert dd{margin:2px 0 0;font-weight:700;overflow-wrap:anywhere}
+.cert dd .grade{display:inline-grid;width:28px;height:28px;font-size:15px;margin:0;border-radius:7px}
+.sharelead{text-align:center;font-weight:700;margin:4px 0 10px}
+.share{display:grid;gap:10px}
+.share a,.share button{display:block;text-align:center;text-decoration:none;border:2.5px solid var(--ink);border-radius:14px;padding:13px;font-weight:700;background:#fff;box-shadow:3px 3px 0 var(--ink)}
+.share .wa{background:#25D366;color:#0B2E17}
+
+@media(max-width:820px){
+  .hero{grid-template-columns:1fr;gap:30px;padding-bottom:40px}
+  .demands{grid-template-columns:1fr}
+  .sticky{display:block}
+  footer{padding-bottom:110px}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="demo" id="demoBanner" hidden><b>Preview mode</b>: sample data only. Paste your Google Sheet link into <code>API_URL</code> to go live (see SETUP.md).</div>
+
+<div class="wrap">
+  <nav class="top">
+    <a class="logo" href="#" aria-label="Canteen Sudharega India"><span class="l1">Canteen</span><span class="l2">Sudharega</span><span class="l3">India</span></a>
+    <a class="jump" href="#board">See the list ↓</a>
+  </nav>
+
+  <section class="hero">
+    <div>
+      <span class="tag">📣 National student petition</span>
+      <h1>We are demanding <em>clean and healthy</em> food options in every school and college canteen in India.</h1>
+      <div class="ctas">
+        <button class="cta" data-open>
+          <span class="ico">✍️</span>
+          <span><b>My canteen needs improvement</b><small>Sign the petition and grade your canteen</small></span>
+          <span class="go" aria-hidden="true">→</span>
+        </button>
+      </div>
+      <div class="anon">🔒 100% anonymous: no name, no email, no phone number</div>
+    </div>
+
+    <aside class="counter" aria-live="polite">
+      <span class="live">Live count</span>
+      <div class="num" id="total">0</div>
+      <div class="lbl">students and parents have signed</div>
+      <div class="split">
+        <div><b id="sCampus">0</b><span>campuses on the list</span></div>
+        <div><b id="sCity">0</b><span>cities</span></div>
+        <div><b id="sGrade">–</b><span>India's average canteen grade</span></div>
+      </div>
+    </aside>
+  </section>
+</div>
+
+<section class="band">
+  <div class="wrap">
+    <h2>What we are <span>asking for</span></h2>
+    <div class="demands">
+      <div class="dm"><div class="ic">🥗</div><div class="n">DEMAND 01</div><h3>At least 2 healthy options</h3><p>Every canteen should serve at least 2 healthy food options, every day, alongside everything else on the menu.</p></div>
+      <div class="dm"><div class="ic">🧼</div><div class="n">DEMAND 02</div><h3>Clean and hygienic food</h3><p>Food should be cooked, stored and served in clean, hygienic conditions, with clean utensils and safe drinking water.</p></div>
+      <div class="dm"><div class="ic">📋</div><div class="n">DEMAND 03</div><h3>Calories and nutrition on the menu</h3><p>Canteen menus should show the calories and nutritional values of every item, so students can make informed choices.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="board" id="board">
+  <div class="wrap">
+    <h2>The city-wise list</h2>
+    <p class="board-sub">Schools and colleges ranked by the number of people who signed, with the average report-card grade students and parents gave their canteen.</p>
+    <div class="tools">
+      <input class="search" id="q" type="search" placeholder="Search your school, college or city…" aria-label="Search">
+      <div class="chips" id="cityChips"></div>
+    </div>
+    <p class="status" id="status">Loading the list…</p>
+    <div class="cities" id="cities"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap row">
+    <div><span class="logo sm"><span class="l1">Canteen</span><span class="l2">Sudharega</span><span class="l3">India</span></span><br><br>A movement for safe, healthy campus food.</div>
+    <div><b>Fully anonymous.</b> We never collect names, emails or phone numbers.<br>We publish only campus names, cities, counts and average grades.<br>Reasons and photos are never shown publicly.</div>
+  </div>
+</footer>
+
+<div class="sticky" id="sticky"><button data-open>✍️ Sign the petition →</button></div>
+
+<!-- form sheet -->
+<div class="scrim" id="scrim">
+  <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+    <div id="formView">
+      <div class="sheet-top">
+        <div><h2 id="sheetTitle">My canteen needs improvement</h2><p class="sub">Sign the petition for your campus. Takes under a minute.</p></div>
+        <button class="x" data-close aria-label="Close">✕</button>
+      </div>
+      <form id="form" novalidate>
+        <div class="seg" role="group" aria-label="Institution type">
+          <button type="button" data-type="College" aria-pressed="true">🎓 College</button>
+          <button type="button" data-type="School" aria-pressed="false">🎒 School</button>
+        </div>
+
+        <label class="f" for="inst">College / school name</label>
+        <input class="in" id="inst" list="instList" autocomplete="organization" placeholder="e.g. St. Xavier's College" maxlength="120">
+        <datalist id="instList"></datalist>
+
+        <label class="f" for="city">City</label>
+        <input class="in" id="city" list="cityList" autocomplete="address-level2" placeholder="e.g. Pune" maxlength="60">
+        <datalist id="cityList"></datalist>
+
+        <span class="flabel" id="gradeLbl">Rate your canteen like a report card</span>
+        <div class="grades" role="radiogroup" aria-labelledby="gradeLbl">
+          <button type="button" data-grade="A" aria-pressed="false"><b>A</b><small>Excellent</small></button>
+          <button type="button" data-grade="B" aria-pressed="false"><b>B</b><small>Good</small></button>
+          <button type="button" data-grade="C" aria-pressed="false"><b>C</b><small>Average</small></button>
+          <button type="button" data-grade="D" aria-pressed="false"><b>D</b><small>Poor</small></button>
+          <button type="button" data-grade="F" aria-pressed="false"><b>F</b><small>Fail</small></button>
+        </div>
+
+        <label class="f" for="reason">What's wrong with your canteen?</label>
+        <div class="qtags" id="qtags"></div>
+        <textarea class="in" id="reason" maxlength="1000" placeholder="One line is enough. This stays private."></textarea>
+
+        <span class="flabel">Add photos <small>(optional, up to 3)</small></span>
+        <div class="photos" id="photos">
+          <label class="addph" id="addPh">📷 Add photos<input type="file" id="photoIn" accept="image/*" multiple hidden></label>
+        </div>
+        <p class="hint">Photos go only to our team as evidence. They're never shown publicly, and location data is removed before upload.</p>
+
+        <input class="hp" id="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <p class="err" id="err" role="alert"></p>
+        <button class="submit" id="submitBtn" type="submit">Sign the petition</button>
+        <p class="privacy">🔒 Completely anonymous. We never ask who you are.</p>
+      </form>
+    </div>
+
+    <div id="doneView" hidden>
+      <div class="sheet-top" style="justify-content:flex-end;margin:0 0 10px"><button class="x" data-close aria-label="Close">✕</button></div>
+      <div class="cert">
+        <div class="stamp">PETITION SIGNED ✓</div>
+        <h2>Thank you for signing!</h2>
+        <p>You're now part of <b>Canteen Sudharega India</b>, a movement holding schools and colleges accountable for clean, healthy food.</p>
+        <dl>
+          <div><dt>Signature no.</dt><dd id="cNo">#0</dd></div>
+          <div><dt>Your grade</dt><dd id="cGrade"></dd></div>
+          <div><dt>Campus</dt><dd id="cInst"></dd></div>
+          <div><dt>City</dt><dd id="cCity"></dd></div>
+        </dl>
+      </div>
+      <p class="sharelead">Now get your batchmates and parents to sign too.</p>
+      <div class="share">
+        <a class="wa" id="waBtn" href="#" target="_blank" rel="noopener">Share on WhatsApp</a>
+        <button type="button" id="copyBtn">Copy message</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ================== SETTINGS: edit these 2 lines ================== */
+const CONFIG = {
+  API_URL: "",     // your Google Apps Script web-app URL (ends in /exec). Empty = preview mode.
+  SITE_URL: ""     // your public website link, used in share messages. Empty = current page.
+};
+/* ================================================================== */
+
+const DEMO = !CONFIG.API_URL;
+const SHOW_TOP = 3;           // campuses shown per city before "See the entire list"
+const MAX_PHOTOS = 3;
+const POINTS = { A:4, B:3, C:2, D:1, F:0 };
+
+const $ = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
+const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const fmt = n => Number(n || 0).toLocaleString("en-IN");
+const key = s => String(s || "").toLowerCase().replace(/[^a-z0-9ऀ-ॿ]+/g, " ").trim();
+const tidy = s => String(s || "").replace(/\s+/g, " ").trim();
+const letter = (sum, n) => { if (!n) return ""; const a = sum / n; return a >= 3.5 ? "A" : a >= 2.5 ? "B" : a >= 1.5 ? "C" : a >= 0.5 ? "D" : "F"; };
+const badge = g => g ? `<span class="grade ${g}" title="Average grade ${g}">${g}</span>` : `<span class="grade none" title="No grades yet">–</span>`;
+const store = {
+  get(k, d){ try { return JSON.parse(localStorage.getItem(k)) ?? d; } catch(e){ return d; } },
+  set(k, v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch(e){} }
+};
+
+const TAGS = ["Unhygienic kitchen", "Stale / reheated food", "Only junk food", "No healthy options", "Dirty plates & tables", "No nutrition info", "Overpriced"];
+const MAJOR_CITIES = ["Mumbai","Delhi","Bengaluru","Hyderabad","Ahmedabad","Chennai","Kolkata","Pune","Jaipur","Lucknow","Kanpur","Nagpur","Indore","Bhopal","Thane","Navi Mumbai","Patna","Vadodara","Ghaziabad","Ludhiana","Agra","Nashik","Noida","Gurugram","Faridabad","Surat","Rajkot","Varanasi","Srinagar","Amritsar","Chandigarh","Coimbatore","Kochi","Thiruvananthapuram","Visakhapatnam","Vijayawada","Mysuru","Mangaluru","Guwahati","Bhubaneswar","Raipur","Ranchi","Dehradun","Jammu","Goa","Madurai","Aurangabad","Jodhpur","Udaipur","Prayagraj"];
+
+// Sample rows for preview mode only: [name, city, type, signatures, gradePointsSum, gradeCount]
+const SAMPLE = [
+  ["Sample College of Commerce","Mumbai","College",318,413,318],["Example Institute of Technology","Mumbai","College",204,306,204],
+  ["Demo Public School","Mumbai","School",96,58,96],["Sample Junior College","Mumbai","College",41,90,41],["Example High School","Mumbai","School",17,12,17],
+  ["Sample Arts & Science College","Pune","College",241,265,241],["Example Engineering College","Pune","College",133,240,133],
+  ["Demo Model School","Delhi","School",187,150,187],["Sample University North Campus","Delhi","College",402,362,402],
+  ["Example Management Institute","Bengaluru","College",151,320,151],["Sample Medical College","Hyderabad","College",122,98,122],
+  ["Example Girls' College","Jaipur","College",77,123,77],["Demo Central School","Lucknow","School",58,29,58]
+];
+
+const S = { type:"College", grade:"", tags:new Set(), photos:[], city:"all", q:"", open:new Set(), opened:0,
+            data:{ list:[] }, shown:0 };
+
+/* ---------- data ---------- */
+function addRow(list, s){
+  const k = key(s.city) + "|" + key(s.institution);
+  let r = list.find(r => key(r[1]) + "|" + key(r[0]) === k);
+  if (!r){ r = [s.institution, s.city, s.type, 0, 0, 0]; list.push(r); }
+  r[3]++;
+  if (s.grade in POINTS){ r[4] += POINTS[s.grade]; r[5]++; }
+}
+function totals(d){
+  let t = 0, gs = 0, gn = 0; const cities = new Set();
+  d.list.forEach(r => { t += +r[3]; gs += +r[4]; gn += +r[5]; cities.add(key(r[1])); });
+  d.total = t; d.campuses = d.list.length; d.cities = cities.size; d.grade = letter(gs, gn);
+  return d;
+}
+async function load(){
+  if (DEMO){
+    $("#demoBanner").hidden = false;
+    const d = { list: SAMPLE.map(r => r.slice()) };
+    store.get("csi_demo2", []).forEach(s => addRow(d.list, s));
+    S.data = totals(d); render(); return;
+  }
+  try {
+    const res = await fetch(CONFIG.API_URL + "?t=" + Date.now());
+    const j = await res.json();
+    if (!j.ok) throw new Error(j.error);
+    S.data = totals({ list: j.list || [] });
+  } catch(e){
+    $("#status").textContent = "Couldn't load the live list right now. Please refresh in a minute.";
+  }
+  render();
+}
+
+/* ---------- render ---------- */
+function countTo(el, to){
+  const from = S.shown, t0 = performance.now(), dur = 900;
+  const step = now => {
+    const p = Math.min(1, (now - t0) / dur), v = Math.round(from + (to - from) * (1 - Math.pow(1 - p, 3)));
+    el.textContent = fmt(v); if (p < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step); S.shown = to;
+}
+function render(){
+  const d = S.data;
+  countTo($("#total"), d.total || 0);
+  $("#sCampus").textContent = fmt(d.campuses);
+  $("#sCity").textContent = fmt(d.cities);
+  $("#sGrade").innerHTML = d.grade ? badge(d.grade) : "–";
+  $("#instList").innerHTML = [...new Set(d.list.map(r => r[0]))].sort().map(n => `<option value="${esc(n)}">`).join("");
+  $("#cityList").innerHTML = [...new Set([...d.list.map(r => r[1]), ...MAJOR_CITIES])].sort().map(n => `<option value="${esc(n)}">`).join("");
+  renderBoard();
+}
+function renderBoard(){
+  const groups = new Map();
+  S.data.list.filter(r => +r[3] > 0).forEach(r => {
+    const k = key(r[1]);
+    if (!groups.has(k)) groups.set(k, { k, name: r[1], total: 0, items: [] });
+    const g = groups.get(k); g.total += +r[3]; g.items.push(r);
+  });
+  let list = [...groups.values()].sort((a, b) => b.total - a.total);
+
+  const chips = [{ k:"all", name:"All cities" }, ...list.slice(0, 8)];
+  if (S.city !== "all" && !chips.some(c => c.k === S.city)) S.city = "all";
+  $("#cityChips").innerHTML = chips.map(c =>
+    `<button class="chip" data-city="${esc(c.k)}" aria-pressed="${c.k === S.city}">${esc(c.name)}</button>`).join("");
+
+  const allCampuses = list.reduce((n, g) => n + g.items.length, 0);
+  $("#status").textContent = allCampuses ? `${fmt(allCampuses)} campus${allCampuses === 1 ? "" : "es"} across ${fmt(groups.size)} cit${groups.size === 1 ? "y" : "ies"}` : "";
+
+  if (S.city !== "all") list = list.filter(g => g.k === S.city);
+  const q = key(S.q);
+  if (q) list = list.map(g => ({ ...g, items: g.k.includes(q) ? g.items : g.items.filter(r => key(r[0]).includes(q)) })).filter(g => g.items.length);
+
+  if (!list.length){
+    $("#cities").innerHTML = `<div class="empty">${q ? "No match yet. Be the first to add this campus!" : "No campuses yet. Yours could be first."}
+      <br><br><button class="chip" data-open>✍️ Sign for my campus</button></div>`;
+    return;
+  }
+  $("#cities").innerHTML = list.map(g => {
+    const items = g.items.sort((a, b) => b[3] - a[3]);
+    const full = S.open.has(g.k) || !!q;
+    const vis = full ? items : items.slice(0, SHOW_TOP);
+    return `<section class="city">
+      <header><h3>${esc(g.name)}</h3><span>${fmt(g.total)} signed<br>${items.length} campus${items.length === 1 ? "" : "es"}</span></header>
+      <div class="cols"><span>#</span><span>School / college</span><span>Signed</span><span>Grade</span></div>
+      <ol>${vis.map((r, i) => `<li><span class="rk">${i + 1}</span><span class="nm">${esc(r[0])}<span class="ty">${esc(r[2])}</span></span><span class="ct">${fmt(r[3])}<small>signed</small></span>${badge(letter(+r[4], +r[5]))}</li>`).join("")}</ol>
+      ${items.length > SHOW_TOP && !q ? `<button class="more" data-more="${esc(g.k)}">${full ? "Show top 3 ↑" : `See the entire list (${items.length}) ↓`}</button>` : ""}
+    </section>`;
+  }).join("");
+}
+
+/* ---------- photos ---------- */
+async function compress(file){
+  // Re-draw on a canvas: shrinks the image and strips EXIF data such as GPS location.
+  const url = URL.createObjectURL(file);
+  try {
+    const img = await new Promise((res, rej) => { const i = new Image(); i.onload = () => res(i); i.onerror = rej; i.src = url; });
+    const s = Math.min(1, 1280 / Math.max(img.naturalWidth, img.naturalHeight));
+    const c = document.createElement("canvas");
+    c.width = Math.round(img.naturalWidth * s); c.height = Math.round(img.naturalHeight * s);
+    c.getContext("2d").drawImage(img, 0, 0, c.width, c.height);
+    return c.toDataURL("image/jpeg", 0.8);
+  } finally { URL.revokeObjectURL(url); }
+}
+function renderPhotos(){
+  $$(".thumb").forEach(t => t.remove());
+  S.photos.forEach((src, i) => {
+    const d = document.createElement("div"); d.className = "thumb";
+    d.innerHTML = `<img alt="Photo ${i + 1}" src="${src}"><button type="button" data-rmph="${i}" aria-label="Remove photo">✕</button>`;
+    $("#addPh").before(d);
+  });
+  $("#addPh").hidden = S.photos.length >= MAX_PHOTOS;
+}
+$("#photoIn").addEventListener("change", async e => {
+  const files = [...e.target.files].slice(0, MAX_PHOTOS - S.photos.length);
+  for (const f of files){
+    if (!f.type.startsWith("image/")) continue;
+    try { S.photos.push(await compress(f)); } catch(ex){ $("#err").textContent = "One photo couldn't be read. Try a JPG or PNG."; }
+  }
+  e.target.value = ""; renderPhotos();
+});
+
+/* ---------- sheet ---------- */
+function resetForm(){
+  $("#form").reset(); S.grade = ""; S.tags.clear(); S.photos = [];
+  $$("[data-grade]").forEach(b => b.setAttribute("aria-pressed", "false"));
+  $("#qtags").innerHTML = TAGS.map(t => `<button type="button" class="qtag" aria-pressed="false">${t}</button>`).join("");
+  renderPhotos(); $("#err").textContent = "";
+}
+function openSheet(){
+  if ($("#doneView").hidden === false) resetForm();
+  S.opened = Date.now();
+  $("#formView").hidden = false; $("#doneView").hidden = true;
+  $("#scrim").classList.add("open");
+  document.body.style.overflow = "hidden";
+  setTimeout(() => $("#inst").focus(), 60);
+}
+function closeSheet(){
+  $("#scrim").classList.remove("open"); document.body.style.overflow = "";
+  if (location.hash === "#sign") history.replaceState(null, "", location.pathname + location.search);
+}
+
+async function submit(e){
+  e.preventDefault();
+  const p = {
+    type: S.type, institution: tidy($("#inst").value), city: tidy($("#city").value), grade: S.grade,
+    reason: tidy($("#reason").value), tags: [...S.tags].join(", "),
+    website: $("#website").value, elapsed: Date.now() - S.opened
+  };
+  const err = m => { $("#err").textContent = m; };
+  if (p.institution.length < 3) return err("Please enter your college or school name."), $("#inst").focus();
+  if (p.city.length < 2) return err("Please enter your city."), $("#city").focus();
+  if (!p.grade) return err("Please give your canteen a grade: A, B, C, D or F.");
+  if (p.reason.length < 10) return err("Tell us what's wrong in a few words (at least 10 characters)."), $("#reason").focus();
+
+  const k = key(p.city) + "|" + key(p.institution);
+  const signed = store.get("csi_signed2", []);
+  if (signed.includes(k)) return err("You've already signed for this campus from this device. Thank you!");
+
+  const btn = $("#submitBtn"); btn.disabled = true; btn.textContent = S.photos.length ? "Uploading photos…" : "Submitting…";
+  try {
+    if (DEMO){
+      await new Promise(r => setTimeout(r, 600));
+      const saved = store.get("csi_demo2", []); saved.push({ type:p.type, institution:p.institution, city:p.city, grade:p.grade }); store.set("csi_demo2", saved);
+    } else {
+      const body = JSON.stringify({ ...p, photos: S.photos.map(d => d.split(",")[1]) });
+      const res = await fetch(CONFIG.API_URL, { method:"POST", body }); // text/plain: no CORS preflight
+      const j = await res.json();
+      if (!j.ok) throw new Error(j.error || "Something went wrong.");
+    }
+    signed.push(k); store.set("csi_signed2", signed);
+    addRow(S.data.list, p); totals(S.data); render();
+    showDone(p);
+  } catch(ex){
+    err(ex.message && ex.message.length < 140 ? ex.message : "Couldn't submit. Check your connection and try again.");
+  } finally { btn.disabled = false; btn.textContent = "Sign the petition"; }
+}
+function showDone(p){
+  const url = CONFIG.SITE_URL || location.href.split("#")[0];
+  $("#cNo").textContent = "#" + fmt(S.data.total);
+  $("#cGrade").innerHTML = badge(p.grade);
+  $("#cInst").textContent = p.institution;
+  $("#cCity").textContent = p.city;
+  const msg = `I just signed the Canteen Sudharega India petition and gave our canteen at ${p.institution} a "${p.grade}". We want clean, healthy food in every school and college canteen. It's anonymous and takes a minute: ${url} #CanteenSudharegaIndia`;
+  $("#waBtn").href = "https://wa.me/?text=" + encodeURIComponent(msg);
+  $("#copyBtn").textContent = "Copy message";
+  $("#copyBtn").onclick = async () => {
+    try { await navigator.clipboard.writeText(msg); $("#copyBtn").textContent = "Copied ✓"; }
+    catch(e){ $("#copyBtn").textContent = url; }
+  };
+  $("#formView").hidden = true; $("#doneView").hidden = false;
+  $("#sheet").scrollTop = 0;
+}
+
+/* ---------- events ---------- */
+document.addEventListener("click", e => {
+  if (e.target.closest("[data-open]")) return openSheet();
+  if (e.target.closest("[data-close]") || e.target === $("#scrim")) return closeSheet();
+  const t = e.target.closest("[data-type]");
+  if (t){ S.type = t.dataset.type; $$("[data-type]").forEach(b => b.setAttribute("aria-pressed", b === t)); return; }
+  const g = e.target.closest("[data-grade]");
+  if (g){ S.grade = g.dataset.grade; $$("[data-grade]").forEach(b => b.setAttribute("aria-pressed", b === g)); return; }
+  const rm = e.target.closest("[data-rmph]");
+  if (rm){ S.photos.splice(+rm.dataset.rmph, 1); return renderPhotos(); }
+  const q = e.target.closest(".qtag");
+  if (q){
+    const on = q.getAttribute("aria-pressed") !== "true"; q.setAttribute("aria-pressed", on);
+    on ? S.tags.add(q.textContent) : S.tags.delete(q.textContent);
+    const ta = $("#reason");
+    if (on && !ta.value.includes(q.textContent)) ta.value = (ta.value ? ta.value.replace(/[.,\s]*$/, "") + ", " : "") + q.textContent;
+    return;
+  }
+  const ch = e.target.closest("[data-city]"); if (ch){ S.city = ch.dataset.city; return renderBoard(); }
+  const m = e.target.closest("[data-more]");
+  if (m){ const k = m.dataset.more; S.open.has(k) ? S.open.delete(k) : S.open.add(k); return renderBoard(); }
+});
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeSheet(); });
+$("#form").addEventListener("submit", submit);
+$("#q").addEventListener("input", e => { S.q = e.target.value; renderBoard(); });
+
+if ("IntersectionObserver" in window){
+  new IntersectionObserver(([en]) => $("#sticky").classList.toggle("hide", en.isIntersecting), { threshold: .1 }).observe($(".ctas"));
+}
+// yoursite.com/#sign opens the form straight away (use this link in the video)
+function route(){ if (location.hash === "#sign") openSheet(); }
+window.addEventListener("hashchange", route);
+
+resetForm(); load(); route();
+if (!DEMO) setInterval(load, 60000);
+</script>
+</body>
+</html>
