@@ -336,14 +336,45 @@ textarea.in{min-height:84px;resize:vertical}
 </div>
 
 <script>
-/* ================== SETTINGS: edit these 2 lines ================== */
+/* ================== SETTINGS ================== */
 const CONFIG = {
-  API_URL: "",     // your Google Apps Script web-app URL (ends in /exec). Empty = preview mode.
-  SITE_URL: ""     // your public website link, used in share messages. Empty = current page.
+  SUPABASE_URL: "https://ekvcvnzttxbmkevhjubn.supabase.co",
+  SUPABASE_KEY: "sb_publishable_0JvRQ07KI85Kx0ftWs2v0w_QDHyEs-9",
+  SITE_URL: "https://dhritigupta7.github.io/canteen-sudharega-india"
 };
-/* ================================================================== */
+/* ============================================== */
 
-const DEMO = !CONFIG.API_URL;
+const DEMO = !CONFIG.SUPABASE_URL;
+const REFRESH_MS = 20000;   // how often the live counts refresh while the tab is open
+
+/* Call a Postgres function. Only sign_petition / board / suggest_institutions
+   are callable with this key; everything else is locked by row level security. */
+async function rpc(fn, body){
+  const res = await fetch(CONFIG.SUPABASE_URL + "/rest/v1/rpc/" + fn, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "apikey": CONFIG.SUPABASE_KEY,
+      "Authorization": "Bearer " + CONFIG.SUPABASE_KEY
+    },
+    body: JSON.stringify(body || {})
+  });
+  if (!res.ok) throw new Error("Network error (" + res.status + ")");
+  return res.json();
+}
+
+/* Stable per-device id, so one phone signs each campus once. Anonymous:
+   the server only ever stores a salted hash of it. */
+function deviceId(){
+  let d = null;
+  try { d = localStorage.getItem("csi_device"); } catch(e){}
+  if (!d){
+    d = (crypto.randomUUID ? crypto.randomUUID()
+         : String(Date.now()) + Math.random().toString(36).slice(2));
+    try { localStorage.setItem("csi_device", d); } catch(e){}
+  }
+  return d;
+}
 const SHOW_TOP = 3;           // campuses shown per city before "See the entire list"
 const MAX_PHOTOS = 3;
 const POINTS = { A:4, B:3, C:2, D:1, F:0 };
@@ -386,6 +417,15 @@ function addRow(list, s){
   if (s.grade in POINTS){ r[4] += POINTS[s.grade]; r[5]++; }
 }
 function totals(d){
+  // The board only carries the top campuses, so the headline figures come from
+  // the server, which counts every campus including those below the cut.
+  if (d.totals){
+    d.total    = +d.totals.total || 0;
+    d.campuses = +d.totals.campuses || 0;
+    d.cities   = +d.totals.cities || 0;
+    d.grade    = letter(+d.totals.gradeSum || 0, +d.totals.gradeCount || 0);
+    return d;
+  }
   let t = 0, gs = 0, gn = 0; const cities = new Set();
   d.list.forEach(r => { t += +r[3]; gs += +r[4]; gn += +r[5]; cities.add(key(r[1])); });
   d.total = t; d.campuses = d.list.length; d.cities = cities.size; d.grade = letter(gs, gn);
@@ -399,14 +439,31 @@ async function load(){
     S.data = totals(d); render(); return;
   }
   try {
-    const res = await fetch(CONFIG.API_URL + "?t=" + Date.now());
-    const j = await res.json();
-    if (!j.ok) throw new Error(j.error);
-    S.data = totals({ list: j.list || [] });
+    const j = await rpc("board", { max_rows: 400 });
+    if (!j || !j.ok) throw new Error((j && j.error) || "Could not load the list.");
+    S.data = totals({ list: j.list || [], totals: j.totals });
+    $("#status").textContent = "";
   } catch(e){
     $("#status").textContent = "Couldn't load the live list right now. Please refresh in a minute.";
   }
   render();
+}
+
+/* Keep the counts fresh while someone is looking at the page, and stop
+   polling when the tab is hidden so we are not burning anyone's data. */
+function startLiveRefresh(){
+  if (DEMO) return;
+  let timer = null;
+  const tick = async () => {
+    if (document.hidden) return;
+    try {
+      const j = await rpc("board", { max_rows: 400 });
+      if (j && j.ok){ S.data = totals({ list: j.list || [], totals: j.totals }); render(); }
+    } catch(e){ /* a failed refresh just leaves the last good numbers up */ }
+  };
+  const arm = () => { clearInterval(timer); timer = setInterval(tick, REFRESH_MS); };
+  document.addEventListener("visibilitychange", () => { if (!document.hidden){ tick(); arm(); } });
+  arm();
 }
 
 /* ---------- render ---------- */
@@ -480,6 +537,30 @@ async function compress(file){
     return c.toDataURL("image/jpeg", 0.8);
   } finally { URL.revokeObjectURL(url); }
 }
+/* Photos go straight into a private Storage bucket that the website key can
+   write to but never read back. Only the file paths reach the database. */
+async function uploadPhotos(){
+  const paths = [];
+  for (let i = 0; i < S.photos.length; i++){
+    try {
+      const blob = await (await fetch(S.photos[i])).blob();
+      const name = Date.now() + "-" + Math.random().toString(36).slice(2, 9) + "-" + (i + 1) + ".jpg";
+      const path = "evidence/" + name;
+      const res = await fetch(CONFIG.SUPABASE_URL + "/storage/v1/object/" + path, {
+        method: "POST",
+        headers: {
+          "apikey": CONFIG.SUPABASE_KEY,
+          "Authorization": "Bearer " + CONFIG.SUPABASE_KEY,
+          "Content-Type": "image/jpeg"
+        },
+        body: blob
+      });
+      if (res.ok) paths.push(path);
+    } catch(e){ /* a photo that fails to upload must not block the signature */ }
+  }
+  return paths;
+}
+
 function renderPhotos(){
   $$(".thumb").forEach(t => t.remove());
   S.photos.forEach((src, i) => {
@@ -541,10 +622,10 @@ async function submit(e){
       await new Promise(r => setTimeout(r, 600));
       const saved = store.get("csi_demo2", []); saved.push({ type:p.type, institution:p.institution, city:p.city, grade:p.grade }); store.set("csi_demo2", saved);
     } else {
-      const body = JSON.stringify({ ...p, photos: S.photos.map(d => d.split(",")[1]) });
-      const res = await fetch(CONFIG.API_URL, { method:"POST", body }); // text/plain: no CORS preflight
-      const j = await res.json();
-      if (!j.ok) throw new Error(j.error || "Something went wrong.");
+      const paths = await uploadPhotos();
+      const j = await rpc("sign_petition", { payload: { ...p, device: deviceId(), photos: paths } });
+      if (!j || !j.ok) throw new Error((j && j.error) || "Something went wrong.");
+      if (j.total != null && S.data.totals) S.data.totals.total = j.total;
     }
     signed.push(k); store.set("csi_signed2", signed);
     addRow(S.data.list, p); totals(S.data); render();
@@ -596,6 +677,29 @@ document.addEventListener("keydown", e => { if (e.key === "Escape") closeSheet()
 $("#form").addEventListener("submit", submit);
 $("#q").addEventListener("input", e => { S.q = e.target.value; renderBoard(); });
 
+function wireInstitutionLookup(){
+  if (DEMO) return;
+  const inst = $("#inst"), city = $("#city");
+  let t = null, last = "";
+  const look = async () => {
+    const q = tidy(inst.value);
+    if (q.length < 2 || q === last) return;
+    last = q;
+    try {
+      const rows = await rpc("suggest_institutions", { q: q, city: tidy(city.value) || null, lim: 8 });
+      if (!Array.isArray(rows) || !rows.length) return;
+      // Offer the names already on record first, so people pick the existing
+      // spelling instead of creating "CHRIST UNIVERSITY" all over again.
+      const onRecord = rows.map(r => r[0]);
+      const rest = [...new Set(S.data.list.map(r => r[0]))].filter(n => !onRecord.includes(n));
+      $("#instList").innerHTML = [...onRecord, ...rest.sort()]
+        .map(n => `<option value="${esc(n)}">`).join("");
+    } catch(e){ /* fall back to the names already in the board */ }
+  };
+  inst.addEventListener("input", () => { clearTimeout(t); t = setTimeout(look, 220); });
+  city.addEventListener("change", () => { last = ""; look(); });
+}
+
 if ("IntersectionObserver" in window){
   new IntersectionObserver(([en]) => $("#sticky").classList.toggle("hide", en.isIntersecting), { threshold: .1 }).observe($(".ctas"));
 }
@@ -604,7 +708,8 @@ function route(){ if (location.hash === "#sign") openSheet(); }
 window.addEventListener("hashchange", route);
 
 resetForm(); load(); route();
-if (!DEMO) setInterval(load, 60000);
+startLiveRefresh();
+wireInstitutionLookup();
 </script>
 </body>
 </html>

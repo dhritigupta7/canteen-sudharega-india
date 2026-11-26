@@ -1,43 +1,85 @@
-# Canteen Sudharega India: going live in about 15 minutes
+# Canteen Sudharega India
 
-Two files:
-- `index.html`: the website
-- `Code.gs`: the backend, which saves every signature into a Google Sheet you own
+Live site: https://dhritigupta7.github.io/canteen-sudharega-india/
+Video CTA link: https://dhritigupta7.github.io/canteen-sudharega-india/#sign
 
-## 1. Make the Google Sheet (5 min)
-1. Create a new Google Sheet, named e.g. "Canteen Sudharega India – Signatures".
-2. **Extensions → Apps Script**. Delete what's there, paste all of `Code.gs`, and click Save.
-3. In the function dropdown pick `setup` and click **Run**. Approve the permissions (Sheets and Drive: Drive is where the optional photos are saved). Google shows an "unverified app" warning because you wrote the script yourself; click Advanced → Go to project. This creates the `Signatures` tab and a private Drive folder called "Canteen Sudharega India – Photos".
-4. **Deploy → New deployment →** gear icon → **Web app**
-   - Execute as: **Me**
-   - Who has access: **Anyone**
-   - Click Deploy, then copy the **Web app URL** (ends in `/exec`).
+## How it is put together
+- `index.html` — the whole website. Hosted free on GitHub Pages from this repo's `main` branch.
+- Backend — Supabase project `canteen-sudharega-india` (region: Mumbai, free plan).
+  `Code.gs` is the **old** Google Apps Script backend, kept only for reference. It is not used.
 
-## 2. Connect the website (1 min)
-Open `index.html` in any text editor and find the SETTINGS block near the bottom:
-```js
-API_URL: "https://script.google.com/macros/s/XXXX/exec",
-SITE_URL: "https://canteensudharega.netlify.app"
+Push to `main` and the live site updates within about a minute.
+
+## Where the data lives
+Supabase → Table editor:
+- **institutions** — one row per campus, with its signature count and grade totals.
+- **signatures** — every individual signature, with the reason. Never shown publicly.
+- **merge_suggestions** — campus names that look like duplicates and need your eye.
+
+Useful views in the SQL editor:
+```sql
+select * from admin_signatures limit 100;   -- every signature, newest first, with reasons
+select * from pending_merges;               -- duplicate campus names awaiting your decision
 ```
 
-## 3. Put it online for free (3 min)
-The easiest option is **Netlify Drop** (app.netlify.com/drop). Drag the folder containing `index.html` onto the page and you get a live link. Sign up (free) so you can rename it, e.g. `canteensudharega.netlify.app`, and later attach a custom domain.
-Alternatives: GitHub Pages, Vercel, Cloudflare Pages. All free.
+## Keeping the counts accurate
+Campus names are matched on four levels, so "CHRIST UNIVERSITY", "christ university"
+and "Christ-University" are all one campus with one count:
 
-After you have the link, put it in `SITE_URL` and drag the folder again.
+1. **Strict key** — case, accents, punctuation, apostrophes and spacing are ignored.
+   `St. Xavier's College` = `St Xaviers College`.
+2. **Loose key** — abbreviations expanded (`Univ`→`University`, `Clg`→`College`, `St`→`Saint`),
+   filler words dropped, initials glued (`I.I.T.`→`IIT`), word order ignored.
+   An exact match here is **merged automatically**.
+3. **Fuzzy similarity** — anything 82%+ similar is listed in `pending_merges` for you to approve.
+   Not automatic, because `St Xaviers Mumbai` and `St Xaviers Kolkata` are different colleges.
+4. **Autocomplete** — as someone types, the form offers campus names already on record,
+   so they pick the existing spelling instead of inventing a new one. This prevents most duplicates.
 
-## 4. Links to use in your video and bio
-- `yoursite/#sign` opens the petition form straight away, saving one tap. **Use this one in the video CTA.**
+Campus names are always matched **within a city**, never across cities.
 
-## Running it day to day
-- **Spam / abuse / joke entries:** type `x` in the **Hide** column. That row disappears from the public list within 30 seconds.
-- **Duplicate spellings** ("IIT B" vs "IIT Bombay"): edit the Institution cell so they match. Case and punctuation are already ignored, so "St Xaviers" and "St. Xavier's" merge automatically. The form also autocompletes existing names, which prevents most duplicates.
-- **Photos** are saved in your private Drive folder, and the Sheet's Photos column links to them. Location data is removed before upload. Look through them before using any in your content.
-- **Grades:** each campus's average grade on the website is worked out from the A–F grades (A=4 … F=0) and rounded to the nearest letter.
-- **Reasons** stay only in your Sheet. The website never shows them. No names, emails or phone numbers are collected, so submissions are fully anonymous.
-- **Changed `Code.gs`?** Deploy → Manage deployments → pencil icon → Version: *New version* → Deploy. Your URL stays the same.
+## Day-to-day jobs (run in Supabase → SQL editor)
+```sql
+-- approve a suggested merge
+select approve_merge(<id from pending_merges>);
 
-## Limits worth knowing
-- Google Apps Script handles a few thousand signatures a day comfortably. If the video goes truly viral (tens of thousands in an hour), some people will see "try again in a moment". At that point move the backend to Firebase or Supabase. The website needs only the two `fetch` calls changed.
-- Spam protection is lightweight: a hidden bot trap, a minimum fill time, a required reason, and one entry per campus per device. It stops casual timepass, but it can't stop a determined person. Watch the sheet in the first few days.
-- Submissions are anonymous, but people may still type names into the reason box. Hide any such row and don't share the raw Sheet publicly.
+-- merge two campuses by hand
+select merge_institutions(<keep_id>, <duplicate_id>);
+
+-- undo any merge, exactly
+select unmerge_institution(<duplicate_id>);
+
+-- hide spam, abuse or a joke entry
+select hide_signature('<signature uuid>');
+
+-- hide an entire fake campus
+select hide_institution(<institution id>);
+
+-- fix an ugly or wrong campus name
+select rename_institution(<institution id>, 'Christ University');
+
+-- after editing the abbreviation list, re-key everything
+select renormalize_all();
+
+-- reconcile counts if anything ever looks off
+select recount_all();
+```
+
+## Privacy
+- No names, emails or phone numbers are collected.
+- The device id and IP address are stored only as salted SHA-256 hashes, used for
+  "one signature per campus per device" and for rate limiting.
+- Run `select purge_old_ip_hashes();` periodically; it clears IP hashes older than 7 days.
+- Photos go to a **private** Storage bucket called `evidence`. The website's key can
+  upload into it but cannot read it back. View them in Supabase → Storage.
+- Reasons are never shown on the website. People sometimes type names into them, so
+  do not share the raw table publicly.
+
+## Limits of the free plan
+- 500 MB database. A signature is roughly 0.5 KB, so ~1 million signatures.
+- **5 GB egress per month.** This is the real ceiling. Every page load fetches the
+  board (~25 KB), so roughly 200,000 page loads per month. Watch
+  Supabase → Reports → Egress in the first days after the video.
+  If it climbs, the fixes in order are: lower `max_rows` in `board()`,
+  raise `REFRESH_MS` in `index.html`, then put a Cloudflare Worker cache in front.
+- Writes are not the constraint; reads are.
