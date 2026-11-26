@@ -6,7 +6,8 @@ Video CTA link: https://dhritigupta7.github.io/canteen-sudharega-india/#sign
 ## How it is put together
 - `index.html` — the whole website. Hosted free on GitHub Pages from this repo's `main` branch.
 - Backend — Supabase project `canteen-sudharega-india` (region: Mumbai, free plan).
-  `Code.gs` is the **old** Google Apps Script backend, kept only for reference. It is not used.
+  Project ref `ekvcvnzttxbmkevhjubn`. The old Google Apps Script backend has been removed;
+  nothing touches Google Sheets or Drive any more.
 
 Push to `main` and the live site updates within about a minute.
 
