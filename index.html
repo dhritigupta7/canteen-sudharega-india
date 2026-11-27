@@ -709,6 +709,7 @@ function openSheet(){
   S.opened = Date.now();
   $("#formView").hidden = false; $("#doneView").hidden = true;
   $("#scrim").classList.add("open");
+  if (window.warmCampusSearch) window.warmCampusSearch();
   document.body.style.overflow = "hidden";
   setTimeout(() => $("#inst").focus(), 60);
 }
@@ -834,6 +835,13 @@ function setCampus(name, city){
 function wireInstitutionLookup(){
   const inst = $("#inst"), listEl = $("#pickList"), hint = $("#pickHint");
   let t = null, reqId = 0, chosen = "";
+  const cache = new Map();                       // query -> rows, so backspacing is instant
+  const ckey = q => S.type + "|" + tidy($("#city").value).toLowerCase() + "|" + q.toLowerCase();
+
+  function searching(){                          // never leave the field looking frozen
+    hint.hidden = false;
+    hint.textContent = "Searching…";
+  }
 
   function hideList(){
     listEl.hidden = true; listEl.innerHTML = "";
@@ -869,14 +877,33 @@ function wireInstitutionLookup(){
     const typed = tidy(inst.value);
     if (typed.length < 2) return hideList();
     if (typed === chosen) return;            // already picked this one
+
+    const k = ckey(typed);
+    if (cache.has(k)) return render(cache.get(k));   // no network at all
+
     const mine = ++reqId;
+    searching();
     try {
       const rows = await rpc("suggest_institutions", {
         q: typed, city: tidy($("#city").value) || null, lim: 20, kind: S.type });
       if (mine !== reqId) return;            // a newer keystroke already won
-      render(Array.isArray(rows) ? rows : []);
+      const out = Array.isArray(rows) ? rows : [];
+      cache.set(k, out);
+      if (cache.size > 120) cache.delete(cache.keys().next().value);
+      render(out);
     } catch(e){ if (mine === reqId) render([]); }
   }
+
+  /* The first query of a session pays for the TLS handshake and for the
+     database reading its indexes back from disk, which is what made the
+     list feel slow. Fire one throwaway query the moment the sheet opens,
+     so that cost is paid while the person is still picking College/School. */
+  let warmed = false;
+  window.warmCampusSearch = () => {
+    if (warmed || DEMO) return;
+    warmed = true;
+    rpc("suggest_institutions", { q: "aa", lim: 1, kind: "College" }).catch(() => {});
+  };
 
   inst.addEventListener("input", () => { chosen = ""; clearTimeout(t); t = setTimeout(search, 200); });
   inst.addEventListener("focus", () => { if (tidy(inst.value).length >= 2 && !chosen) search(); });
@@ -908,6 +935,10 @@ if ("IntersectionObserver" in window){
 // yoursite.com/#sign opens the form straight away (use this link in the video)
 function route(){ if (location.hash === "#sign") openSheet(); }
 window.addEventListener("hashchange", route);
+
+document.addEventListener("pointerdown", e => {
+  if (e.target.closest("[data-open]") && window.warmCampusSearch) window.warmCampusSearch();
+}, { passive: true });
 
 resetForm(); load(); route();
 startLiveRefresh();
