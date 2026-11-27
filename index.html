@@ -365,13 +365,13 @@ textarea.short{min-height:64px}
           <button type="button" data-grade="F" aria-pressed="false"><b>F</b><small>Fail</small></button>
         </div>
 
-        <label class="f" for="reason">What's wrong with your canteen?</label>
+        <label class="f" for="reason">What's wrong with your canteen? <small>(optional)</small></label>
         <p class="hint tapHint">Tap all that apply — they get added to the box below, and you can edit it.</p>
         <div class="qtags" id="qtags"></div>
         <div id="otherWrap" hidden>
           <input class="in" id="otherIssue" maxlength="80" placeholder="Type the problem in your own words">
         </div>
-        <textarea class="in" id="reason" maxlength="1000" placeholder="One line is enough. This stays private."></textarea>
+        <textarea class="in" id="reason" maxlength="1000" placeholder="Optional. One line is enough. This stays private."></textarea>
 
         <label class="f" for="wish" id="wishLbl">If you could change one thing in your college canteen, what would it be? <small>(optional)</small></label>
         <textarea class="in short" id="wish" maxlength="500" placeholder="e.g. a proper fruit and salad counter, or clean drinking water"></textarea>
@@ -565,13 +565,22 @@ function countTo(el, to){
 }
 function render(){
   const d = S.data;
+  // One missing element used to throw here and stop renderBoard() from ever
+  // running, which silently emptied the city-wise list.
+  try {
+    paint(d);
+  } catch(e){
+    console.error("render failed", e);
+  }
+  renderBoard();
+}
+function paint(d){
   countTo($("#total"), d.total || 0);
   $("#sCampus").textContent = fmt(d.campuses);
   $("#sCity").textContent = fmt(d.cities);
   $("#sGrade").innerHTML = d.grade ? badge(d.grade) : "–";
-  $("#instList").innerHTML = [...new Set(d.list.map(r => r[0]))].sort().map(n => `<option value="${esc(n)}">`).join("");
-  $("#cityList").innerHTML = [...new Set([...d.list.map(r => r[1]), ...MAJOR_CITIES])].sort().map(n => `<option value="${esc(n)}">`).join("");
-  renderBoard();
+  const cl = $("#cityList");
+  if (cl) cl.innerHTML = [...new Set([...d.list.map(r => r[1]), ...MAJOR_CITIES])].sort().map(n => `<option value="${esc(n)}">`).join("");
 }
 function renderBoard(){
   const groups = new Map();
@@ -732,7 +741,7 @@ async function submit(e){
   if (p.institution.length < 3) return err("Please enter your college or school name."), $("#inst").focus();
   if (p.city.length < 2) return err("Please enter your city."), $("#city").focus();
   if (!p.grade) return err("Please give your canteen a grade: A, B, C, D or F.");
-  if (p.reason.length < 10) return err("Tell us what's wrong in a few words (at least 10 characters)."), $("#reason").focus();
+
 
   const k = key(p.city) + "|" + key(p.institution);
   const signed = store.get("csi_signed2", []);
@@ -751,7 +760,8 @@ async function submit(e){
       S.lastCampusCount = j.campus_count || 1;
     }
     signed.push(k); store.set("csi_signed2", signed);
-    addRow(S.data.list, p); totals(S.data); render();
+    addRow(S.data.list, p); totals(S.data);
+    try { render(); } catch(e){ console.error("board refresh failed", e); }
     showDone(p);
   } catch(ex){
     err(ex.message && ex.message.length < 140 ? ex.message : "Couldn't submit. Check your connection and try again.");
