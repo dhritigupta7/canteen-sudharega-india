@@ -11,14 +11,14 @@ SRC = "index.html"
 VARIANTS = {
  "office.html": dict(
     KIND="Office", NOUN="office", NOUNS="offices", NOUN_C="Office", NOUNS_C="Offices",
-    WHO="employees", WHO_LONG="employees and staff",
+    WHO="employees", WHO_LONG="employees and staff", TAG="National workplace petition",
     H1="We are demanding <em>clean and healthy</em> food options in every office canteen in India.",
     TITLE="Canteen Sudharega India — Office canteens",
     DESC="We are demanding clean and healthy food in every office canteen in India. Sign the petition anonymously and grade your canteen.",
  ),
  "hospital.html": dict(
     KIND="Hospital", NOUN="hospital", NOUNS="hospitals", NOUN_C="Hospital", NOUNS_C="Hospitals",
-    WHO="patients and staff", WHO_LONG="patients, visitors and staff",
+    WHO="patients and staff", WHO_LONG="patients, visitors and staff", TAG="National hospital petition",
     H1="We are demanding <em>clean and healthy</em> food options in every hospital canteen in India.",
     TITLE="Canteen Sudharega India — Hospital canteens",
     DESC="We are demanding clean and healthy food in every hospital canteen in India. Sign the petition anonymously and grade your canteen.",
@@ -58,6 +58,8 @@ def build(out, V):
     s = active(s, out)
 
     # ---- copy ----
+    s = rep(s, "<span class=\"tag\">📣 National student petition</span>",
+               "<span class=\"tag\">📣 %s</span>" % V["TAG"], "tag")
     s = rep(s, "<h1>We are demanding <em>clean and healthy</em> food options in every school and college canteen in India.</h1>",
                "<h1>%s</h1>" % V["H1"], "h1")
     s = rep(s, '<div><b id="sCampus">0</b><span>campuses on the list</span></div>',
