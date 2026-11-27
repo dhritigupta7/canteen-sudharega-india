@@ -184,27 +184,20 @@ textarea.in{min-height:84px;resize:vertical}
 .photos{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
 .tapHint{margin:2px 0 8px}
 
-/* campus picker: full screen on a phone, a centred panel on a laptop */
+/* campus picker: a view inside the sheet, like the thank-you screen */
 button.picker{display:flex;align-items:center;justify-content:space-between;gap:10px;text-align:left;width:100%;cursor:pointer;background:#fff}
 button.picker .ph{color:#9b8f86}
 button.picker .caret{flex:none;color:var(--muted)}
-.pickwrap{position:fixed;inset:0;z-index:70;background:#fff;display:flex;flex-direction:column}
-.pickbar{display:flex;gap:8px;padding:12px;padding-top:max(12px,env(safe-area-inset-top));border-bottom:2.5px solid var(--ink);background:var(--paper)}
-.pickin{flex:1;min-width:0;font:inherit;font-size:16px;padding:12px 14px;border:2.5px solid var(--ink);background:#fff;color:var(--ink)}
-.pickx{flex:none;width:46px;border:2.5px solid var(--ink);background:#fff;font-size:17px}
-.pickhint{margin:0;padding:10px 14px;font-size:13px;color:var(--muted);background:var(--paper);border-bottom:1.5px solid var(--line)}
-.picklist{list-style:none;margin:0;padding:0;flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch}
-.picklist li{border-bottom:1.5px solid var(--line)}
-.picklist button{display:block;width:100%;text-align:left;padding:14px;background:#fff;border:0;font:inherit;line-height:1.35}
+.pickin{margin-bottom:10px}
+.picklist{list-style:none;margin:0 0 12px;padding:0;max-height:52vh;overflow-y:auto;-webkit-overflow-scrolling:touch;border:2px solid var(--line)}
+.picklist:empty{display:none}
+.picklist li+li{border-top:1.5px solid var(--line)}
+.picklist button{display:block;width:100%;text-align:left;padding:13px 12px;background:#fff;border:0;font:inherit;line-height:1.35;cursor:pointer}
 .picklist button:active{background:var(--sage-l)}
 .picklist .pn{display:block;font-weight:700}
 .picklist .pc{display:block;font-size:13px;color:var(--muted);margin-top:2px}
 .picklist .pcount{color:var(--green-d);font-weight:700}
-.pickfoot{padding:12px;padding-bottom:max(12px,env(safe-area-inset-bottom));border-top:2.5px solid var(--ink);background:var(--paper)}
-.useown{width:100%;padding:14px;border:2.5px solid var(--ink);background:var(--butter);font-weight:700;box-shadow:var(--shadow)}
-@media (min-width:720px){
-  .pickwrap{inset:6vh 50% auto 50%;transform:translateX(-50%);width:min(560px,92vw);max-height:84vh;border:3px solid var(--ink);box-shadow:8px 8px 0 var(--ink)}
-}
+.useown{width:100%;padding:14px;border:2.5px solid var(--ink);background:var(--butter);font-weight:700;box-shadow:var(--shadow);margin-bottom:4px}
 .grp{margin:14px 0 0}
 .grph{margin:0 0 6px;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:8px}
 .grph span{background:var(--sage-l);border:1.5px solid var(--ink);border-radius:999px;padding:1px 8px;font-size:11px;color:var(--ink)}
@@ -342,20 +335,6 @@ textarea.short{min-height:64px}
 
 <div class="sticky" id="sticky"><button data-open>✍️ Sign the petition →</button></div>
 
-<!-- campus picker -->
-<div class="pickwrap" id="pickWrap" hidden>
-  <div class="pickbar">
-    <input class="pickin" id="pickQ" type="search" autocomplete="off" autocorrect="off"
-           spellcheck="false" placeholder="Type your college name">
-    <button type="button" class="pickx" id="pickClose" aria-label="Close">✕</button>
-  </div>
-  <p class="pickhint" id="pickHint">Start typing — pick your campus from the list.</p>
-  <ul class="picklist" id="pickList"></ul>
-  <div class="pickfoot">
-    <button type="button" class="useown" id="useOwn" hidden></button>
-  </div>
-</div>
-
 <!-- form sheet -->
 <div class="scrim" id="scrim">
   <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
@@ -412,6 +391,17 @@ textarea.short{min-height:64px}
         <button class="submit" id="submitBtn" type="submit">Sign the petition</button>
         <p class="privacy">🔒 Completely anonymous. We never ask who you are.</p>
       </form>
+    </div>
+
+    <div id="pickView" hidden>
+      <div class="sheet-top">
+        <div><h2 id="pickTitle">Find your college</h2><p class="sub" id="pickHint">Start typing, then tap your campus.</p></div>
+        <button class="x" type="button" id="pickClose" aria-label="Back">✕</button>
+      </div>
+      <input class="in pickin" id="pickQ" type="search" autocomplete="off" autocorrect="off"
+             spellcheck="false" placeholder="Type your college name">
+      <ul class="picklist" id="pickList"></ul>
+      <button type="button" class="useown" id="useOwn" hidden></button>
     </div>
 
     <div id="doneView" hidden>
@@ -727,6 +717,7 @@ function openSheet(){
   if ($("#doneView").hidden === false) resetForm();
   S.opened = Date.now();
   $("#formView").hidden = false; $("#doneView").hidden = true;
+  const pv = $("#pickView"); if (pv) pv.hidden = true;
   $("#scrim").classList.add("open");
   document.body.style.overflow = "hidden";
   setTimeout(() => $("#instBtn").focus(), 60);
@@ -831,7 +822,10 @@ document.addEventListener("click", e => {
   const m = e.target.closest("[data-more]");
   if (m){ const k = m.dataset.more; S.open.has(k) ? S.open.delete(k) : S.open.add(k); return renderBoard(); }
 });
-document.addEventListener("keydown", e => { if (e.key === "Escape") closeSheet(); });
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape" && $("#pickView") && !$("#pickView").hidden) return;
+  if (e.key === "Escape") closeSheet();
+});
 $("#form").addEventListener("submit", submit);
 $("#q").addEventListener("input", e => { S.q = e.target.value; renderBoard(); });
 
@@ -848,22 +842,28 @@ function setCampus(name, city){
 }
 
 function wireInstitutionLookup(){
-  const wrap = $("#pickWrap"), q = $("#pickQ"), listEl = $("#pickList"),
+  const q = $("#pickQ"), listEl = $("#pickList"),
         hint = $("#pickHint"), useOwn = $("#useOwn");
   let t = null, reqId = 0;
 
+  // The picker is a view inside the sheet, swapped in place of the form.
   const open = () => {
-    wrap.hidden = false;
-    document.body.style.overflow = "hidden";
-    q.placeholder = S.type === "School" ? "Type your school name" : "Type your college name";
+    const school = S.type === "School";
+    $("#pickTitle").textContent = school ? "Find your school" : "Find your college";
+    q.placeholder = school ? "Type your school name" : "Type your college name";
     q.value = tidy($("#inst").value);
     render([]);
-    setTimeout(() => q.focus(), 50);
+    $("#formView").hidden = true;
+    $("#pickView").hidden = false;
+    $("#sheet").scrollTop = 0;
+    setTimeout(() => q.focus(), 60);
     if (q.value.length >= 2) search();
   };
   const close = () => {
-    wrap.hidden = true;
-    document.body.style.overflow = $("#scrim").classList.contains("open") ? "hidden" : "";
+    $("#pickView").hidden = true;
+    $("#formView").hidden = false;
+    $("#sheet").scrollTop = 0;
+    setTimeout(() => $("#instBtn").focus(), 40);
   };
 
   function render(rows){
@@ -907,7 +907,9 @@ function wireInstitutionLookup(){
     setCampus(b.dataset.pick, b.dataset.city || "");
     close();
   });
-  document.addEventListener("keydown", e => { if (e.key === "Escape" && !wrap.hidden) close(); });
+  document.addEventListener("keydown", e => {
+    if (e.key === "Escape" && !$("#pickView").hidden){ e.stopPropagation(); close(); }
+  }, true);
 }
 
 if ("IntersectionObserver" in window){
