@@ -395,7 +395,7 @@ textarea.short{min-height:64px}
         <label class="f" for="wish" id="wishLbl">If you could change one thing in your college canteen, what would it be? <small>(optional)</small></label>
         <textarea class="in short" id="wish" maxlength="500" placeholder="e.g. a proper fruit and salad counter, or clean drinking water"></textarea>
 
-        <span class="flabel">Add photos <small>(optional, up to 3)</small></span>
+        <span class="flabel">Add photos <small>(optional, up to 2)</small></span>
         <div class="photos" id="photos">
           <label class="addph" id="addPh">📷 Add photos<input type="file" id="photoIn" accept="image/*" multiple hidden></label>
         </div>
@@ -482,7 +482,7 @@ function deviceId(){
   return d;
 }
 const SHOW_TOP = 3;           // campuses shown per city before "See the entire list"
-const MAX_PHOTOS = 3;
+const MAX_PHOTOS = 2;
 const POINTS = { A:4, B:3, C:2, D:1, F:0 };
 
 const $ = s => document.querySelector(s);

@@ -62,6 +62,8 @@ def build(out, V):
                "<span class=\"tag\">📣 %s</span>" % V["TAG"], "tag")
     s = rep(s, "<h1>We are demanding <em>clean and healthy</em> food options in every school and college canteen in India.</h1>",
                "<h1>%s</h1>" % V["H1"], "h1")
+    s = rep(s, '<div class="lbl">students and parents have signed</div>',
+               '<div class="lbl">Indians have signed</div>', "counter who")
     s = rep(s, '<div><b id="sCampus">0</b><span>campuses on the list</span></div>',
                '<div><b id="sCampus">0</b><span>%s on the list</span></div>' % NS, "counter label")
     s = rep(s, "<p class=\"board-sub\">Schools and colleges ranked by the number of people who signed, with the average report-card grade students and parents gave their canteen.</p>",
