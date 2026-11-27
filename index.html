@@ -617,7 +617,7 @@ function renderBoard(){
       <header><h3>${esc(g.name)}</h3><span>${fmt(g.total)} signed<br>${items.length} ${S.kind === "School" ? "school" : "college"}${items.length === 1 ? "" : "s"}</span></header>
       <div class="cols"><span>#</span><span>${S.kind === "School" ? "School" : "College"}</span><span>Signed</span><span>Grade</span></div>
       <ol>${vis.map((r, i) => `<li><span class="rk">${i + 1}</span><span class="nm">${esc(r[0])}</span><span class="ct">${fmt(r[3])}<small>signed</small></span>${badge(letter(+r[4], +r[5]))}</li>`).join("")}</ol>
-      ${items.length > SHOW_TOP && !q ? `<button class="more" data-more="${esc(g.k)}">${full ? "Show top 3 ↑" : `See the entire list (${items.length}) ↓`}</button>` : ""}
+      ${items.length > SHOW_TOP && !q ? `<button class="more" data-more="${esc(g.k)}">${full ? `Show top ${SHOW_TOP} ↑` : `See more +${fmt(items.length - SHOW_TOP)} ↓`}</button>` : ""}
     </section>`;
   }).join("");
 }
