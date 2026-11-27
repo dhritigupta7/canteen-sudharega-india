@@ -91,6 +91,15 @@ button{font:inherit;cursor:pointer;color:inherit}
 .band h2{font-size:clamp(30px,4.4vw,44px);margin-bottom:26px}
 .band h2 span{color:var(--butter)}
 .demands{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+
+/* photographs: full-bleed on a phone, contained on a laptop */
+.shot{margin:0}
+.shot img{display:block;width:100%;height:auto;border:2.5px solid var(--ink);box-shadow:var(--shadow);background:var(--paper)}
+.shot-lead{margin:22px 0 4px}
+.movement{padding:30px 0 6px}
+.movement .wrap{display:flex;justify-content:center}
+.shot-kids{max-width:420px;text-align:center}
+.shot-kids figcaption{margin-top:10px;font-family:"Anton",Impact,sans-serif;text-transform:uppercase;letter-spacing:.04em;font-size:17px;color:var(--red)}
 .dm{border:2px solid rgba(255,255,255,.25);border-radius:18px;padding:22px;background:rgba(0,0,0,.12)}
 .dm .ic{font-size:30px}
 .dm .n{font-weight:700;font-size:13px;color:var(--butter);letter-spacing:.1em;margin-top:6px}
@@ -170,6 +179,19 @@ textarea.in{min-height:84px;resize:vertical}
 .qtag{border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:5px 11px;font-size:13px;font-weight:500}
 .qtag[aria-pressed=true]{background:var(--butter)}
 .photos{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.tapHint{margin:2px 0 8px}
+.grp{margin:14px 0 0}
+.grph{margin:0 0 6px;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:8px}
+.grph span{background:var(--sage-l);border:1.5px solid var(--ink);border-radius:999px;padding:1px 8px;font-size:11px;color:var(--ink)}
+.next{margin:16px 0 4px;padding:14px 16px;border:2.5px solid var(--ink);background:var(--sage-l);box-shadow:var(--shadow)}
+.next h3{font-size:16px;margin:0 0 6px}
+.next p{margin:0 0 8px;font-size:14px;line-height:1.5}
+.next .nextb{margin:0;font-size:14px}
+.next .gap{color:var(--red);font-weight:700}
+.bar{display:block;height:10px;margin-top:9px;border:2px solid var(--ink);background:#fff}
+.bar i{display:block;height:100%;background:var(--green)}
+#otherWrap{margin:0 0 10px}
+textarea.short{min-height:64px}
 .addph{display:inline-flex;align-items:center;gap:8px;border:2px dashed var(--ink);border-radius:12px;padding:12px 14px;font-weight:700;font-size:14px;background:#fff}
 .thumb{position:relative;width:64px;height:64px;border-radius:10px;border:2px solid var(--ink);overflow:hidden}
 .thumb img{width:100%;height:100%;object-fit:cover;display:block}
@@ -224,7 +246,7 @@ textarea.in{min-height:84px;resize:vertical}
       <div class="ctas">
         <button class="cta" data-open>
           <span class="ico">✍️</span>
-          <span><b>My canteen needs improvement</b><small>Sign the petition and grade your canteen</small></span>
+          <span><b>Sign the petition and grade your canteen</b></span>
           <span class="go" aria-hidden="true">→</span>
         </button>
       </div>
@@ -242,16 +264,29 @@ textarea.in{min-height:84px;resize:vertical}
       </div>
     </aside>
   </section>
+
+  <figure class="shot shot-lead">
+    <img src="revant-blackboard.jpg" width="1179" height="650" alt="Revant Himatsingka in a classroom beside a blackboard reading Canteen Sudharega India" loading="lazy" decoding="async">
+  </figure>
 </div>
 
 <section class="band">
   <div class="wrap">
     <h2>What we are <span>asking for</span></h2>
     <div class="demands">
-      <div class="dm"><div class="ic">🥗</div><div class="n">DEMAND 01</div><h3>At least 2 healthy options</h3><p>Every canteen should serve at least 2 healthy food options, every day, alongside everything else on the menu.</p></div>
+      <div class="dm"><div class="ic">🥗</div><div class="n">DEMAND 01</div><h3>At least 2 affordable healthy options</h3><p>Every canteen should serve at least two affordable, healthy food options, every day, alongside everything else on the menu.</p></div>
       <div class="dm"><div class="ic">🧼</div><div class="n">DEMAND 02</div><h3>Clean and hygienic food</h3><p>Food should be cooked, stored and served in clean, hygienic conditions, with clean utensils and safe drinking water.</p></div>
       <div class="dm"><div class="ic">📋</div><div class="n">DEMAND 03</div><h3>Calories and nutrition on the menu</h3><p>Canteen menus should show the calories and nutritional values of every item, so students can make informed choices.</p></div>
     </div>
+  </div>
+</section>
+
+<section class="movement">
+  <div class="wrap">
+    <figure class="shot shot-kids">
+      <img src="canteen-badlega-desh-badlega.jpg" width="900" height="900" alt="School students in a classroom holding a sign reading Canteen Badlega Desh Badlega" loading="lazy" decoding="async">
+      <figcaption>Canteen badlega, desh badlega.</figcaption>
+    </figure>
   </div>
 </section>
 
@@ -309,8 +344,15 @@ textarea.in{min-height:84px;resize:vertical}
         </div>
 
         <label class="f" for="reason">What's wrong with your canteen?</label>
+        <p class="hint tapHint">Tap all that apply — they get added to the box below, and you can edit it.</p>
         <div class="qtags" id="qtags"></div>
+        <div id="otherWrap" hidden>
+          <input class="in" id="otherIssue" maxlength="80" placeholder="Type the problem in your own words">
+        </div>
         <textarea class="in" id="reason" maxlength="1000" placeholder="One line is enough. This stays private."></textarea>
+
+        <label class="f" for="wish" id="wishLbl">If you could change one thing in your college canteen, what would it be? <small>(optional)</small></label>
+        <textarea class="in short" id="wish" maxlength="500" placeholder="e.g. a proper fruit and salad counter, or clean drinking water"></textarea>
 
         <span class="flabel">Add photos <small>(optional, up to 3)</small></span>
         <div class="photos" id="photos">
@@ -338,7 +380,14 @@ textarea.in{min-height:84px;resize:vertical}
           <div><dt>City</dt><dd id="cCity"></dd></div>
         </dl>
       </div>
-      <p class="sharelead">Now get your batchmates and parents to sign too.</p>
+      <div class="next">
+        <h3>What happens next</h3>
+        <p>Every signature is counted against your campus by name. The campuses with the
+           most signatures are the ones this campaign puts its weight behind first — in the
+           videos, and in what we take to the people who run these canteens.</p>
+        <p class="nextb" id="campusLine"></p>
+      </div>
+      <p class="sharelead">So the fastest way to get your canteen looked at is to get your batchmates and parents to sign too.</p>
       <div class="share">
         <a class="wa" id="waBtn" href="#" target="_blank" rel="noopener">Share on WhatsApp</a>
         <button type="button" id="copyBtn">Copy message</button>
@@ -404,7 +453,8 @@ const store = {
   set(k, v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch(e){} }
 };
 
-const TAGS = ["Unhygienic kitchen", "Stale / reheated food", "Only junk food", "No healthy options", "Dirty plates & tables", "No nutrition info", "Overpriced"];
+const TAGS = ["Unhygienic kitchen", "Stale / reheated food", "Only junk food", "No healthy options", "Dirty plates & tables", "No nutrition info", "Overpriced", "Other"];
+const OTHER = "Other";
 const MAJOR_CITIES = ["Mumbai","Delhi","Bengaluru","Hyderabad","Ahmedabad","Chennai","Kolkata","Pune","Jaipur","Lucknow","Kanpur","Nagpur","Indore","Bhopal","Thane","Navi Mumbai","Patna","Vadodara","Ghaziabad","Ludhiana","Agra","Nashik","Noida","Gurugram","Faridabad","Surat","Rajkot","Varanasi","Srinagar","Amritsar","Chandigarh","Coimbatore","Kochi","Thiruvananthapuram","Visakhapatnam","Vijayawada","Mysuru","Mangaluru","Guwahati","Bhubaneswar","Raipur","Ranchi","Dehradun","Jammu","Goa","Madurai","Aurangabad","Jodhpur","Udaipur","Prayagraj"];
 
 // Sample rows for preview mode only: [name, city, type, signatures, gradePointsSum, gradeCount]
@@ -523,15 +573,28 @@ function renderBoard(){
       <br><br><button class="chip" data-open>✍️ Sign for my campus</button></div>`;
     return;
   }
+  // Colleges and schools are listed separately inside each city.
+  const rows = (items, offset) => items.map((r, i) =>
+    `<li><span class="rk">${i + 1 + offset}</span><span class="nm">${esc(r[0])}</span><span class="ct">${fmt(r[3])}<small>signed</small></span>${badge(letter(+r[4], +r[5]))}</li>`).join("");
+
   $("#cities").innerHTML = list.map(g => {
-    const items = g.items.sort((a, b) => b[3] - a[3]);
     const full = S.open.has(g.k) || !!q;
-    const vis = full ? items : items.slice(0, SHOW_TOP);
+    const byType = t => g.items.filter(r => (r[2] || "College") === t).sort((a, b) => b[3] - a[3]);
+    const parts = [["College", "🎓 Colleges"], ["School", "🎒 Schools"]].map(([t, heading]) => {
+      const items = byType(t);
+      if (!items.length) return "";
+      const vis = full ? items : items.slice(0, SHOW_TOP);
+      return `<div class="grp">
+        <h4 class="grph">${heading} <span>${fmt(items.length)}</span></h4>
+        <div class="cols"><span>#</span><span>${t === "School" ? "School" : "College"}</span><span>Signed</span><span>Grade</span></div>
+        <ol>${rows(vis, 0)}</ol>
+      </div>`;
+    }).join("");
+    const most = Math.max(byType("College").length, byType("School").length);
     return `<section class="city">
-      <header><h3>${esc(g.name)}</h3><span>${fmt(g.total)} signed<br>${items.length} campus${items.length === 1 ? "" : "es"}</span></header>
-      <div class="cols"><span>#</span><span>School / college</span><span>Signed</span><span>Grade</span></div>
-      <ol>${vis.map((r, i) => `<li><span class="rk">${i + 1}</span><span class="nm">${esc(r[0])}<span class="ty">${esc(r[2])}</span></span><span class="ct">${fmt(r[3])}<small>signed</small></span>${badge(letter(+r[4], +r[5]))}</li>`).join("")}</ol>
-      ${items.length > SHOW_TOP && !q ? `<button class="more" data-more="${esc(g.k)}">${full ? "Show top 3 ↑" : `See the entire list (${items.length}) ↓`}</button>` : ""}
+      <header><h3>${esc(g.name)}</h3><span>${fmt(g.total)} signed<br>${g.items.length} campus${g.items.length === 1 ? "" : "es"}</span></header>
+      ${parts}
+      ${most > SHOW_TOP && !q ? `<button class="more" data-more="${esc(g.k)}">${full ? "Show top 3 ↑" : `See the entire list (${g.items.length}) ↓`}</button>` : ""}
     </section>`;
   }).join("");
 }
@@ -592,10 +655,33 @@ $("#photoIn").addEventListener("change", async e => {
 });
 
 /* ---------- sheet ---------- */
+/* College and school signers see the right nouns. Kept neutral because a
+   school canteen is graded by students and parents alike. */
+function syncWording(){
+  const school = S.type === "School";
+  const inst = $("#inst"), wishLbl = $("#wishLbl");
+  if (inst){
+    inst.placeholder = school ? "e.g. Delhi Public School" : "e.g. St. Xavier's College";
+    inst.previousElementSibling && (inst.previousElementSibling.textContent = school ? "School name" : "College name");
+  }
+  if (wishLbl){
+    wishLbl.innerHTML = (school
+      ? "If you could change one thing in this school canteen, what would it be? "
+      : "If you could change one thing in your college canteen, what would it be? ")
+      + "<small>(optional)</small>";
+  }
+  const w = $("#wish");
+  if (w) w.placeholder = school
+    ? "e.g. fresh fruit instead of packaged snacks, or clean drinking water"
+    : "e.g. a proper fruit and salad counter, or clean drinking water";
+}
+
 function resetForm(){
   $("#form").reset(); S.grade = ""; S.tags.clear(); S.photos = [];
+  $("#otherWrap").hidden = true; $("#otherIssue").value = "";
   $$("[data-grade]").forEach(b => b.setAttribute("aria-pressed", "false"));
   $("#qtags").innerHTML = TAGS.map(t => `<button type="button" class="qtag" aria-pressed="false">${t}</button>`).join("");
+  syncWording();
   renderPhotos(); $("#err").textContent = "";
 }
 function openSheet(){
@@ -613,9 +699,12 @@ function closeSheet(){
 
 async function submit(e){
   e.preventDefault();
+  const other = tidy($("#otherIssue").value);
+  const tagList = [...S.tags].map(t => (t === OTHER && other) ? `Other: ${other}` : t)
+                             .filter(t => t !== OTHER);
   const p = {
     type: S.type, institution: tidy($("#inst").value), city: tidy($("#city").value), grade: S.grade,
-    reason: tidy($("#reason").value), tags: [...S.tags].join(", "),
+    reason: tidy($("#reason").value), tags: tagList.join(", "), wish: tidy($("#wish").value),
     website: $("#website").value, elapsed: Date.now() - S.opened
   };
   const err = m => { $("#err").textContent = m; };
@@ -638,6 +727,7 @@ async function submit(e){
       const j = await rpc("sign_petition", { payload: { ...p, device: deviceId(), photos: paths } });
       if (!j || !j.ok) throw new Error((j && j.error) || "Something went wrong.");
       if (j.total != null && S.data.totals) S.data.totals.total = j.total;
+      S.lastCampusCount = j.campus_count || 1;
     }
     signed.push(k); store.set("csi_signed2", signed);
     addRow(S.data.list, p); totals(S.data); render();
@@ -652,6 +742,15 @@ function showDone(p){
   $("#cGrade").innerHTML = badge(p.grade);
   $("#cInst").textContent = p.institution;
   $("#cCity").textContent = p.city;
+
+  // Show how the signer's own campus is doing, and the next milestone to chase.
+  const n = S.lastCampusCount || 1;
+  const MILES = [10, 25, 50, 100, 250, 500, 1000];
+  const target = MILES.find(m => m > n) || (Math.ceil(n / 1000) + 1) * 1000;
+  $("#campusLine").innerHTML =
+    `<b>${esc(p.institution)}</b> now has <b>${fmt(n)}</b> signature${n === 1 ? "" : "s"}.` +
+    ` <span class="gap">${fmt(target - n)} more to reach ${fmt(target)}.</span>` +
+    `<span class="bar"><i style="width:${Math.max(4, Math.round(n / target * 100))}%"></i></span>`;
   const msg = `I just signed the Canteen Sudharega India petition and gave our canteen at ${p.institution} a "${p.grade}". We want clean, healthy food in every school and college canteen. It's anonymous and takes a minute: ${url} #CanteenSudharegaIndia`;
   $("#waBtn").href = "https://wa.me/?text=" + encodeURIComponent(msg);
   $("#copyBtn").textContent = "Copy message";
@@ -665,10 +764,17 @@ function showDone(p){
 
 /* ---------- events ---------- */
 document.addEventListener("click", e => {
+  const qt = e.target.closest(".qtag");
+  if (qt && qt.textContent === OTHER){
+    const on = qt.getAttribute("aria-pressed") === "true";
+    $("#otherWrap").hidden = !on;
+    if (on) setTimeout(() => $("#otherIssue").focus(), 40);
+    else { $("#otherIssue").value = ""; }
+  }
   if (e.target.closest("[data-open]")) return openSheet();
   if (e.target.closest("[data-close]") || e.target === $("#scrim")) return closeSheet();
   const t = e.target.closest("[data-type]");
-  if (t){ S.type = t.dataset.type; $$("[data-type]").forEach(b => b.setAttribute("aria-pressed", b === t)); return; }
+  if (t){ S.type = t.dataset.type; $$("[data-type]").forEach(b => b.setAttribute("aria-pressed", b === t)); syncWording(); return; }
   const g = e.target.closest("[data-grade]");
   if (g){ S.grade = g.dataset.grade; $$("[data-grade]").forEach(b => b.setAttribute("aria-pressed", b === g)); return; }
   const rm = e.target.closest("[data-rmph]");
@@ -693,22 +799,32 @@ function wireInstitutionLookup(){
   if (DEMO) return;
   const inst = $("#inst"), city = $("#city");
   let t = null, last = "";
+  const cityOf = new Map();   // campus name -> its city, for auto-filling
+
   const look = async () => {
     const q = tidy(inst.value);
     if (q.length < 2 || q === last) return;
     last = q;
     try {
-      const rows = await rpc("suggest_institutions", { q: q, city: tidy(city.value) || null, lim: 8 });
-      if (!Array.isArray(rows) || !rows.length) return;
-      // Offer the names already on record first, so people pick the existing
-      // spelling instead of creating "CHRIST UNIVERSITY" all over again.
+      const rows = await rpc("suggest_institutions", { q: q, city: tidy(city.value) || null, lim: 10 });
+      if (!Array.isArray(rows)) return;
+      rows.forEach(r => { if (r[1]) cityOf.set(key(r[0]), r[1]); });
+      // Campuses already on record come first (they carry real counts),
+      // then the directory. Either way the submitter picks an existing
+      // spelling instead of inventing a new one.
       const onRecord = rows.map(r => r[0]);
       const rest = [...new Set(S.data.list.map(r => r[0]))].filter(n => !onRecord.includes(n));
       $("#instList").innerHTML = [...onRecord, ...rest.sort()]
         .map(n => `<option value="${esc(n)}">`).join("");
     } catch(e){ /* fall back to the names already in the board */ }
   };
+
   inst.addEventListener("input", () => { clearTimeout(t); t = setTimeout(look, 220); });
+  // picking a known campus fills the city in, which removes a whole class of typos
+  inst.addEventListener("change", () => {
+    const c = cityOf.get(key(inst.value));
+    if (c && !tidy(city.value)) city.value = c;
+  });
   city.addEventListener("change", () => { last = ""; look(); });
 }
 
