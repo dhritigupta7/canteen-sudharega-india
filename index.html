@@ -46,13 +46,10 @@ button{font:inherit;cursor:pointer;color:inherit}
 
 /* logo */
 .top{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
-.logo{display:inline-flex;flex-direction:column;text-decoration:none;font-family:"Anton",Impact,sans-serif;text-transform:uppercase;line-height:1;text-align:center;border:2.5px solid var(--ink);box-shadow:3px 3px 0 var(--ink);background:#fff;width:132px}
-.logo span{display:block;padding:4px 6px 3px;letter-spacing:.02em}
-.logo .l1{background:#E8762B;color:#fff;font-size:21px}
-.logo .l2{color:#111;font-size:17px;letter-spacing:.01em}
-.logo .l3{background:#2E8B3E;color:#fff;font-size:22px;letter-spacing:.08em}
-.logo.sm{width:104px;box-shadow:none;border-width:2px}
-.logo.sm .l1{font-size:16px}.logo.sm .l2{font-size:13px}.logo.sm .l3{font-size:17px}
+.logo{display:inline-block;text-decoration:none;line-height:0}
+.logo img{display:block;width:116px;height:auto}
+.logo.sm img{width:96px}
+@media (min-width:720px){ .logo img{width:140px} .logo.sm img{width:108px} }
 .top a.jump{font-size:14px;font-weight:700;text-decoration:none;border-bottom:2px solid var(--ink)}
 
 /* hero */
@@ -247,7 +244,7 @@ textarea.short{min-height:64px}
 
 <div class="wrap">
   <nav class="top">
-    <a class="logo" href="#" aria-label="Canteen Sudharega India"><span class="l1">Canteen</span><span class="l2">Sudharega</span><span class="l3">India</span></a>
+    <a class="logo" href="#" aria-label="Canteen Sudharega India"><img src="logo.png" width="520" height="640" alt="Canteen Sudharega India"></a>
     <a class="jump" href="#board">See the list ↓</a>
   </nav>
 
@@ -313,7 +310,7 @@ textarea.short{min-height:64px}
 
 <footer>
   <div class="wrap row">
-    <div><span class="logo sm"><span class="l1">Canteen</span><span class="l2">Sudharega</span><span class="l3">India</span></span><br><br>A movement for safe, healthy campus food.</div>
+    <div><span class="logo sm"><img src="logo.png" width="520" height="640" alt="Canteen Sudharega India"></span><br><br>A movement for safe, healthy campus food.</div>
     <div><b>Fully anonymous.</b> We never collect names, emails or phone numbers.<br>We publish only campus names, cities, counts and average grades.<br>Reasons and photos are never shown publicly.</div>
   </div>
 </footer>
