@@ -108,3 +108,18 @@ update pledges set verified = true where id='…';  -- after you confirm one
 update pledges set hidden = true   where id='…';  -- hide a fake or joke entry
 ```
 Only pledges with `publish_consent = true` appear on the public wall.
+
+## Photos and storage
+Photos are compressed in the browser before upload: max 1100px on the long
+edge, quality stepped down until the file is under ~350KB. A 12MP phone photo
+(1.4MB) comes out around 80KB. The bucket itself refuses anything over 500KB.
+Two photos per signature.
+
+Storage is the tightest free-tier limit: **1 GB**, roughly 6,000 signatures
+with two photos each. Check usage with:
+```sql
+select public.photo_usage();
+```
+If it climbs, review the photos in Supabase → Storage → evidence, keep the
+ones you need for content, and delete the rest. Deleting from that screen
+frees the space immediately.

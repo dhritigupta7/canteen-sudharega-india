@@ -643,16 +643,33 @@ function renderBoard(){
 }
 
 /* ---------- photos ---------- */
+const PHOTO_MAX_BYTES = 350 * 1024;   // storage is the scarcest free-tier resource
+
 async function compress(file){
-  // Re-draw on a canvas: shrinks the image and strips EXIF data such as GPS location.
+  // Re-draw on a canvas: shrinks the image and strips EXIF data such as GPS
+  // location. Then step the quality down until it fits the budget, so a 6MB
+  // phone photo lands at a couple of hundred KB instead of several megabytes.
   const url = URL.createObjectURL(file);
   try {
     const img = await new Promise((res, rej) => { const i = new Image(); i.onload = () => res(i); i.onerror = rej; i.src = url; });
-    const s = Math.min(1, 1280 / Math.max(img.naturalWidth, img.naturalHeight));
+    let edge = 1100;
+    for (let attempt = 0; attempt < 4; attempt++){
+      const s = Math.min(1, edge / Math.max(img.naturalWidth, img.naturalHeight));
+      const c = document.createElement("canvas");
+      c.width = Math.round(img.naturalWidth * s); c.height = Math.round(img.naturalHeight * s);
+      c.getContext("2d").drawImage(img, 0, 0, c.width, c.height);
+      for (const q of [0.62, 0.5, 0.4]){
+        const out = c.toDataURL("image/jpeg", q);
+        // a data URL is base64, so bytes are roughly 3/4 of its length
+        if (out.length * 0.75 <= PHOTO_MAX_BYTES) return out;
+      }
+      edge = Math.round(edge * 0.75);           // still too big: shrink and retry
+    }
+    const s = Math.min(1, 700 / Math.max(img.naturalWidth, img.naturalHeight));
     const c = document.createElement("canvas");
     c.width = Math.round(img.naturalWidth * s); c.height = Math.round(img.naturalHeight * s);
     c.getContext("2d").drawImage(img, 0, 0, c.width, c.height);
-    return c.toDataURL("image/jpeg", 0.8);
+    return c.toDataURL("image/jpeg", 0.4);
   } finally { URL.revokeObjectURL(url); }
 }
 /* Photos go straight into a private Storage bucket that the website key can
