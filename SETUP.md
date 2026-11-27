@@ -84,3 +84,27 @@ select recount_all();
   If it climbs, the fixes in order are: lower `max_rows` in `board()`,
   raise `REFRESH_MS` in `index.html`, then put a Cloudflare Worker cache in front.
 - Writes are not the constraint; reads are.
+
+## The four pages
+- `index.html` — schools and colleges petition (**the source of truth**)
+- `office.html`, `hospital.html` — **generated** from index.html by `build.py`
+- `pledge.html` — the institutional pledge, a separate standalone page
+
+**After editing index.html, run `python3 build.py`** to regenerate the office and
+hospital pages, then commit all three. Do not edit office.html or hospital.html
+by hand; your changes will be overwritten.
+
+Each petition page reads only its own kind: `board()` takes a `kinds` argument,
+defaulting to schools and colleges, so the pages never show each other's data.
+
+## Pledges
+`pledges` is a separate table. Unlike a signature it is **not anonymous** — it
+carries a named contact and email so a pledge cannot be filed in someone else's
+name. Contact details are never shown publicly.
+
+```sql
+select * from admin_pledges;                     -- everything, newest first
+update pledges set verified = true where id='…';  -- after you confirm one
+update pledges set hidden = true   where id='…';  -- hide a fake or joke entry
+```
+Only pledges with `publish_consent = true` appear on the public wall.

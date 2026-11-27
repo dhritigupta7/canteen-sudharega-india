@@ -177,6 +177,10 @@ textarea.in{min-height:84px;resize:vertical}
 .qtag[aria-pressed=true]{background:var(--butter)}
 .photos{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
 .tapHint{margin:2px 0 8px}
+.tabs{display:flex;gap:8px;overflow-x:auto;-webkit-overflow-scrolling:touch;padding:4px 0 10px;margin:0}
+.tabs::-webkit-scrollbar{display:none}
+.tabs a{flex:none;text-decoration:none;font-weight:700;font-size:14px;padding:9px 14px;border:2.5px solid var(--ink);background:#fff;color:var(--ink);box-shadow:3px 3px 0 var(--ink);white-space:nowrap}
+.tabs a[aria-current=page]{background:var(--red);color:#fff}
 .celebs{padding:34px 0 10px}
 .celebs h2 span{color:var(--red)}
 .celebs-sub{margin:8px 0 18px;color:var(--muted);max-width:40em}
@@ -256,6 +260,13 @@ textarea.short{min-height:64px}
     <a class="jump" href="#board">See the list ↓</a>
   </nav>
 
+  <nav class="tabs" aria-label="Campaigns">
+    <a href="index.html" aria-current="page">🎓 Schools &amp; colleges</a>
+    <a href="office.html">🏢 Offices</a>
+    <a href="hospital.html">🏥 Hospitals</a>
+    <a href="pledge.html">🤝 Take the pledge</a>
+  </nav>
+
   <section class="hero">
     <div>
       <span class="tag">📣 National student petition</span>
@@ -325,6 +336,7 @@ textarea.short{min-height:64px}
       <li>Bhumi Pednekar</li>
       <li>Siddhant Chaturvedi</li>
       <li>Kuldeep Yadav</li>
+      <li>Rishabh Pant</li>
     </ul>
   </div>
 </section>

@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Canteen Sudharega India — Take the canteen pledge</title>
+<meta name="description" content="Schools, colleges, offices and hospitals: pledge to improve your canteen. Commit to hygienic, affordable, healthy food.">
+<meta property="og:title" content="Take the canteen pledge">
+<meta property="og:description" content="Schools, colleges, offices and hospitals: pledge to improve your canteen.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://dhritigupta7.github.io/canteen-sudharega-india/pledge.html">
+<meta property="og:image" content="https://dhritigupta7.github.io/canteen-sudharega-india/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://dhritigupta7.github.io/canteen-sudharega-india/og.jpg">
+<link rel="icon" href="favicon.png" sizes="any">
+<link rel="apple-touch-icon" href="favicon.png">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+<style>
+
+:root{
+  /* white + butter yellow + sage green + burgundy */
+  --bg:#FFFFFF; --paper:#FFF8DC; --ink:#2B1B1C; --muted:#6E5F55;
+  --red:#7E1F30; --red-d:#5F1522; --green:#5A7D5F; --green-d:#445F48;
+  --butter:#F5D46A; --line:#EADFB8; --sage-l:#DDE7D6;
+  --gA:#71B88C; --gB:#B1C884; --gC:#FAD877; --gD:#E8AC76; --gF:#D78076;
+  --shadow:4px 4px 0 var(--ink);
+  --font:"Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:var(--font);font-weight:700;letter-spacing:-.025em;line-height:1.08;margin:0}
+a{color:inherit}
+button{font:inherit;cursor:pointer;color:inherit}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+
+.demo{background:var(--ink);color:#fff;font-size:13px;text-align:center;padding:7px 12px}
+.demo b{color:var(--butter)}
+
+/* logo */
+.top{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
+.logo{display:inline-block;text-decoration:none;line-height:0}
+.logo img{display:block;width:116px;height:auto}
+.logo.sm img{width:96px}
+@media (min-width:720px){ .logo img{width:140px} .logo.sm img{width:108px} }
+.top a.jump{font-size:14px;font-weight:700;text-decoration:none;border-bottom:2px solid var(--ink)}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.2fr .8fr;gap:44px;align-items:center;padding:22px 0 60px}
+.tag{display:inline-block;background:var(--butter);border:2px solid var(--ink);padding:3px 12px;border-radius:999px;font-weight:700;font-size:13px;letter-spacing:.04em;text-transform:uppercase;transform:rotate(-2deg);margin-bottom:20px}
+.hero h1{font-size:clamp(34px,5.2vw,58px);letter-spacing:-.035em;margin-bottom:30px}
+.hero h1 em{font-style:normal;color:var(--red);background:linear-gradient(transparent 62%,var(--butter) 62%,var(--butter) 90%,transparent 90%)}
+.ctas{max-width:480px}
+.cta{display:flex;align-items:center;gap:14px;width:100%;text-align:left;border:2.5px solid var(--ink);border-radius:16px;padding:16px 18px;box-shadow:var(--shadow);transition:transform .12s,box-shadow .12s;color:#fff;background:var(--red)}
+.cta:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)}
+.cta:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--ink)}
+.cta .ico{font-size:30px;flex:none;width:48px;height:48px;border-radius:12px;background:rgba(255,255,255,.18);display:grid;place-items:center}
+.cta b{display:block;font-size:22px;line-height:1.15;letter-spacing:-.02em}
+.cta small{display:block;font-size:14px;opacity:.9}
+.cta .go{margin-left:auto;flex:none;width:44px;height:44px;border-radius:50%;background:#fff;color:var(--ink);border:2px solid var(--ink);display:grid;place-items:center;font-size:24px;font-weight:700;line-height:1;animation:nudge 1.4s ease-in-out infinite}
+.cta:hover .go{animation:none;transform:translateX(4px)}
+@keyframes nudge{0%,100%{transform:translateX(0)}50%{transform:translateX(6px)}}
+.anon{display:inline-flex;align-items:center;gap:8px;background:var(--sage-l);border:2px solid var(--green);color:var(--green-d);font-weight:700;font-size:14px;border-radius:999px;padding:6px 14px;margin-top:18px}
+
+/* counter */
+.counter{background:var(--paper);border:2.5px solid var(--ink);border-radius:22px;padding:26px;box-shadow:8px 8px 0 var(--ink)}
+.counter .live{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--red)}
+.counter .live::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--red);animation:pulse 1.6s infinite}
+@keyframes pulse{50%{opacity:.25}}
+.counter .num{font-weight:700;letter-spacing:-.04em;font-size:clamp(52px,8vw,76px);line-height:1;margin:10px 0 4px;font-variant-numeric:tabular-nums}
+.counter .lbl{font-weight:500;color:var(--muted)}
+.split{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:20px}
+.split div{border:2px solid var(--ink);border-radius:12px;padding:10px 10px;background:#fff}
+.split b{font-size:24px;display:block;line-height:1.15;letter-spacing:-.02em}
+.split span{font-size:12.5px;color:var(--muted);line-height:1.3;display:block}
+.split .grade{display:grid;font-size:18px;width:34px;height:34px;margin:0 0 3px;color:var(--ink);line-height:1}
+.split .grade.A,.split .grade.B,.split .grade.none{color:var(--ink)}
+
+/* demands */
+.band{background:var(--red);color:#fff;padding:58px 0}
+.band h2{font-size:clamp(30px,4.4vw,44px);margin-bottom:26px}
+.band h2 span{color:var(--butter)}
+.demands{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+
+/* photographs: full-bleed on a phone, contained on a laptop */
+.shot{margin:0}
+.shot img{display:block;width:100%;height:auto;border:2.5px solid var(--ink);box-shadow:var(--shadow);background:var(--paper)}
+.shot-lead{margin:24px auto 8px;max-width:900px;text-align:center}
+.shot-lead figcaption{margin-top:10px;font-family:"Anton",Impact,sans-serif;text-transform:uppercase;letter-spacing:.04em;font-size:17px;color:var(--red)}
+.dm{border:2px solid rgba(255,255,255,.25);border-radius:18px;padding:22px;background:rgba(0,0,0,.12)}
+.dm .ic{font-size:30px}
+.dm .n{font-weight:700;font-size:13px;color:var(--butter);letter-spacing:.1em;margin-top:6px}
+.dm h3{font-size:23px;margin:6px 0 8px}
+.dm p{margin:0;color:#F1DFD2;font-size:15px}
+
+/* board */
+.board{padding:60px 0 40px}
+.board h2{font-size:clamp(32px,4.6vw,48px)}
+.board-sub{margin:8px 0 22px;color:var(--muted);max-width:40em}
+.tools{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:22px}
+.search{flex:1 1 240px;max-width:360px;border:2px solid var(--ink);border-radius:12px;padding:10px 14px;font:inherit;background:#fff}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{border:2px solid var(--ink);background:#fff;border-radius:999px;padding:6px 14px;font-weight:500;font-size:14px}
+.chip[aria-pressed=true]{background:var(--ink);color:#fff}
+.cities{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:18px;align-items:start}
+.city{background:var(--paper);border:2px solid var(--ink);border-radius:18px;padding:18px 18px 10px}
+.city header{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:10px}
+.city h3{font-size:26px}
+.city header span{font-size:13px;color:var(--muted);text-align:right}
+.cols,.city li{display:grid;grid-template-columns:22px 1fr 62px 46px;gap:10px;align-items:center}
+.cols{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);padding:6px 0;border-top:2px solid var(--ink);border-bottom:2px dashed var(--line)}
+.cols span:nth-child(3),.cols span:nth-child(4){text-align:center}
+.city ol{list-style:none;margin:0;padding:0}
+.city li{padding:10px 0;border-bottom:1px solid var(--line)}
+.city li:last-child{border-bottom:0}
+.city .rk{font-weight:700;color:var(--muted);font-size:15px}
+.city .nm{font-weight:500;line-height:1.3;overflow-wrap:anywhere}
+.city .ty{display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.city .ct{text-align:center;font-weight:700;font-size:19px;color:var(--red);font-variant-numeric:tabular-nums;line-height:1.1}
+.city .ct small{display:block;font-size:10.5px;font-weight:500;color:var(--muted)}
+.grade{width:38px;height:38px;margin:0 auto;border-radius:9px;border:2px solid var(--ink);display:grid;place-items:center;font-weight:800;font-size:19px;color:var(--ink)}
+.grade.A{background:var(--gA);color:var(--ink)}.grade.B{background:var(--gB);color:var(--ink)}.grade.C{background:var(--gC)}.grade.D{background:var(--gD)}.grade.F{background:var(--gF)}.grade.none{background:#fff;color:var(--muted);border-style:dashed}
+.more{display:block;width:100%;margin:8px 0 6px;border:2px solid var(--ink);background:#fff;border-radius:10px;padding:9px;font-weight:700;font-size:14px}
+.more:hover{background:var(--butter)}
+.empty{border:2px dashed var(--ink);border-radius:18px;padding:30px;text-align:center;color:var(--muted)}
+.status{color:var(--muted);font-size:14px;margin:0 0 14px}
+
+footer{padding:40px 0 60px;border-top:2px solid var(--ink);margin-top:30px;font-size:14px;color:var(--muted)}
+footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px}
+footer b{color:var(--ink)}
+
+.sticky{position:fixed;left:12px;right:12px;bottom:12px;display:none;z-index:20;transition:transform .25s,opacity .25s}
+.sticky.hide{transform:translateY(120%);opacity:0;pointer-events:none}
+.sticky button{width:100%;border:2.5px solid var(--ink);border-radius:14px;padding:14px;font-weight:700;color:#fff;background:var(--red);box-shadow:3px 3px 0 var(--ink);font-size:16px}
+
+/* sheet */
+.scrim{position:fixed;inset:0;background:rgba(30,26,21,.55);display:none;align-items:flex-end;justify-content:center;z-index:50}
+.scrim.open{display:flex}
+.sheet{background:#fff;width:100%;max-width:560px;max-height:94vh;overflow:auto;border:2.5px solid var(--ink);border-bottom:0;border-radius:24px 24px 0 0;padding:22px 22px 26px;animation:up .28s cubic-bezier(.2,.8,.2,1)}
+@keyframes up{from{transform:translateY(40px);opacity:0}}
+@media(min-width:700px){.scrim{align-items:center;padding:20px}.sheet{border-radius:24px;border-bottom:2.5px solid var(--ink);box-shadow:8px 8px 0 var(--ink)}}
+.sheet-top{display:flex;justify-content:space-between;align-items:start;gap:12px;margin-bottom:16px}
+.sheet h2{font-size:28px}
+.sheet .sub{color:var(--muted);font-size:14px;margin:4px 0 0}
+.x{border:2px solid var(--ink);background:#fff;border-radius:50%;width:36px;height:36px;flex:none;font-size:18px;line-height:1}
+.seg{display:grid;grid-template-columns:1fr 1fr;border:2px solid var(--ink);border-radius:12px;overflow:hidden;margin-bottom:6px}
+.seg button{border:0;background:#fff;padding:10px;font-weight:700}
+.seg button[aria-pressed=true]{background:var(--ink);color:#fff}
+.segboard{max-width:360px;margin:0 0 14px;border-radius:999px;box-shadow:var(--shadow)}
+.segboard button{padding:12px 10px}
+.segboard button[aria-pressed=true]{background:var(--red);color:#fff}
+label.f,.flabel{display:block;font-weight:700;font-size:14px;margin:14px 0 6px}
+label.f small,.flabel small{font-weight:400;color:var(--muted)}
+.in{width:100%;border:2px solid var(--ink);border-radius:12px;padding:12px 14px;font:inherit;font-size:16px;background:#fff}
+.in:focus,.search:focus{outline:3px solid var(--butter);outline-offset:1px}
+textarea.in{min-height:84px;resize:vertical}
+.grades{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.grades button{border:2px solid var(--ink);background:#fff;border-radius:12px;padding:8px 2px 6px;text-align:center;line-height:1.1}
+.grades button b{display:block;font-size:26px}
+.grades button small{display:block;font-size:11px;color:var(--muted);margin-top:2px}
+.grades button[aria-pressed=true]{color:var(--ink);transform:translateY(-2px);box-shadow:2px 3px 0 var(--ink)}
+.grades button[aria-pressed=true] small{color:inherit;opacity:.9}
+.grades button[data-grade=A][aria-pressed=true]{background:var(--gA);color:var(--ink)}
+.grades button[data-grade=B][aria-pressed=true]{background:var(--gB);color:var(--ink)}
+.grades button[data-grade=C][aria-pressed=true]{background:var(--gC)}
+.grades button[data-grade=D][aria-pressed=true]{background:var(--gD)}
+.grades button[data-grade=F][aria-pressed=true]{background:var(--gF)}
+.qtags{display:flex;flex-wrap:wrap;gap:7px;margin:2px 0 8px}
+.qtag{border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:5px 11px;font-size:13px;font-weight:500}
+.qtag[aria-pressed=true]{background:var(--butter)}
+.photos{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.tapHint{margin:2px 0 8px}
+.tabs{display:flex;gap:8px;overflow-x:auto;-webkit-overflow-scrolling:touch;padding:4px 0 10px;margin:0}
+.tabs::-webkit-scrollbar{display:none}
+.tabs a{flex:none;text-decoration:none;font-weight:700;font-size:14px;padding:9px 14px;border:2.5px solid var(--ink);background:#fff;color:var(--ink);box-shadow:3px 3px 0 var(--ink);white-space:nowrap}
+.tabs a[aria-current=page]{background:var(--red);color:#fff}
+.celebs{padding:34px 0 10px}
+.celebs h2 span{color:var(--red)}
+.celebs-sub{margin:8px 0 18px;color:var(--muted);max-width:40em}
+.celeb-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr;gap:12px}
+.celeb-list li{display:flex;align-items:center;gap:10px;padding:14px 16px;border:2.5px solid var(--ink);background:var(--paper);box-shadow:var(--shadow);font-weight:700;font-size:16px}
+.celeb-list li::before{content:"\2605";color:var(--red);font-size:18px;line-height:1}
+@media (min-width:560px){ .celeb-list{grid-template-columns:1fr 1fr} }
+@media (min-width:900px){ .celeb-list{grid-template-columns:repeat(4,1fr)} }
+
+/* campus suggestions, inline directly under the field */
+.picklist{list-style:none;margin:-6px 0 10px;padding:0;max-height:46vh;overflow-y:auto;-webkit-overflow-scrolling:touch;border:2.5px solid var(--ink);border-top:0;background:#fff}
+.picklist li+li{border-top:1.5px solid var(--line)}
+.picklist button{display:block;width:100%;max-width:100%;text-align:left;padding:12px;background:#fff;border:0;font:inherit;line-height:1.35;cursor:pointer;overflow-wrap:anywhere}
+.picklist button:active,.picklist button:focus{background:var(--sage-l);outline:0}
+.picklist .pn{display:block;font-weight:700;overflow-wrap:anywhere}
+.picklist .pc{display:block;font-size:13px;color:var(--muted);margin-top:2px;overflow-wrap:anywhere}
+.picklist .pcount{color:var(--green-d);font-weight:700}
+.picklist .addown{background:var(--butter);font-weight:700}
+#pickHint{margin:-4px 0 10px}
+.grp{margin:14px 0 0}
+.grph{margin:0 0 6px;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:8px}
+.grph span{background:var(--sage-l);border:1.5px solid var(--ink);border-radius:999px;padding:1px 8px;font-size:11px;color:var(--ink)}
+.next{margin:16px 0 4px;padding:14px 16px;border:2.5px solid var(--ink);background:var(--sage-l);box-shadow:var(--shadow)}
+.next h3{font-size:16px;margin:0 0 6px}
+.next p{margin:0 0 8px;font-size:14px;line-height:1.5}
+.next .nextb{margin:0;font-size:14px}
+.next h4{margin:12px 0 6px;font-size:14px;text-transform:uppercase;letter-spacing:.05em;color:var(--red)}
+.next .todo{margin:0;padding-left:18px;font-size:14px;line-height:1.55}
+.next .todo li{margin:0 0 5px}
+.next .todo a{font-weight:700;word-break:break-word}
+#otherWrap{margin:0 0 10px}
+textarea.short{min-height:64px}
+.addph{display:inline-flex;align-items:center;gap:8px;border:2px dashed var(--ink);border-radius:12px;padding:12px 14px;font-weight:700;font-size:14px;background:#fff}
+.thumb{position:relative;width:64px;height:64px;border-radius:10px;border:2px solid var(--ink);overflow:hidden}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.thumb button{position:absolute;top:2px;right:2px;width:20px;height:20px;border-radius:50%;border:0;background:var(--ink);color:#fff;font-size:11px;line-height:20px;padding:0}
+.hint{font-size:12.5px;color:var(--muted);margin:6px 0 0}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.err{color:var(--red-d);font-weight:700;font-size:14px;min-height:20px;margin:12px 0 0}
+.submit{width:100%;margin-top:6px;border:2.5px solid var(--ink);border-radius:14px;padding:15px;font-size:20px;font-weight:700;color:#fff;background:var(--red);box-shadow:var(--shadow)}
+.submit:disabled{opacity:.6;cursor:wait}
+.privacy{font-size:12.5px;color:var(--muted);margin:12px 0 0;text-align:center}
+
+/* thank-you certificate */
+.cert{position:relative;border:2.5px solid var(--ink);border-radius:18px;background:var(--paper);padding:26px 22px 20px;text-align:center;margin-bottom:16px;overflow:hidden}
+.cert::before{content:"";position:absolute;inset:7px;border:1.5px dashed var(--red);border-radius:12px;pointer-events:none}
+.stamp{display:inline-block;border:3px solid var(--green);color:var(--green);font-weight:800;letter-spacing:.14em;font-size:15px;padding:5px 14px;border-radius:8px;transform:rotate(-4deg);margin-bottom:14px;animation:stamp .5s cubic-bezier(.2,1.6,.4,1)}
+@keyframes stamp{from{transform:rotate(-4deg) scale(2.2);opacity:0}}
+.cert h2{font-size:28px;margin-bottom:8px}
+.cert p{margin:0 auto;max-width:30em;color:#3A332B;text-wrap:balance}
+.cert dl{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:18px 0 0;text-align:left}
+.cert dl div{background:#fff;border:1.5px solid var(--ink);border-radius:10px;padding:8px 10px}
+.cert dt{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.cert dd{margin:2px 0 0;font-weight:700;overflow-wrap:anywhere}
+.cert dd .grade{display:inline-grid;width:28px;height:28px;font-size:15px;margin:0;border-radius:7px}
+.sharelead{text-align:center;font-weight:700;margin:4px 0 10px}
+.share{display:grid;gap:10px}
+.share a,.share button{display:block;text-align:center;text-decoration:none;border:2.5px solid var(--ink);border-radius:14px;padding:13px;font-weight:700;background:#fff;box-shadow:3px 3px 0 var(--ink)}
+.share .wa{background:#25D366;color:#0B2E17}
+
+@media(max-width:820px){
+  .hero{grid-template-columns:1fr;gap:30px;padding-bottom:40px}
+  .demands{grid-template-columns:1fr}
+  .sticky{display:block}
+  footer{padding-bottom:110px}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+.pledge-form{max-width:640px}
+.pledge-form .f{margin-top:16px}
+.commit{display:grid;gap:10px;margin:8px 0 4px}
+.commit label{display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border:2.5px solid var(--ink);background:#fff;cursor:pointer;font-size:15px;line-height:1.4}
+.commit input{margin:2px 0 0;width:20px;height:20px;flex:none;accent-color:var(--green-d)}
+.commit label:has(input:checked){background:var(--sage-l)}
+.notice{border:2.5px solid var(--ink);background:var(--butter);padding:14px 16px;box-shadow:var(--shadow);margin:18px 0;font-size:14px;line-height:1.5}
+.wall{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:12px}
+.wall li{padding:14px 16px;border:2.5px solid var(--ink);background:var(--paper);box-shadow:var(--shadow)}
+.wall .pw-name{font-weight:700;display:block}
+.wall .pw-meta{font-size:13px;color:var(--muted)}
+@media (min-width:640px){ .wall{grid-template-columns:1fr 1fr} }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <nav class="top">
+    <a class="logo" href="index.html" aria-label="Canteen Sudharega India"><img src="logo.png" width="300" height="369" alt="Canteen Sudharega India"></a>
+    <a class="jump" href="#wall">Who has pledged ↓</a>
+  </nav>
+
+  <nav class="tabs" aria-label="Campaigns">
+    <a href="index.html">🎓 Schools &amp; colleges</a>
+    <a href="office.html">🏢 Offices</a>
+    <a href="hospital.html">🏥 Hospitals</a>
+    <a href="pledge.html" aria-current="page">🤝 Take the pledge</a>
+  </nav>
+
+  <section class="hero">
+    <div>
+      <span class="tag">🤝 For institutions</span>
+      <h1>Run a canteen? <em>Pledge to improve it.</em></h1>
+      <p class="board-sub">Any school, college, office or hospital can commit to serving food that is
+         hygienic, affordable and healthy. Tell us what you will work on, and we will publish your name
+         alongside the institutions leading the way.</p>
+      <div class="anon">🏢 This is an institutional pledge, not an anonymous signature. We ask for a contact person so we can verify it.</div>
+    </div>
+  </section>
+</div>
+
+<section class="band">
+  <div class="wrap">
+    <h2>The <span>pledge</span></h2>
+    <div class="demands">
+      <div class="dm"><div class="ic">🥗</div><div class="n">COMMITMENT 01</div><h3>At least 2 affordable healthy options</h3><p>Serve at least two affordable, healthy options every day, alongside everything else on the menu.</p></div>
+      <div class="dm"><div class="ic">🧼</div><div class="n">COMMITMENT 02</div><h3>Clean and hygienic food</h3><p>Cook, store and serve food in clean conditions, with clean utensils and safe drinking water.</p></div>
+      <div class="dm"><div class="ic">📋</div><div class="n">COMMITMENT 03</div><h3>Calories and nutrition on the menu</h3><p>Show calories and nutritional values so people can make informed choices.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="board">
+  <div class="wrap">
+    <h2>Take the <span>pledge</span></h2>
+    <p class="board-sub">Takes about two minutes. One pledge per institution.</p>
+
+    <form id="pform" class="pledge-form" novalidate>
+      <span class="flabel">What kind of place is it?</span>
+      <div class="seg" role="group" aria-label="Institution type" id="ptype" style="grid-template-columns:repeat(4,1fr)">
+        <button type="button" data-ptype="School" aria-pressed="true">🎒 School</button>
+        <button type="button" data-ptype="College" aria-pressed="false">🎓 College</button>
+        <button type="button" data-ptype="Office" aria-pressed="false">🏢 Office</button>
+        <button type="button" data-ptype="Hospital" aria-pressed="false">🏥 Hospital</button>
+      </div>
+
+      <label class="f" for="pplace">Name of the institution</label>
+      <input class="in" id="pplace" maxlength="140" autocomplete="organization" placeholder="e.g. St. Xavier's College">
+
+      <label class="f" for="pcity">City</label>
+      <input class="in" id="pcity" maxlength="60" autocomplete="address-level2" placeholder="e.g. Pune">
+
+      <span class="flabel">What will you work on? <small>(choose at least one)</small></span>
+      <div class="commit" id="pcommit"></div>
+
+      <label class="f" for="ptimeline">By when? <small>(optional)</small></label>
+      <input class="in" id="ptimeline" maxlength="40" placeholder="e.g. within 3 months">
+
+      <label class="f" for="pmessage">Anything you want to add? <small>(optional)</small></label>
+      <textarea class="in short" id="pmessage" maxlength="700" placeholder="Optional. What you are already doing, or what you need help with."></textarea>
+
+      <div class="notice">
+        <b>Who is pledging?</b><br>
+        We need a real contact so a pledge cannot be filed in someone else's name.
+        Contact details are never published — only the institution's name and city, and only if you tick the box below.
+      </div>
+
+      <label class="f" for="pcontact">Your name</label>
+      <input class="in" id="pcontact" maxlength="80" autocomplete="name" placeholder="e.g. Priya Sharma">
+
+      <label class="f" for="prole">Your role <small>(optional)</small></label>
+      <input class="in" id="prole" maxlength="80" placeholder="e.g. Principal, Admin Head, Canteen Manager">
+
+      <label class="f" for="pemail">Work email</label>
+      <input class="in" id="pemail" type="email" maxlength="120" autocomplete="email" placeholder="you@institution.edu">
+
+      <label class="f" for="pphone">Phone <small>(optional)</small></label>
+      <input class="in" id="pphone" maxlength="20" autocomplete="tel" placeholder="Optional">
+
+      <div class="commit" style="margin-top:14px">
+        <label><input type="checkbox" id="pconsent" checked>
+          <span>Publish our name and city on the list of institutions that have pledged.</span></label>
+      </div>
+
+      <input id="pwebsite" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
+      <p class="err" id="perr" role="alert"></p>
+      <button class="submit" id="psubmit" type="submit">Submit our pledge</button>
+    </form>
+
+    <div id="pdone" hidden>
+      <div class="cert">
+        <div class="stamp">PLEDGE RECORDED ✓</div>
+        <h2>Thank you.</h2>
+        <p>Your pledge has been recorded. We may get in touch at the email you gave us to confirm it.</p>
+        <dl>
+          <div><dt>Institution</dt><dd id="pdPlace"></dd></div>
+          <div><dt>City</dt><dd id="pdCity"></dd></div>
+          <div><dt>Committed to</dt><dd id="pdCount"></dd></div>
+        </dl>
+      </div>
+      <p class="sharelead">Now tell the people who eat there.</p>
+      <div class="share"><a class="wa" id="pwaBtn" target="_blank" rel="noopener">Share on WhatsApp</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="board" id="wall">
+  <div class="wrap">
+    <h2>Institutions that have <span>pledged</span></h2>
+    <p class="board-sub" id="pwallSub">Loading…</p>
+    <ul class="wall" id="pwall"></ul>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div><span class="logo sm"><img src="logo.png" width="300" height="369" alt="Canteen Sudharega India"></span><br><br>A movement for hygienic and healthy campus food.</div>
+    <div><b>Contact details stay private.</b><br>We publish only the institution's name and city, and only with permission.<br>Pledges may be verified before they are published.</div>
+  </div>
+</footer>
+
+<script>
+const CONFIG = {
+  SUPABASE_URL: "https://ekvcvnzttxbmkevhjubn.supabase.co",
+  SUPABASE_KEY: "sb_publishable_0JvRQ07KI85Kx0ftWs2v0w_QDHyEs-9",
+  SITE_URL: "https://dhritigupta7.github.io/canteen-sudharega-india/pledge.html"
+};
+
+const $ = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
+const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const fmt = n => Number(n || 0).toLocaleString("en-IN");
+const tidy = s => String(s || "").replace(/\s+/g, " ").trim();
+
+async function rpc(fn, body){
+  const res = await fetch(CONFIG.SUPABASE_URL + "/rest/v1/rpc/" + fn, {
+    method: "POST",
+    headers: { "Content-Type":"application/json", "apikey": CONFIG.SUPABASE_KEY,
+               "Authorization": "Bearer " + CONFIG.SUPABASE_KEY },
+    body: JSON.stringify(body || {})
+  });
+  if (!res.ok) throw new Error("Network error (" + res.status + ")");
+  return res.json();
+}
+
+function deviceId(){
+  let d = null;
+  try { d = localStorage.getItem("csi_device"); } catch(e){}
+  if (!d){
+    d = (crypto.randomUUID ? crypto.randomUUID() : String(Date.now()) + Math.random().toString(36).slice(2));
+    try { localStorage.setItem("csi_device", d); } catch(e){}
+  }
+  return d;
+}
+
+const COMMITMENTS = [
+  "Serve at least 2 affordable healthy options every day",
+  "Keep the kitchen, utensils and serving area clean",
+  "Provide safe, clean drinking water",
+  "Show calories and nutrition information on the menu",
+  "Stop selling stale or reheated food",
+  "Reduce deep-fried and ultra-processed items",
+  "Keep prices fair and affordable",
+  "Train canteen staff on food hygiene"
+];
+
+const P = { type:"School", opened: Date.now() };
+
+$("#pcommit").innerHTML = COMMITMENTS.map((c,i) =>
+  `<label><input type="checkbox" value="${esc(c)}" id="pc${i}"><span>${esc(c)}</span></label>`).join("");
+
+$("#ptype").addEventListener("click", e => {
+  const b = e.target.closest("[data-ptype]");
+  if (!b) return;
+  P.type = b.dataset.ptype;
+  $$("[data-ptype]").forEach(x => x.setAttribute("aria-pressed", x === b));
+  $("#pplace").placeholder = ({
+    School:"e.g. Delhi Public School", College:"e.g. St. Xavier's College",
+    Office:"e.g. Infosys Pune Campus", Hospital:"e.g. KEM Hospital"
+  })[P.type];
+});
+
+async function loadWall(){
+  try {
+    const j = await rpc("pledge_wall", { max_rows: 200 });
+    if (!j || !j.ok) throw new Error();
+    const list = j.list || [];
+    $("#pwallSub").textContent = j.total
+      ? `${fmt(j.total)} institution${j.total === 1 ? "" : "s"} have pledged so far.`
+          + (list.length < j.total ? " Some have asked not to be named." : "")
+      : "No pledges yet. Yours could be the first.";
+    $("#pwall").innerHTML = list.map(r =>
+      `<li><span class="pw-name">${esc(r[0])}</span>
+        <span class="pw-meta">${esc(r[1])} · ${esc(r[2])} · ${fmt(r[3])} commitment${+r[3] === 1 ? "" : "s"}</span></li>`).join("");
+  } catch(e){
+    $("#pwallSub").textContent = "Couldn't load the list right now. Please refresh in a minute.";
+  }
+}
+
+$("#pform").addEventListener("submit", async e => {
+  e.preventDefault();
+  const err = m => { $("#perr").textContent = m; };
+  const commitments = $$("#pcommit input:checked").map(i => i.value);
+  const p = {
+    type: P.type,
+    place: tidy($("#pplace").value), city: tidy($("#pcity").value),
+    contact: tidy($("#pcontact").value), role: tidy($("#prole").value),
+    email: tidy($("#pemail").value), phone: tidy($("#pphone").value),
+    timeline: tidy($("#ptimeline").value), message: tidy($("#pmessage").value),
+    commitments, consent: $("#pconsent").checked,
+    website: $("#pwebsite").value, elapsed: Date.now() - P.opened, device: deviceId()
+  };
+  if (p.place.length < 3) return err("Please enter the name of your institution."), $("#pplace").focus();
+  if (p.city.length < 2)  return err("Please enter the city."), $("#pcity").focus();
+  if (!commitments.length) return err("Please choose at least one thing you will work on.");
+  if (p.contact.length < 2) return err("Please enter your name."), $("#pcontact").focus();
+  if (!/^[^@\s]+@[^@\s]+\.[a-z]{2,}$/i.test(p.email)) return err("Please enter a valid email address."), $("#pemail").focus();
+
+  const btn = $("#psubmit"); btn.disabled = true; btn.textContent = "Submitting…";
+  try {
+    const j = await rpc("submit_pledge", { payload: p });
+    if (!j || !j.ok) throw new Error((j && j.error) || "Something went wrong.");
+    $("#pdPlace").textContent = p.place;
+    $("#pdCity").textContent  = p.city;
+    $("#pdCount").textContent = `${commitments.length} commitment${commitments.length === 1 ? "" : "s"}`;
+    const msg = `${p.place} has pledged to improve its canteen as part of Canteen Sudharega India. `
+              + `Clean, affordable, healthy food for everyone. ${CONFIG.SITE_URL} #CanteenSudharegaIndia`;
+    $("#pwaBtn").href = "https://wa.me/?text=" + encodeURIComponent(msg);
+    $("#pform").hidden = true; $("#pdone").hidden = false;
+    loadWall();
+  } catch(ex){
+    err(ex.message && ex.message.length < 160 ? ex.message : "Couldn't submit. Check your connection and try again.");
+  } finally { btn.disabled = false; btn.textContent = "Submit our pledge"; }
+});
+
+loadWall();
+</script>
+</body>
+</html>

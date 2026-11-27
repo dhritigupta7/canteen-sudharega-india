@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Canteen Sudharega India — Hospital canteens</title>
+<meta name="description" content="We are demanding clean and healthy food in every hospital canteen in India. Sign the petition anonymously and grade your canteen.">
+<meta property="og:title" content="Canteen Sudharega India">
+<meta property="og:description" content="We are demanding clean and healthy food in every hospital canteen in India. Sign the petition anonymously and grade your canteen.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://dhritigupta7.github.io/canteen-sudharega-india/">
+<meta property="og:image" content="https://dhritigupta7.github.io/canteen-sudharega-india/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="Canteen Sudharega India">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Canteen Sudharega India">
+<meta name="twitter:description" content="We are demanding clean and healthy food in every hospital canteen in India. Sign the petition anonymously and grade your canteen.">
+<meta name="twitter:image" content="https://dhritigupta7.github.io/canteen-sudharega-india/og.jpg">
+<link rel="icon" href="favicon.png" sizes="any">
+<link rel="apple-touch-icon" href="favicon.png">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* white + butter yellow + sage green + burgundy */
+  --bg:#FFFFFF; --paper:#FFF8DC; --ink:#2B1B1C; --muted:#6E5F55;
+  --red:#7E1F30; --red-d:#5F1522; --green:#5A7D5F; --green-d:#445F48;
+  --butter:#F5D46A; --line:#EADFB8; --sage-l:#DDE7D6;
+  --gA:#71B88C; --gB:#B1C884; --gC:#FAD877; --gD:#E8AC76; --gF:#D78076;
+  --shadow:4px 4px 0 var(--ink);
+  --font:"Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:var(--font);font-weight:700;letter-spacing:-.025em;line-height:1.08;margin:0}
+a{color:inherit}
+button{font:inherit;cursor:pointer;color:inherit}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+
+.demo{background:var(--ink);color:#fff;font-size:13px;text-align:center;padding:7px 12px}
+.demo b{color:var(--butter)}
+
+/* logo */
+.top{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
+.logo{display:inline-block;text-decoration:none;line-height:0}
+.logo img{display:block;width:116px;height:auto}
+.logo.sm img{width:96px}
+@media (min-width:720px){ .logo img{width:140px} .logo.sm img{width:108px} }
+.top a.jump{font-size:14px;font-weight:700;text-decoration:none;border-bottom:2px solid var(--ink)}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.2fr .8fr;gap:44px;align-items:center;padding:22px 0 60px}
+.tag{display:inline-block;background:var(--butter);border:2px solid var(--ink);padding:3px 12px;border-radius:999px;font-weight:700;font-size:13px;letter-spacing:.04em;text-transform:uppercase;transform:rotate(-2deg);margin-bottom:20px}
+.hero h1{font-size:clamp(34px,5.2vw,58px);letter-spacing:-.035em;margin-bottom:30px}
+.hero h1 em{font-style:normal;color:var(--red);background:linear-gradient(transparent 62%,var(--butter) 62%,var(--butter) 90%,transparent 90%)}
+.ctas{max-width:480px}
+.cta{display:flex;align-items:center;gap:14px;width:100%;text-align:left;border:2.5px solid var(--ink);border-radius:16px;padding:16px 18px;box-shadow:var(--shadow);transition:transform .12s,box-shadow .12s;color:#fff;background:var(--red)}
+.cta:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)}
+.cta:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--ink)}
+.cta .ico{font-size:30px;flex:none;width:48px;height:48px;border-radius:12px;background:rgba(255,255,255,.18);display:grid;place-items:center}
+.cta b{display:block;font-size:22px;line-height:1.15;letter-spacing:-.02em}
+.cta small{display:block;font-size:14px;opacity:.9}
+.cta .go{margin-left:auto;flex:none;width:44px;height:44px;border-radius:50%;background:#fff;color:var(--ink);border:2px solid var(--ink);display:grid;place-items:center;font-size:24px;font-weight:700;line-height:1;animation:nudge 1.4s ease-in-out infinite}
+.cta:hover .go{animation:none;transform:translateX(4px)}
+@keyframes nudge{0%,100%{transform:translateX(0)}50%{transform:translateX(6px)}}
+.anon{display:inline-flex;align-items:center;gap:8px;background:var(--sage-l);border:2px solid var(--green);color:var(--green-d);font-weight:700;font-size:14px;border-radius:999px;padding:6px 14px;margin-top:18px}
+
+/* counter */
+.counter{background:var(--paper);border:2.5px solid var(--ink);border-radius:22px;padding:26px;box-shadow:8px 8px 0 var(--ink)}
+.counter .live{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--red)}
+.counter .live::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--red);animation:pulse 1.6s infinite}
+@keyframes pulse{50%{opacity:.25}}
+.counter .num{font-weight:700;letter-spacing:-.04em;font-size:clamp(52px,8vw,76px);line-height:1;margin:10px 0 4px;font-variant-numeric:tabular-nums}
+.counter .lbl{font-weight:500;color:var(--muted)}
+.split{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:20px}
+.split div{border:2px solid var(--ink);border-radius:12px;padding:10px 10px;background:#fff}
+.split b{font-size:24px;display:block;line-height:1.15;letter-spacing:-.02em}
+.split span{font-size:12.5px;color:var(--muted);line-height:1.3;display:block}
+.split .grade{display:grid;font-size:18px;width:34px;height:34px;margin:0 0 3px;color:var(--ink);line-height:1}
+.split .grade.A,.split .grade.B,.split .grade.none{color:var(--ink)}
+
+/* demands */
+.band{background:var(--red);color:#fff;padding:58px 0}
+.band h2{font-size:clamp(30px,4.4vw,44px);margin-bottom:26px}
+.band h2 span{color:var(--butter)}
+.demands{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+
+/* photographs: full-bleed on a phone, contained on a laptop */
+.shot{margin:0}
+.shot img{display:block;width:100%;height:auto;border:2.5px solid var(--ink);box-shadow:var(--shadow);background:var(--paper)}
+.shot-lead{margin:24px auto 8px;max-width:900px;text-align:center}
+.shot-lead figcaption{margin-top:10px;font-family:"Anton",Impact,sans-serif;text-transform:uppercase;letter-spacing:.04em;font-size:17px;color:var(--red)}
+.dm{border:2px solid rgba(255,255,255,.25);border-radius:18px;padding:22px;background:rgba(0,0,0,.12)}
+.dm .ic{font-size:30px}
+.dm .n{font-weight:700;font-size:13px;color:var(--butter);letter-spacing:.1em;margin-top:6px}
+.dm h3{font-size:23px;margin:6px 0 8px}
+.dm p{margin:0;color:#F1DFD2;font-size:15px}
+
+/* board */
+.board{padding:60px 0 40px}
+.board h2{font-size:clamp(32px,4.6vw,48px)}
+.board-sub{margin:8px 0 22px;color:var(--muted);max-width:40em}
+.tools{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:22px}
+.search{flex:1 1 240px;max-width:360px;border:2px solid var(--ink);border-radius:12px;padding:10px 14px;font:inherit;background:#fff}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{border:2px solid var(--ink);background:#fff;border-radius:999px;padding:6px 14px;font-weight:500;font-size:14px}
+.chip[aria-pressed=true]{background:var(--ink);color:#fff}
+.cities{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:18px;align-items:start}
+.city{background:var(--paper);border:2px solid var(--ink);border-radius:18px;padding:18px 18px 10px}
+.city header{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:10px}
+.city h3{font-size:26px}
+.city header span{font-size:13px;color:var(--muted);text-align:right}
+.cols,.city li{display:grid;grid-template-columns:22px 1fr 62px 46px;gap:10px;align-items:center}
+.cols{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);padding:6px 0;border-top:2px solid var(--ink);border-bottom:2px dashed var(--line)}
+.cols span:nth-child(3),.cols span:nth-child(4){text-align:center}
+.city ol{list-style:none;margin:0;padding:0}
+.city li{padding:10px 0;border-bottom:1px solid var(--line)}
+.city li:last-child{border-bottom:0}
+.city .rk{font-weight:700;color:var(--muted);font-size:15px}
+.city .nm{font-weight:500;line-height:1.3;overflow-wrap:anywhere}
+.city .ty{display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.city .ct{text-align:center;font-weight:700;font-size:19px;color:var(--red);font-variant-numeric:tabular-nums;line-height:1.1}
+.city .ct small{display:block;font-size:10.5px;font-weight:500;color:var(--muted)}
+.grade{width:38px;height:38px;margin:0 auto;border-radius:9px;border:2px solid var(--ink);display:grid;place-items:center;font-weight:800;font-size:19px;color:var(--ink)}
+.grade.A{background:var(--gA);color:var(--ink)}.grade.B{background:var(--gB);color:var(--ink)}.grade.C{background:var(--gC)}.grade.D{background:var(--gD)}.grade.F{background:var(--gF)}.grade.none{background:#fff;color:var(--muted);border-style:dashed}
+.more{display:block;width:100%;margin:8px 0 6px;border:2px solid var(--ink);background:#fff;border-radius:10px;padding:9px;font-weight:700;font-size:14px}
+.more:hover{background:var(--butter)}
+.empty{border:2px dashed var(--ink);border-radius:18px;padding:30px;text-align:center;color:var(--muted)}
+.status{color:var(--muted);font-size:14px;margin:0 0 14px}
+
+footer{padding:40px 0 60px;border-top:2px solid var(--ink);margin-top:30px;font-size:14px;color:var(--muted)}
+footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px}
+footer b{color:var(--ink)}
+
+.sticky{position:fixed;left:12px;right:12px;bottom:12px;display:none;z-index:20;transition:transform .25s,opacity .25s}
+.sticky.hide{transform:translateY(120%);opacity:0;pointer-events:none}
+.sticky button{width:100%;border:2.5px solid var(--ink);border-radius:14px;padding:14px;font-weight:700;color:#fff;background:var(--red);box-shadow:3px 3px 0 var(--ink);font-size:16px}
+
+/* sheet */
+.scrim{position:fixed;inset:0;background:rgba(30,26,21,.55);display:none;align-items:flex-end;justify-content:center;z-index:50}
+.scrim.open{display:flex}
+.sheet{background:#fff;width:100%;max-width:560px;max-height:94vh;overflow:auto;border:2.5px solid var(--ink);border-bottom:0;border-radius:24px 24px 0 0;padding:22px 22px 26px;animation:up .28s cubic-bezier(.2,.8,.2,1)}
+@keyframes up{from{transform:translateY(40px);opacity:0}}
+@media(min-width:700px){.scrim{align-items:center;padding:20px}.sheet{border-radius:24px;border-bottom:2.5px solid var(--ink);box-shadow:8px 8px 0 var(--ink)}}
+.sheet-top{display:flex;justify-content:space-between;align-items:start;gap:12px;margin-bottom:16px}
+.sheet h2{font-size:28px}
+.sheet .sub{color:var(--muted);font-size:14px;margin:4px 0 0}
+.x{border:2px solid var(--ink);background:#fff;border-radius:50%;width:36px;height:36px;flex:none;font-size:18px;line-height:1}
+.seg{display:grid;grid-template-columns:1fr 1fr;border:2px solid var(--ink);border-radius:12px;overflow:hidden;margin-bottom:6px}
+.seg button{border:0;background:#fff;padding:10px;font-weight:700}
+.seg button[aria-pressed=true]{background:var(--ink);color:#fff}
+.segboard{max-width:360px;margin:0 0 14px;border-radius:999px;box-shadow:var(--shadow)}
+.segboard button{padding:12px 10px}
+.segboard button[aria-pressed=true]{background:var(--red);color:#fff}
+label.f,.flabel{display:block;font-weight:700;font-size:14px;margin:14px 0 6px}
+label.f small,.flabel small{font-weight:400;color:var(--muted)}
+.in{width:100%;border:2px solid var(--ink);border-radius:12px;padding:12px 14px;font:inherit;font-size:16px;background:#fff}
+.in:focus,.search:focus{outline:3px solid var(--butter);outline-offset:1px}
+textarea.in{min-height:84px;resize:vertical}
+.grades{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.grades button{border:2px solid var(--ink);background:#fff;border-radius:12px;padding:8px 2px 6px;text-align:center;line-height:1.1}
+.grades button b{display:block;font-size:26px}
+.grades button small{display:block;font-size:11px;color:var(--muted);margin-top:2px}
+.grades button[aria-pressed=true]{color:var(--ink);transform:translateY(-2px);box-shadow:2px 3px 0 var(--ink)}
+.grades button[aria-pressed=true] small{color:inherit;opacity:.9}
+.grades button[data-grade=A][aria-pressed=true]{background:var(--gA);color:var(--ink)}
+.grades button[data-grade=B][aria-pressed=true]{background:var(--gB);color:var(--ink)}
+.grades button[data-grade=C][aria-pressed=true]{background:var(--gC)}
+.grades button[data-grade=D][aria-pressed=true]{background:var(--gD)}
+.grades button[data-grade=F][aria-pressed=true]{background:var(--gF)}
+.qtags{display:flex;flex-wrap:wrap;gap:7px;margin:2px 0 8px}
+.qtag{border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:5px 11px;font-size:13px;font-weight:500}
+.qtag[aria-pressed=true]{background:var(--butter)}
+.photos{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.tapHint{margin:2px 0 8px}
+.seg[aria-label="Institution type"],.segboard{display:none!important}
+.tabs{display:flex;gap:8px;overflow-x:auto;-webkit-overflow-scrolling:touch;padding:4px 0 10px;margin:0}
+.tabs::-webkit-scrollbar{display:none}
+.tabs a{flex:none;text-decoration:none;font-weight:700;font-size:14px;padding:9px 14px;border:2.5px solid var(--ink);background:#fff;color:var(--ink);box-shadow:3px 3px 0 var(--ink);white-space:nowrap}
+.tabs a[aria-current=page]{background:var(--red);color:#fff}
+.celebs{padding:34px 0 10px}
+.celebs h2 span{color:var(--red)}
+.celebs-sub{margin:8px 0 18px;color:var(--muted);max-width:40em}
+.celeb-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr;gap:12px}
+.celeb-list li{display:flex;align-items:center;gap:10px;padding:14px 16px;border:2.5px solid var(--ink);background:var(--paper);box-shadow:var(--shadow);font-weight:700;font-size:16px}
+.celeb-list li::before{content:"\2605";color:var(--red);font-size:18px;line-height:1}
+@media (min-width:560px){ .celeb-list{grid-template-columns:1fr 1fr} }
+@media (min-width:900px){ .celeb-list{grid-template-columns:repeat(4,1fr)} }
+
+/* campus suggestions, inline directly under the field */
+.picklist{list-style:none;margin:-6px 0 10px;padding:0;max-height:46vh;overflow-y:auto;-webkit-overflow-scrolling:touch;border:2.5px solid var(--ink);border-top:0;background:#fff}
+.picklist li+li{border-top:1.5px solid var(--line)}
+.picklist button{display:block;width:100%;max-width:100%;text-align:left;padding:12px;background:#fff;border:0;font:inherit;line-height:1.35;cursor:pointer;overflow-wrap:anywhere}
+.picklist button:active,.picklist button:focus{background:var(--sage-l);outline:0}
+.picklist .pn{display:block;font-weight:700;overflow-wrap:anywhere}
+.picklist .pc{display:block;font-size:13px;color:var(--muted);margin-top:2px;overflow-wrap:anywhere}
+.picklist .pcount{color:var(--green-d);font-weight:700}
+.picklist .addown{background:var(--butter);font-weight:700}
+#pickHint{margin:-4px 0 10px}
+.grp{margin:14px 0 0}
+.grph{margin:0 0 6px;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:8px}
+.grph span{background:var(--sage-l);border:1.5px solid var(--ink);border-radius:999px;padding:1px 8px;font-size:11px;color:var(--ink)}
+.next{margin:16px 0 4px;padding:14px 16px;border:2.5px solid var(--ink);background:var(--sage-l);box-shadow:var(--shadow)}
+.next h3{font-size:16px;margin:0 0 6px}
+.next p{margin:0 0 8px;font-size:14px;line-height:1.5}
+.next .nextb{margin:0;font-size:14px}
+.next h4{margin:12px 0 6px;font-size:14px;text-transform:uppercase;letter-spacing:.05em;color:var(--red)}
+.next .todo{margin:0;padding-left:18px;font-size:14px;line-height:1.55}
+.next .todo li{margin:0 0 5px}
+.next .todo a{font-weight:700;word-break:break-word}
+#otherWrap{margin:0 0 10px}
+textarea.short{min-height:64px}
+.addph{display:inline-flex;align-items:center;gap:8px;border:2px dashed var(--ink);border-radius:12px;padding:12px 14px;font-weight:700;font-size:14px;background:#fff}
+.thumb{position:relative;width:64px;height:64px;border-radius:10px;border:2px solid var(--ink);overflow:hidden}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.thumb button{position:absolute;top:2px;right:2px;width:20px;height:20px;border-radius:50%;border:0;background:var(--ink);color:#fff;font-size:11px;line-height:20px;padding:0}
+.hint{font-size:12.5px;color:var(--muted);margin:6px 0 0}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.err{color:var(--red-d);font-weight:700;font-size:14px;min-height:20px;margin:12px 0 0}
+.submit{width:100%;margin-top:6px;border:2.5px solid var(--ink);border-radius:14px;padding:15px;font-size:20px;font-weight:700;color:#fff;background:var(--red);box-shadow:var(--shadow)}
+.submit:disabled{opacity:.6;cursor:wait}
+.privacy{font-size:12.5px;color:var(--muted);margin:12px 0 0;text-align:center}
+
+/* thank-you certificate */
+.cert{position:relative;border:2.5px solid var(--ink);border-radius:18px;background:var(--paper);padding:26px 22px 20px;text-align:center;margin-bottom:16px;overflow:hidden}
+.cert::before{content:"";position:absolute;inset:7px;border:1.5px dashed var(--red);border-radius:12px;pointer-events:none}
+.stamp{display:inline-block;border:3px solid var(--green);color:var(--green);font-weight:800;letter-spacing:.14em;font-size:15px;padding:5px 14px;border-radius:8px;transform:rotate(-4deg);margin-bottom:14px;animation:stamp .5s cubic-bezier(.2,1.6,.4,1)}
+@keyframes stamp{from{transform:rotate(-4deg) scale(2.2);opacity:0}}
+.cert h2{font-size:28px;margin-bottom:8px}
+.cert p{margin:0 auto;max-width:30em;color:#3A332B;text-wrap:balance}
+.cert dl{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:18px 0 0;text-align:left}
+.cert dl div{background:#fff;border:1.5px solid var(--ink);border-radius:10px;padding:8px 10px}
+.cert dt{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.cert dd{margin:2px 0 0;font-weight:700;overflow-wrap:anywhere}
+.cert dd .grade{display:inline-grid;width:28px;height:28px;font-size:15px;margin:0;border-radius:7px}
+.sharelead{text-align:center;font-weight:700;margin:4px 0 10px}
+.share{display:grid;gap:10px}
+.share a,.share button{display:block;text-align:center;text-decoration:none;border:2.5px solid var(--ink);border-radius:14px;padding:13px;font-weight:700;background:#fff;box-shadow:3px 3px 0 var(--ink)}
+.share .wa{background:#25D366;color:#0B2E17}
+
+@media(max-width:820px){
+  .hero{grid-template-columns:1fr;gap:30px;padding-bottom:40px}
+  .demands{grid-template-columns:1fr}
+  .sticky{display:block}
+  footer{padding-bottom:110px}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="demo" id="demoBanner" hidden><b>Preview mode</b>: sample data only. Paste your Google Sheet link into <code>API_URL</code> to go live (see SETUP.md).</div>
+
+<div class="wrap">
+  <nav class="top">
+    <a class="logo" href="#" aria-label="Canteen Sudharega India"><img src="logo.png" width="300" height="369" alt="Canteen Sudharega India"></a>
+    <a class="jump" href="#board">See the list ↓</a>
+  </nav>
+
+  <nav class="tabs" aria-label="Campaigns">
+    <a href="index.html">🎓 Schools &amp; colleges</a>
+    <a href="office.html">🏢 Offices</a>
+    <a href="hospital.html" aria-current="page">🏥 Hospitals</a>
+    <a href="pledge.html">🤝 Take the pledge</a>
+  </nav>
+
+  <section class="hero">
+    <div>
+      <span class="tag">📣 National student petition</span>
+      <h1>We are demanding <em>clean and healthy</em> food options in every hospital canteen in India.</h1>
+      <div class="ctas">
+        <button class="cta" data-open>
+          <span class="ico">✍️</span>
+          <span><b>Sign the petition and grade your canteen</b></span>
+          <span class="go" aria-hidden="true">→</span>
+        </button>
+      </div>
+      <div class="anon">🔒 100% anonymous: no name, no email, no phone number</div>
+    </div>
+
+    <aside class="counter" aria-live="polite">
+      <span class="live">Live count</span>
+      <div class="num" id="total">0</div>
+      <div class="lbl">students and parents have signed</div>
+      <div class="split">
+        <div><b id="sCampus">0</b><span>hospitals on the list</span></div>
+        <div><b id="sCity">0</b><span>cities</span></div>
+        <div><b id="sGrade">–</b><span>India's average canteen grade</span></div>
+      </div>
+    </aside>
+  </section>
+
+  <figure class="shot shot-lead">
+    <img src="students-placards.jpg" width="1500" height="952" alt="School students and Revant Himatsingka in a classroom holding placards reading Canteen Badlega Desh Badlega, We Demand Cleaner Canteens, Healthy Food Is Our Right, and Healthy Canteens Healthy India" loading="lazy" decoding="async">
+    <figcaption>Canteen badlega, desh badlega.</figcaption>
+  </figure>
+</div>
+
+<section class="band">
+  <div class="wrap">
+    <h2>What we are <span>asking for</span></h2>
+    <div class="demands">
+      <div class="dm"><div class="ic">🥗</div><div class="n">DEMAND 01</div><h3>At least 2 affordable healthy options</h3><p>Every canteen should serve at least two affordable, healthy food options, every day, alongside everything else on the menu.</p></div>
+      <div class="dm"><div class="ic">🧼</div><div class="n">DEMAND 02</div><h3>Clean and hygienic food</h3><p>Food should be cooked, stored and served in clean, hygienic conditions, with clean utensils and safe drinking water.</p></div>
+      <div class="dm"><div class="ic">📋</div><div class="n">DEMAND 03</div><h3>Calories and nutrition on the menu</h3><p>Canteen menus should show the calories and nutritional values of every item, so students can make informed choices.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="board" id="board">
+  <div class="wrap">
+    <h2>The city-wise list</h2>
+    <p class="board-sub">Hospitals ranked by the number of people who signed, with the average report-card grade patients and staff gave their canteen.</p>
+    <div class="seg segboard" role="group" aria-label="Show colleges or schools">
+      <button type="button" data-kind="College" aria-pressed="true">🎓 Colleges</button>
+      <button type="button" data-kind="School" aria-pressed="false">🎒 Schools</button>
+    </div>
+    <div class="tools">
+      <input class="search" id="q" type="search" placeholder="Search your hospital or city…" aria-label="Search">
+      <div class="chips" id="cityChips"></div>
+    </div>
+    <p class="status" id="status">Loading the list…</p>
+    <div class="cities" id="cities"></div>
+  </div>
+</section>
+
+<section class="celebs">
+  <div class="wrap">
+    <h2>Celebrities <span>supporting this movement</span></h2>
+    <p class="celebs-sub">Public voices backing the demand for hygienic, healthy canteens in every hospital.</p>
+    <ul class="celeb-list">
+      <li>Dia Mirza</li>
+      <li>Bhumi Pednekar</li>
+      <li>Siddhant Chaturvedi</li>
+      <li>Kuldeep Yadav</li>
+      <li>Rishabh Pant</li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap row">
+    <div><span class="logo sm"><img src="logo.png" width="300" height="369" alt="Canteen Sudharega India"></span><br><br>A movement for hygienic and healthy campus food.</div>
+    <div><b>Fully anonymous.</b> We never collect names, emails or phone numbers.<br>We publish only hospital names, cities, counts and average grades.<br>Reasons and photos are never shown publicly.</div>
+  </div>
+</footer>
+
+<div class="sticky" id="sticky"><button data-open>✍️ Sign the petition →</button></div>
+
+<!-- form sheet -->
+<div class="scrim" id="scrim">
+  <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+    <div id="formView">
+      <div class="sheet-top">
+        <div><h2 id="sheetTitle">My canteen needs improvement</h2><p class="sub">Sign the petition for your hospital. Takes under a minute.</p></div>
+        <button class="x" data-close aria-label="Close">✕</button>
+      </div>
+      <form id="form" novalidate>
+        <div class="seg" role="group" aria-label="Institution type">
+          <button type="button" data-type="College" aria-pressed="true">🎓 College</button>
+          <button type="button" data-type="School" aria-pressed="false">🎒 School</button>
+        </div>
+
+        <label class="f" for="inst" id="instLbl">Hospital name</label>
+        <input class="in" id="inst" type="text" autocomplete="off" autocorrect="off"
+               spellcheck="false" placeholder="Start typing your hospital name" maxlength="120"
+               role="combobox" aria-expanded="false" aria-autocomplete="list" aria-controls="pickList">
+        <ul class="picklist" id="pickList" hidden></ul>
+        <p class="hint" id="pickHint" hidden></p>
+
+        <label class="f" for="city">City</label>
+        <input class="in" id="city" list="cityList" autocomplete="address-level2" placeholder="e.g. Pune" maxlength="60">
+        <datalist id="cityList"></datalist>
+
+        <span class="flabel" id="gradeLbl">Rate your canteen like a report card</span>
+        <div class="grades" role="radiogroup" aria-labelledby="gradeLbl">
+          <button type="button" data-grade="A" aria-pressed="false"><b>A</b><small>Excellent</small></button>
+          <button type="button" data-grade="B" aria-pressed="false"><b>B</b><small>Good</small></button>
+          <button type="button" data-grade="C" aria-pressed="false"><b>C</b><small>Average</small></button>
+          <button type="button" data-grade="D" aria-pressed="false"><b>D</b><small>Poor</small></button>
+          <button type="button" data-grade="F" aria-pressed="false"><b>F</b><small>Fail</small></button>
+        </div>
+
+        <label class="f" for="reason">What's wrong with your canteen? <small>(optional)</small></label>
+        <p class="hint tapHint">Tap all that apply — they get added to the box below, and you can edit it.</p>
+        <div class="qtags" id="qtags"></div>
+        <div id="otherWrap" hidden>
+          <input class="in" id="otherIssue" maxlength="80" placeholder="Type the problem in your own words">
+        </div>
+        <textarea class="in" id="reason" maxlength="1000" placeholder="Optional. One line is enough. This stays private."></textarea>
+
+        <label class="f" for="wish" id="wishLbl">If you could change one thing in your hospital canteen, what would it be? <small>(optional)</small></label>
+        <textarea class="in short" id="wish" maxlength="500" placeholder="e.g. a proper fruit and salad counter, or clean drinking water"></textarea>
+
+        <span class="flabel">Add photos <small>(optional, up to 3)</small></span>
+        <div class="photos" id="photos">
+          <label class="addph" id="addPh">📷 Add photos<input type="file" id="photoIn" accept="image/*" multiple hidden></label>
+        </div>
+        <p class="hint">Photos go only to our team as evidence. They're never shown publicly, and location data is removed before upload.</p>
+
+        <input class="hp" id="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <p class="err" id="err" role="alert"></p>
+        <button class="submit" id="submitBtn" type="submit">Sign the petition</button>
+        <p class="privacy">🔒 Completely anonymous. We never ask who you are.</p>
+      </form>
+    </div>
+
+    <div id="doneView" hidden>
+      <div class="sheet-top" style="justify-content:flex-end;margin:0 0 10px"><button class="x" data-close aria-label="Close">✕</button></div>
+      <div class="cert">
+        <div class="stamp">PETITION SIGNED ✓</div>
+        <h2>Thank you for signing!</h2>
+        <p>You're now part of <b>Canteen Sudharega India</b>, a movement holding hospitals accountable for clean, healthy food.</p>
+        <dl>
+          <div><dt>Signature no.</dt><dd id="cNo">#0</dd></div>
+          <div><dt>Your grade</dt><dd id="cGrade"></dd></div>
+          <div><dt>Hospital</dt><dd id="cInst"></dd></div>
+          <div><dt>City</dt><dd id="cCity"></dd></div>
+        </dl>
+      </div>
+      <div class="next">
+        <h3>What happens next</h3>
+        <p>Every signature is counted against your hospital. We reach out to the hospitals on
+           this list as part of a nationwide movement for better canteens.</p>
+        <p class="nextb" id="campusLine"></p>
+        <h4>What you can do</h4>
+        <ul class="todo">
+          <li>Write to your canteen or management asking for clean, affordable, healthy food.</li>
+          <li>Copy <a href="mailto:canteensudharegaindia@foodpharmer.net">canteensudharegaindia@foodpharmer.net</a> so we can back you up.</li>
+          <li>Get your batchmates and parents to sign.</li>
+        </ul>
+      </div>
+      <div class="share">
+        <a class="wa" id="waBtn" href="#" target="_blank" rel="noopener">Share on WhatsApp</a>
+        <button type="button" id="copyBtn">Copy message</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ================== SETTINGS ================== */
+const CONFIG = {
+  SUPABASE_URL: "https://ekvcvnzttxbmkevhjubn.supabase.co",
+  SUPABASE_KEY: "sb_publishable_0JvRQ07KI85Kx0ftWs2v0w_QDHyEs-9",
+  SITE_URL: "https://dhritigupta7.github.io/canteen-sudharega-india/hospital.html"
+};
+/* ============================================== */
+
+const DEMO = !CONFIG.SUPABASE_URL;
+const REFRESH_MS = 20000;   // how often the live counts refresh while the tab is open
+
+/* Call a Postgres function. Only sign_petition / board / suggest_institutions
+   are callable with this key; everything else is locked by row level security. */
+async function rpc(fn, body){
+  const res = await fetch(CONFIG.SUPABASE_URL + "/rest/v1/rpc/" + fn, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "apikey": CONFIG.SUPABASE_KEY,
+      "Authorization": "Bearer " + CONFIG.SUPABASE_KEY
+    },
+    body: JSON.stringify(body || {})
+  });
+  if (!res.ok) throw new Error("Network error (" + res.status + ")");
+  return res.json();
+}
+
+/* Stable per-device id, so one phone signs each campus once. Anonymous:
+   the server only ever stores a salted hash of it. */
+function deviceId(){
+  let d = null;
+  try { d = localStorage.getItem("csi_device"); } catch(e){}
+  if (!d){
+    d = (crypto.randomUUID ? crypto.randomUUID()
+         : String(Date.now()) + Math.random().toString(36).slice(2));
+    try { localStorage.setItem("csi_device", d); } catch(e){}
+  }
+  return d;
+}
+const SHOW_TOP = 3;           // campuses shown per city before "See the entire list"
+const MAX_PHOTOS = 3;
+const POINTS = { A:4, B:3, C:2, D:1, F:0 };
+
+const $ = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
+const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const fmt = n => Number(n || 0).toLocaleString("en-IN");
+const key = s => String(s || "").toLowerCase().replace(/[^a-z0-9ऀ-ॿ]+/g, " ").trim();
+const tidy = s => String(s || "").replace(/\s+/g, " ").trim();
+const letter = (sum, n) => { if (!n) return ""; const a = sum / n; return a >= 3.5 ? "A" : a >= 2.5 ? "B" : a >= 1.5 ? "C" : a >= 0.5 ? "D" : "F"; };
+const badge = g => g ? `<span class="grade ${g}" title="Average grade ${g}">${g}</span>` : `<span class="grade none" title="No grades yet">–</span>`;
+const store = {
+  get(k, d){ try { return JSON.parse(localStorage.getItem(k)) ?? d; } catch(e){ return d; } },
+  set(k, v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch(e){} }
+};
+
+const TAGS = ["Unhygienic kitchen", "Stale / reheated food", "Only junk food", "No healthy options", "Dirty plates & tables", "No nutrition info", "Overpriced", "Other"];
+const OTHER = "Other";
+const MAJOR_CITIES = ["Mumbai","Delhi","Bengaluru","Hyderabad","Ahmedabad","Chennai","Kolkata","Pune","Jaipur","Lucknow","Kanpur","Nagpur","Indore","Bhopal","Thane","Navi Mumbai","Patna","Vadodara","Ghaziabad","Ludhiana","Agra","Nashik","Noida","Gurugram","Faridabad","Surat","Rajkot","Varanasi","Srinagar","Amritsar","Chandigarh","Coimbatore","Kochi","Thiruvananthapuram","Visakhapatnam","Vijayawada","Mysuru","Mangaluru","Guwahati","Bhubaneswar","Raipur","Ranchi","Dehradun","Jammu","Goa","Madurai","Aurangabad","Jodhpur","Udaipur","Prayagraj"];
+
+// Sample rows for preview mode only: [name, city, type, signatures, gradePointsSum, gradeCount]
+const SAMPLE = [
+  ["Sample College of Commerce","Mumbai","College",318,413,318],["Example Institute of Technology","Mumbai","College",204,306,204],
+  ["Demo Public School","Mumbai","School",96,58,96],["Sample Junior College","Mumbai","College",41,90,41],["Example High School","Mumbai","School",17,12,17],
+  ["Sample Arts & Science College","Pune","College",241,265,241],["Example Engineering College","Pune","College",133,240,133],
+  ["Demo Model School","Delhi","School",187,150,187],["Sample University North Campus","Delhi","College",402,362,402],
+  ["Example Management Institute","Bengaluru","College",151,320,151],["Sample Medical College","Hyderabad","College",122,98,122],
+  ["Example Girls' College","Jaipur","College",77,123,77],["Demo Central School","Lucknow","School",58,29,58]
+];
+
+const S = { type:"Hospital", kind:"Hospital", grade:"", tags:new Set(), photos:[], city:"all", q:"", open:new Set(), opened:0,
+            data:{ list:[] }, shown:0 };
+
+/* ---------- data ---------- */
+function addRow(list, s){
+  const k = key(s.city) + "|" + key(s.institution);
+  let r = list.find(r => key(r[1]) + "|" + key(r[0]) === k);
+  if (!r){ r = [s.institution, s.city, s.type, 0, 0, 0]; list.push(r); }
+  r[3]++;
+  if (s.grade in POINTS){ r[4] += POINTS[s.grade]; r[5]++; }
+}
+function totals(d){
+  // The board only carries the top campuses, so the headline figures come from
+  // the server, which counts every campus including those below the cut.
+  if (d.totals){
+    d.total    = +d.totals.total || 0;
+    d.campuses = +d.totals.campuses || 0;
+    d.cities   = +d.totals.cities || 0;
+    d.grade    = letter(+d.totals.gradeSum || 0, +d.totals.gradeCount || 0);
+    return d;
+  }
+  let t = 0, gs = 0, gn = 0; const cities = new Set();
+  d.list.forEach(r => { t += +r[3]; gs += +r[4]; gn += +r[5]; cities.add(key(r[1])); });
+  d.total = t; d.campuses = d.list.length; d.cities = cities.size; d.grade = letter(gs, gn);
+  return d;
+}
+async function load(){
+  if (DEMO){
+    $("#demoBanner").hidden = false;
+    const d = { list: SAMPLE.map(r => r.slice()) };
+    store.get("csi_demo2", []).forEach(s => addRow(d.list, s));
+    S.data = totals(d); render(); return;
+  }
+  try {
+    const j = await rpc("board", { max_rows: 400, kinds: ["Hospital"] });
+    if (!j || !j.ok) throw new Error((j && j.error) || "Could not load the list.");
+    S.data = totals({ list: j.list || [], totals: j.totals });
+    $("#status").textContent = "";
+  } catch(e){
+    $("#status").textContent = "Couldn't load the live list right now. Please refresh in a minute.";
+  }
+  render();
+}
+
+/* Keep the counts fresh while someone is looking at the page, and stop
+   polling when the tab is hidden so we are not burning anyone's data. */
+function startLiveRefresh(){
+  if (DEMO) return;
+  let timer = null;
+  const tick = async () => {
+    if (document.hidden) return;
+    try {
+      const j = await rpc("board", { max_rows: 400, kinds: ["Hospital"] });
+      if (j && j.ok){ S.data = totals({ list: j.list || [], totals: j.totals }); render(); }
+    } catch(e){ /* a failed refresh just leaves the last good numbers up */ }
+  };
+  const arm = () => { clearInterval(timer); timer = setInterval(tick, REFRESH_MS); };
+  document.addEventListener("visibilitychange", () => { if (!document.hidden){ tick(); arm(); } });
+  arm();
+}
+
+/* ---------- render ---------- */
+function countTo(el, to){
+  const from = S.shown, t0 = performance.now(), dur = 900;
+  const step = now => {
+    const p = Math.min(1, (now - t0) / dur), v = Math.round(from + (to - from) * (1 - Math.pow(1 - p, 3)));
+    el.textContent = fmt(v); if (p < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step); S.shown = to;
+}
+function render(){
+  const d = S.data;
+  // One missing element used to throw here and stop renderBoard() from ever
+  // running, which silently emptied the city-wise list.
+  try {
+    paint(d);
+  } catch(e){
+    console.error("render failed", e);
+  }
+  renderBoard();
+}
+function paint(d){
+  countTo($("#total"), d.total || 0);
+  $("#sCampus").textContent = fmt(d.campuses);
+  $("#sCity").textContent = fmt(d.cities);
+  $("#sGrade").innerHTML = d.grade ? badge(d.grade) : "–";
+  const cl = $("#cityList");
+  if (cl) cl.innerHTML = [...new Set([...d.list.map(r => r[1]), ...MAJOR_CITIES])].sort().map(n => `<option value="${esc(n)}">`).join("");
+}
+function renderBoard(){
+  const groups = new Map();
+  S.data.list.filter(r => +r[3] > 0 && (r[2] || "Hospital") === S.kind).forEach(r => {
+    const k = key(r[1]);
+    if (!groups.has(k)) groups.set(k, { k, name: r[1], total: 0, items: [] });
+    const g = groups.get(k); g.total += +r[3]; g.items.push(r);
+  });
+  let list = [...groups.values()].sort((a, b) => b.total - a.total);
+
+  const chips = [{ k:"all", name:"All cities" }, ...list.slice(0, 8)];
+  if (S.city !== "all" && !chips.some(c => c.k === S.city)) S.city = "all";
+  $("#cityChips").innerHTML = chips.map(c =>
+    `<button class="chip" data-city="${esc(c.k)}" aria-pressed="${c.k === S.city}">${esc(c.name)}</button>`).join("");
+
+  const allCampuses = list.reduce((n, g) => n + g.items.length, 0);
+  const noun = "hospital";
+  $("#status").textContent = allCampuses ? `${fmt(allCampuses)} ${noun}${allCampuses === 1 ? "" : "s"} across ${fmt(groups.size)} cit${groups.size === 1 ? "y" : "ies"}` : "";
+
+  if (S.city !== "all") list = list.filter(g => g.k === S.city);
+  const q = key(S.q);
+  if (q) list = list.map(g => ({ ...g, items: g.k.includes(q) ? g.items : g.items.filter(r => key(r[0]).includes(q)) })).filter(g => g.items.length);
+
+  if (!list.length){
+    $("#cities").innerHTML = `<div class="empty">${q ? "No match yet. Be the first to add this campus!" : "No hospitals on the list yet. Yours could be first."}
+      <br><br><button class="chip" data-open>✍️ Sign for my hospital</button></div>`;
+    return;
+  }
+  $("#cities").innerHTML = list.map(g => {
+    const items = g.items.sort((a, b) => b[3] - a[3]);
+    const full = S.open.has(g.k) || !!q;
+    const vis = full ? items : items.slice(0, SHOW_TOP);
+    return `<section class="city">
+      <header><h3>${esc(g.name)}</h3><span>${fmt(g.total)} signed<br>${items.length} ${"hospital"}${items.length === 1 ? "" : "s"}</span></header>
+      <div class="cols"><span>#</span><span>Hospital</span><span>Signed</span><span>Grade</span></div>
+      <ol>${vis.map((r, i) => `<li><span class="rk">${i + 1}</span><span class="nm">${esc(r[0])}</span><span class="ct">${fmt(r[3])}<small>signed</small></span>${badge(letter(+r[4], +r[5]))}</li>`).join("")}</ol>
+      ${items.length > SHOW_TOP && !q ? `<button class="more" data-more="${esc(g.k)}">${full ? `Show top ${SHOW_TOP} ↑` : `See more +${fmt(items.length - SHOW_TOP)} ↓`}</button>` : ""}
+    </section>`;
+  }).join("");
+}
+
+/* ---------- photos ---------- */
+async function compress(file){
+  // Re-draw on a canvas: shrinks the image and strips EXIF data such as GPS location.
+  const url = URL.createObjectURL(file);
+  try {
+    const img = await new Promise((res, rej) => { const i = new Image(); i.onload = () => res(i); i.onerror = rej; i.src = url; });
+    const s = Math.min(1, 1280 / Math.max(img.naturalWidth, img.naturalHeight));
+    const c = document.createElement("canvas");
+    c.width = Math.round(img.naturalWidth * s); c.height = Math.round(img.naturalHeight * s);
+    c.getContext("2d").drawImage(img, 0, 0, c.width, c.height);
+    return c.toDataURL("image/jpeg", 0.8);
+  } finally { URL.revokeObjectURL(url); }
+}
+/* Photos go straight into a private Storage bucket that the website key can
+   write to but never read back. Only the file paths reach the database. */
+async function uploadPhotos(){
+  const paths = [];
+  for (let i = 0; i < S.photos.length; i++){
+    try {
+      const blob = await (await fetch(S.photos[i])).blob();
+      const name = Date.now() + "-" + Math.random().toString(36).slice(2, 9) + "-" + (i + 1) + ".jpg";
+      const path = "evidence/" + name;
+      const res = await fetch(CONFIG.SUPABASE_URL + "/storage/v1/object/" + path, {
+        method: "POST",
+        headers: {
+          "apikey": CONFIG.SUPABASE_KEY,
+          "Authorization": "Bearer " + CONFIG.SUPABASE_KEY,
+          "Content-Type": "image/jpeg"
+        },
+        body: blob
+      });
+      if (res.ok) paths.push(path);
+    } catch(e){ /* a photo that fails to upload must not block the signature */ }
+  }
+  return paths;
+}
+
+function renderPhotos(){
+  $$(".thumb").forEach(t => t.remove());
+  S.photos.forEach((src, i) => {
+    const d = document.createElement("div"); d.className = "thumb";
+    d.innerHTML = `<img alt="Photo ${i + 1}" src="${src}"><button type="button" data-rmph="${i}" aria-label="Remove photo">✕</button>`;
+    $("#addPh").before(d);
+  });
+  $("#addPh").hidden = S.photos.length >= MAX_PHOTOS;
+}
+$("#photoIn").addEventListener("change", async e => {
+  const files = [...e.target.files].slice(0, MAX_PHOTOS - S.photos.length);
+  for (const f of files){
+    if (!f.type.startsWith("image/")) continue;
+    try { S.photos.push(await compress(f)); } catch(ex){ $("#err").textContent = "One photo couldn't be read. Try a JPG or PNG."; }
+  }
+  e.target.value = ""; renderPhotos();
+});
+
+/* ---------- sheet ---------- */
+/* College and school signers see the right nouns. Kept neutral because a
+   school canteen is graded by students and parents alike. */
+function syncWording(){
+  const school = false;
+  const lbl = $("#instLbl"), wishLbl = $("#wishLbl");
+  if (lbl) lbl.textContent = "Hospital name";
+  const inst = $("#inst");
+  if (inst) inst.placeholder = "Start typing your hospital name";
+  // switching type invalidates a campus chosen from the other directory
+  setCampus("", "");
+  const pl = $("#pickList"), ph = $("#pickHint");
+  if (pl){ pl.hidden = true; pl.innerHTML = ""; }
+  if (ph) ph.hidden = true;
+  if (wishLbl){
+    wishLbl.innerHTML = "If you could change one thing in your hospital canteen, what would it be? <small>(optional)</small>";
+  }
+  const w = $("#wish");
+  if (w) w.placeholder = "e.g. a proper fruit and salad counter, or clean drinking water";
+}
+
+function resetForm(){
+  $("#form").reset(); S.grade = ""; S.tags.clear(); S.photos = [];
+  $("#otherWrap").hidden = true; $("#otherIssue").value = "";
+  setCampus("", "");
+  $$("[data-grade]").forEach(b => b.setAttribute("aria-pressed", "false"));
+  $("#qtags").innerHTML = TAGS.map(t => `<button type="button" class="qtag" aria-pressed="false">${t}</button>`).join("");
+  syncWording();
+  renderPhotos(); $("#err").textContent = "";
+}
+function openSheet(){
+  if ($("#doneView").hidden === false) resetForm();
+  S.opened = Date.now();
+  $("#formView").hidden = false; $("#doneView").hidden = true;
+  $("#scrim").classList.add("open");
+  if (window.warmCampusSearch) window.warmCampusSearch();
+  document.body.style.overflow = "hidden";
+  setTimeout(() => $("#inst").focus(), 60);
+}
+function closeSheet(){
+  $("#scrim").classList.remove("open"); document.body.style.overflow = "";
+  if (location.hash === "#sign") history.replaceState(null, "", location.pathname + location.search);
+}
+
+async function submit(e){
+  e.preventDefault();
+  const other = tidy($("#otherIssue").value);
+  const tagList = [...S.tags].map(t => (t === OTHER && other) ? `Other: ${other}` : t)
+                             .filter(t => t !== OTHER);
+  const p = {
+    type: S.type, institution: tidy($("#inst").value), city: tidy($("#city").value), grade: S.grade,
+    reason: tidy($("#reason").value), tags: tagList.join(", "), wish: tidy($("#wish").value),
+    website: $("#website").value, elapsed: Date.now() - S.opened
+  };
+  const err = m => { $("#err").textContent = m; };
+  if (p.institution.length < 3) return err("Please enter your college or school name."), $("#inst").focus();
+  if (p.city.length < 2) return err("Please enter your city."), $("#city").focus();
+  if (!p.grade) return err("Please give your canteen a grade: A, B, C, D or F.");
+
+
+  const k = key(p.city) + "|" + key(p.institution);
+  const signed = store.get("csi_signed2", []);
+  if (signed.includes(k)) return err("You've already signed for this campus from this device. Thank you!");
+
+  const btn = $("#submitBtn"); btn.disabled = true; btn.textContent = S.photos.length ? "Uploading photos…" : "Submitting…";
+  try {
+    if (DEMO){
+      await new Promise(r => setTimeout(r, 600));
+      const saved = store.get("csi_demo2", []); saved.push({ type:p.type, institution:p.institution, city:p.city, grade:p.grade }); store.set("csi_demo2", saved);
+    } else {
+      const paths = await uploadPhotos();
+      const j = await rpc("sign_petition", { payload: { ...p, device: deviceId(), photos: paths } });
+      if (!j || !j.ok) throw new Error((j && j.error) || "Something went wrong.");
+      if (j.total != null && S.data.totals) S.data.totals.total = j.total;
+      S.lastCampusCount = j.campus_count || 1;
+    }
+    signed.push(k); store.set("csi_signed2", signed);
+    addRow(S.data.list, p); totals(S.data);
+    try { render(); } catch(e){ console.error("board refresh failed", e); }
+    showDone(p);
+  } catch(ex){
+    err(ex.message && ex.message.length < 140 ? ex.message : "Couldn't submit. Check your connection and try again.");
+  } finally { btn.disabled = false; btn.textContent = "Sign the petition"; }
+}
+function showDone(p){
+  const url = CONFIG.SITE_URL || location.href.split("#")[0];
+  $("#cNo").textContent = "#" + fmt(S.data.total);
+  $("#cGrade").innerHTML = badge(p.grade);
+  $("#cInst").textContent = p.institution;
+  $("#cCity").textContent = p.city;
+
+  const n = S.lastCampusCount || 1;
+  $("#campusLine").innerHTML =
+    `<b>${esc(p.institution)}</b> now has <b>${fmt(n)}</b> signature${n === 1 ? "" : "s"}.`;
+  const msg = `I just signed the Canteen Sudharega India petition and gave our canteen at ${p.institution} a "${p.grade}". We want clean, healthy food in every school and college canteen. It's anonymous and takes a minute: ${url} #CanteenSudharegaIndia`;
+  $("#waBtn").href = "https://wa.me/?text=" + encodeURIComponent(msg);
+  $("#copyBtn").textContent = "Copy message";
+  $("#copyBtn").onclick = async () => {
+    try { await navigator.clipboard.writeText(msg); $("#copyBtn").textContent = "Copied ✓"; }
+    catch(e){ $("#copyBtn").textContent = url; }
+  };
+  $("#formView").hidden = true; $("#doneView").hidden = false;
+  $("#sheet").scrollTop = 0;
+}
+
+/* ---------- events ---------- */
+document.addEventListener("click", e => {
+  const qt = e.target.closest(".qtag");
+  if (qt && qt.textContent === OTHER){
+    const on = qt.getAttribute("aria-pressed") === "true";
+    $("#otherWrap").hidden = !on;
+    if (on) setTimeout(() => $("#otherIssue").focus(), 40);
+    else { $("#otherIssue").value = ""; }
+  }
+  if (e.target.closest("[data-open]")) return openSheet();
+  if (e.target.closest("[data-close]") || e.target === $("#scrim")) return closeSheet();
+  const t = e.target.closest("[data-type]");
+  if (t){ S.type = t.dataset.type; $$("[data-type]").forEach(b => b.setAttribute("aria-pressed", b === t)); syncWording(); return; }
+  const g = e.target.closest("[data-grade]");
+  if (g){ S.grade = g.dataset.grade; $$("[data-grade]").forEach(b => b.setAttribute("aria-pressed", b === g)); return; }
+  const rm = e.target.closest("[data-rmph]");
+  if (rm){ S.photos.splice(+rm.dataset.rmph, 1); return renderPhotos(); }
+  const q = e.target.closest(".qtag");
+  if (q){
+    const on = q.getAttribute("aria-pressed") !== "true"; q.setAttribute("aria-pressed", on);
+    on ? S.tags.add(q.textContent) : S.tags.delete(q.textContent);
+    const ta = $("#reason");
+    if (on && !ta.value.includes(q.textContent)) ta.value = (ta.value ? ta.value.replace(/[.,\s]*$/, "") + ", " : "") + q.textContent;
+    return;
+  }
+  const kb = e.target.closest("[data-kind]");
+  if (kb){
+    S.kind = kb.dataset.kind;
+    $$("[data-kind]").forEach(b => b.setAttribute("aria-pressed", b === kb));
+    return renderBoard();
+  }
+  const ch = e.target.closest("[data-city]"); if (ch){ S.city = ch.dataset.city; return renderBoard(); }
+  const m = e.target.closest("[data-more]");
+  if (m){ const k = m.dataset.more; S.open.has(k) ? S.open.delete(k) : S.open.add(k); return renderBoard(); }
+});
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape" && $("#pickList") && !$("#pickList").hidden) return;
+  if (e.key === "Escape") closeSheet();
+});
+$("#form").addEventListener("submit", submit);
+$("#q").addEventListener("input", e => { S.q = e.target.value; renderBoard(); });
+
+/* ---------- campus picker ----------
+   A searchable list over the full directory (every AISHE college and every
+   secondary school in UDISE), so people choose their campus instead of
+   typing it. Anything missing can still be added by hand. */
+function setCampus(name, city){
+  $("#inst").value = name;
+  if (city && !tidy($("#city").value)) $("#city").value = city;
+}
+
+/* ---------- campus suggestions ----------
+   A plain combobox: type in the field, matches appear directly underneath,
+   tap one to fill it in. Anything not in the directory can just be typed. */
+function wireInstitutionLookup(){
+  const inst = $("#inst"), listEl = $("#pickList"), hint = $("#pickHint");
+  let t = null, reqId = 0, chosen = "";
+  const cache = new Map();                       // query -> rows, so backspacing is instant
+  const ckey = q => S.type + "|" + tidy($("#city").value).toLowerCase() + "|" + q.toLowerCase();
+
+  function searching(){                          // never leave the field looking frozen
+    hint.hidden = false;
+    hint.textContent = "Searching…";
+  }
+
+  function hideList(){
+    listEl.hidden = true; listEl.innerHTML = "";
+    hint.hidden = true;
+    inst.setAttribute("aria-expanded", "false");
+  }
+
+  function render(rows){
+    const typed = tidy(inst.value);
+    const items = rows.map(r => {
+      const nm = esc(r[0]), ct = esc(r[1] || ""), n = +r[2] || 0;
+      const meta = [ct, n ? `<span class="pcount">${fmt(n)} signed</span>` : ""].filter(Boolean).join(" \u00b7 ");
+      return `<li><button type="button" data-pick="${nm}" data-city="${ct}">
+        <span class="pn">${nm}</span>${meta ? `<span class="pc">${meta}</span>` : ""}</button></li>`;
+    });
+    // always offer exactly what they typed, so nobody is blocked by a missing campus
+    if (typed.length >= 3 && !rows.some(r => key(r[0]) === key(typed))){
+      items.push(`<li><button type="button" class="addown" data-pick="${esc(typed)}" data-city="">
+        <span class="pn">Use "${esc(typed)}"</span>
+        <span class="pc">Not in the list? Add your campus</span></button></li>`);
+    }
+    if (!items.length) return hideList();
+    listEl.innerHTML = items.join("");
+    listEl.hidden = false;
+    inst.setAttribute("aria-expanded", "true");
+    hint.hidden = false;
+    hint.textContent = rows.length
+      ? `${rows.length} match${rows.length === 1 ? "" : "es"} — tap yours.`
+      : "Not in our directory — tap above to add it.";
+  }
+
+  async function search(){
+    const typed = tidy(inst.value);
+    if (typed.length < 2) return hideList();
+    if (typed === chosen) return;            // already picked this one
+
+    const k = ckey(typed);
+    if (cache.has(k)) return render(cache.get(k));   // no network at all
+
+    const mine = ++reqId;
+    searching();
+    try {
+      const rows = await rpc("suggest_institutions", {
+        q: typed, city: tidy($("#city").value) || null, lim: 20, kind: S.type });
+      if (mine !== reqId) return;            // a newer keystroke already won
+      const out = Array.isArray(rows) ? rows : [];
+      cache.set(k, out);
+      if (cache.size > 120) cache.delete(cache.keys().next().value);
+      render(out);
+    } catch(e){ if (mine === reqId) render([]); }
+  }
+
+  /* The first query of a session pays for the TLS handshake and for the
+     database reading its indexes back from disk, which is what made the
+     list feel slow. Fire one throwaway query the moment the sheet opens,
+     so that cost is paid while the person is still picking College/School. */
+  let warmed = false;
+  window.warmCampusSearch = () => {
+    if (warmed || DEMO) return;
+    warmed = true;
+    rpc("suggest_institutions", { q: "aa", lim: 1, kind: "College" }).catch(() => {});
+  };
+
+  inst.addEventListener("input", () => { chosen = ""; clearTimeout(t); t = setTimeout(search, 200); });
+  inst.addEventListener("focus", () => { if (tidy(inst.value).length >= 2 && !chosen) search(); });
+  inst.addEventListener("keydown", e => {
+    if (e.key === "Enter"){ e.preventDefault(); hideList(); }
+    if (e.key === "Escape" && !listEl.hidden){ e.stopPropagation(); hideList(); }
+  });
+
+  listEl.addEventListener("click", e => {
+    const b = e.target.closest("[data-pick]");
+    if (!b) return;
+    chosen = b.dataset.pick;
+    setCampus(b.dataset.pick, b.dataset.city || "");
+    hideList();
+    $("#city").focus();
+  });
+
+  // tapping elsewhere in the form dismisses the list
+  document.addEventListener("click", e => {
+    if (!listEl.hidden && !e.target.closest("#pickList") && e.target !== inst) hideList();
+  });
+
+  $("#city").addEventListener("change", () => { if (tidy(inst.value).length >= 2 && !chosen) search(); });
+}
+
+if ("IntersectionObserver" in window){
+  new IntersectionObserver(([en]) => $("#sticky").classList.toggle("hide", en.isIntersecting), { threshold: .1 }).observe($(".ctas"));
+}
+// yoursite.com/#sign opens the form straight away (use this link in the video)
+function route(){ if (location.hash === "#sign") openSheet(); }
+window.addEventListener("hashchange", route);
+
+document.addEventListener("pointerdown", e => {
+  if (e.target.closest("[data-open]") && window.warmCampusSearch) window.warmCampusSearch();
+}, { passive: true });
+
+resetForm(); load(); route();
+startLiveRefresh();
+wireInstitutionLookup();
+</script>
+</body>
+</html>
