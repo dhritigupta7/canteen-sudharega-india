@@ -249,6 +249,7 @@ textarea.short{min-height:64px}
 
 .pledge-form{max-width:640px}
 .pledge-form .f{margin-top:16px}
+select.in{appearance:none;-webkit-appearance:none;background:#fff url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' fill='none' stroke='%236E5F55' stroke-width='2'/></svg>") no-repeat right 14px center;background-size:12px;padding-right:38px;cursor:pointer}
 .commit{display:grid;gap:10px;margin:8px 0 4px}
 .commit label{display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border:2.5px solid var(--ink);background:#fff;cursor:pointer;font-size:15px;line-height:1.4}
 .commit input{margin:2px 0 0;width:20px;height:20px;flex:none;accent-color:var(--green-d)}
@@ -322,8 +323,15 @@ textarea.short{min-height:64px}
       <span class="flabel">What will you work on? <small>(choose at least one)</small></span>
       <div class="commit" id="pcommit"></div>
 
-      <label class="f" for="ptimeline">By when? <small>(optional)</small></label>
-      <input class="in" id="ptimeline" maxlength="40" placeholder="e.g. within 3 months">
+      <label class="f" for="ptimeline">By when will you start?</label>
+      <select class="in" id="ptimeline">
+        <option value="">Choose a timeframe…</option>
+        <option value="Within 1 month">Within 1 month</option>
+        <option value="Within 3 months">Within 3 months</option>
+        <option value="Within 6 months">Within 6 months</option>
+        <option value="Within a year">Within a year</option>
+        <option value="Already started">We have already started</option>
+      </select>
 
       <label class="f" for="pmessage">Anything you want to add? <small>(optional)</small></label>
       <textarea class="in short" id="pmessage" maxlength="700" placeholder="Optional. What you are already doing, or what you need help with."></textarea>
@@ -365,6 +373,7 @@ textarea.short{min-height:64px}
           <div><dt>Institution</dt><dd id="pdPlace"></dd></div>
           <div><dt>City</dt><dd id="pdCity"></dd></div>
           <div><dt>Committed to</dt><dd id="pdCount"></dd></div>
+          <div><dt>Starting</dt><dd id="pdWhen"></dd></div>
         </dl>
       </div>
       <p class="sharelead">Now tell the people who eat there.</p>
@@ -475,13 +484,14 @@ $("#pform").addEventListener("submit", async e => {
     place: tidy($("#pplace").value), city: tidy($("#pcity").value),
     contact: tidy($("#pcontact").value), role: tidy($("#prole").value),
     email: tidy($("#pemail").value), phone: tidy($("#pphone").value),
-    timeline: tidy($("#ptimeline").value), message: tidy($("#pmessage").value),
+    timeline: $("#ptimeline").value, message: tidy($("#pmessage").value),
     commitments, consent: $("#pconsent").checked,
     website: $("#pwebsite").value, elapsed: Date.now() - P.opened, device: deviceId()
   };
   if (p.place.length < 3) return err("Please enter the name of your institution."), $("#pplace").focus();
   if (p.city.length < 2)  return err("Please enter the city."), $("#pcity").focus();
   if (!commitments.length) return err("Please choose at least one thing you will work on.");
+  if (!p.timeline) return err("Please choose by when you will start."), $("#ptimeline").focus();
   if (p.contact.length < 2) return err("Please enter your name."), $("#pcontact").focus();
   if (!/^[^@\s]+@[^@\s]+\.[a-z]{2,}$/i.test(p.email)) return err("Please enter a valid email address."), $("#pemail").focus();
 
@@ -492,6 +502,7 @@ $("#pform").addEventListener("submit", async e => {
     $("#pdPlace").textContent = p.place;
     $("#pdCity").textContent  = p.city;
     $("#pdCount").textContent = `${commitments.length} commitment${commitments.length === 1 ? "" : "s"}`;
+    $("#pdWhen").textContent = p.timeline;
     const msg = `${p.place} has pledged to improve its canteen as part of Canteen Sudharega India. `
               + `Clean, affordable, healthy food for everyone. ${CONFIG.SITE_URL} #CanteenSudharegaIndia`;
     $("#pwaBtn").href = "https://wa.me/?text=" + encodeURIComponent(msg);
