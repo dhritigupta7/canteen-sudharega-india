@@ -184,20 +184,16 @@ textarea.in{min-height:84px;resize:vertical}
 .photos{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
 .tapHint{margin:2px 0 8px}
 
-/* campus picker: a view inside the sheet, like the thank-you screen */
-button.picker{display:flex;align-items:center;justify-content:space-between;gap:10px;text-align:left;width:100%;cursor:pointer;background:#fff}
-button.picker .ph{color:#9b8f86}
-button.picker .caret{flex:none;color:var(--muted)}
-.pickin{margin-bottom:10px}
-.picklist{list-style:none;margin:0 0 12px;padding:0;max-height:52vh;overflow-y:auto;-webkit-overflow-scrolling:touch;border:2px solid var(--line)}
-.picklist:empty{display:none}
+/* campus suggestions, inline directly under the field */
+.picklist{list-style:none;margin:-6px 0 10px;padding:0;max-height:46vh;overflow-y:auto;-webkit-overflow-scrolling:touch;border:2.5px solid var(--ink);border-top:0;background:#fff}
 .picklist li+li{border-top:1.5px solid var(--line)}
-.picklist button{display:block;width:100%;max-width:100%;text-align:left;padding:13px 12px;background:#fff;border:0;font:inherit;line-height:1.35;cursor:pointer;overflow-wrap:anywhere}
-.picklist button:active{background:var(--sage-l)}
+.picklist button{display:block;width:100%;max-width:100%;text-align:left;padding:12px;background:#fff;border:0;font:inherit;line-height:1.35;cursor:pointer;overflow-wrap:anywhere}
+.picklist button:active,.picklist button:focus{background:var(--sage-l);outline:0}
 .picklist .pn{display:block;font-weight:700;overflow-wrap:anywhere}
 .picklist .pc{display:block;font-size:13px;color:var(--muted);margin-top:2px;overflow-wrap:anywhere}
 .picklist .pcount{color:var(--green-d);font-weight:700}
-.useown{width:100%;padding:14px;border:2.5px solid var(--ink);background:var(--butter);font-weight:700;box-shadow:var(--shadow);margin-bottom:4px;overflow-wrap:anywhere}
+.picklist .addown{background:var(--butter);font-weight:700}
+#pickHint{margin:-4px 0 10px}
 .grp{margin:14px 0 0}
 .grph{margin:0 0 6px;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:8px}
 .grph span{background:var(--sage-l);border:1.5px solid var(--ink);border-radius:999px;padding:1px 8px;font-size:11px;color:var(--ink)}
@@ -349,12 +345,12 @@ textarea.short{min-height:64px}
           <button type="button" data-type="School" aria-pressed="false">🎒 School</button>
         </div>
 
-        <label class="f" for="instBtn" id="instLbl">College name</label>
-        <button type="button" class="in picker" id="instBtn">
-          <span id="instText" class="ph">Search for your college</span>
-          <span class="caret" aria-hidden="true">▾</span>
-        </button>
-        <input type="hidden" id="inst" maxlength="120">
+        <label class="f" for="inst" id="instLbl">College name</label>
+        <input class="in" id="inst" type="text" autocomplete="off" autocorrect="off"
+               spellcheck="false" placeholder="Start typing your college name" maxlength="120"
+               role="combobox" aria-expanded="false" aria-autocomplete="list" aria-controls="pickList">
+        <ul class="picklist" id="pickList" hidden></ul>
+        <p class="hint" id="pickHint" hidden></p>
 
         <label class="f" for="city">City</label>
         <input class="in" id="city" list="cityList" autocomplete="address-level2" placeholder="e.g. Pune" maxlength="60">
@@ -391,17 +387,6 @@ textarea.short{min-height:64px}
         <button class="submit" id="submitBtn" type="submit">Sign the petition</button>
         <p class="privacy">🔒 Completely anonymous. We never ask who you are.</p>
       </form>
-    </div>
-
-    <div id="pickView" hidden>
-      <div class="sheet-top">
-        <div><h2 id="pickTitle">Find your college</h2><p class="sub" id="pickHint">Start typing, then tap your campus.</p></div>
-        <button class="x" type="button" id="pickClose" aria-label="Back">✕</button>
-      </div>
-      <input class="in pickin" id="pickQ" type="search" autocomplete="off" autocorrect="off"
-             spellcheck="false" placeholder="Type your college name">
-      <ul class="picklist" id="pickList"></ul>
-      <button type="button" class="useown" id="useOwn" hidden></button>
     </div>
 
     <div id="doneView" hidden>
@@ -690,8 +675,14 @@ function syncWording(){
   const school = S.type === "School";
   const lbl = $("#instLbl"), wishLbl = $("#wishLbl");
   if (lbl) lbl.textContent = school ? "School name" : "College name";
+  const inst = $("#inst");
+  if (inst) inst.placeholder = school
+    ? "Start typing your school name" : "Start typing your college name";
   // switching type invalidates a campus chosen from the other directory
   setCampus("", "");
+  const pl = $("#pickList"), ph = $("#pickHint");
+  if (pl){ pl.hidden = true; pl.innerHTML = ""; }
+  if (ph) ph.hidden = true;
   if (wishLbl){
     wishLbl.innerHTML = (school
       ? "If you could change one thing in this school canteen, what would it be? "
@@ -717,10 +708,9 @@ function openSheet(){
   if ($("#doneView").hidden === false) resetForm();
   S.opened = Date.now();
   $("#formView").hidden = false; $("#doneView").hidden = true;
-  const pv = $("#pickView"); if (pv) pv.hidden = true;
   $("#scrim").classList.add("open");
   document.body.style.overflow = "hidden";
-  setTimeout(() => $("#instBtn").focus(), 60);
+  setTimeout(() => $("#inst").focus(), 60);
 }
 function closeSheet(){
   $("#scrim").classList.remove("open"); document.body.style.overflow = "";
@@ -738,7 +728,7 @@ async function submit(e){
     website: $("#website").value, elapsed: Date.now() - S.opened
   };
   const err = m => { $("#err").textContent = m; };
-  if (p.institution.length < 3) return err("Please choose your college or school."), $("#instBtn").focus();
+  if (p.institution.length < 3) return err("Please enter your college or school name."), $("#inst").focus();
   if (p.city.length < 2) return err("Please enter your city."), $("#city").focus();
   if (!p.grade) return err("Please give your canteen a grade: A, B, C, D or F.");
   if (p.reason.length < 10) return err("Tell us what's wrong in a few words (at least 10 characters)."), $("#reason").focus();
@@ -823,7 +813,7 @@ document.addEventListener("click", e => {
   if (m){ const k = m.dataset.more; S.open.has(k) ? S.open.delete(k) : S.open.add(k); return renderBoard(); }
 });
 document.addEventListener("keydown", e => {
-  if (e.key === "Escape" && $("#pickView") && !$("#pickView").hidden) return;
+  if (e.key === "Escape" && $("#pickList") && !$("#pickList").hidden) return;
   if (e.key === "Escape") closeSheet();
 });
 $("#form").addEventListener("submit", submit);
@@ -835,81 +825,81 @@ $("#q").addEventListener("input", e => { S.q = e.target.value; renderBoard(); })
    typing it. Anything missing can still be added by hand. */
 function setCampus(name, city){
   $("#inst").value = name;
-  const t = $("#instText");
-  t.textContent = name || (S.type === "School" ? "Search for your school" : "Search for your college");
-  t.classList.toggle("ph", !name);
   if (city && !tidy($("#city").value)) $("#city").value = city;
 }
 
+/* ---------- campus suggestions ----------
+   A plain combobox: type in the field, matches appear directly underneath,
+   tap one to fill it in. Anything not in the directory can just be typed. */
 function wireInstitutionLookup(){
-  const q = $("#pickQ"), listEl = $("#pickList"),
-        hint = $("#pickHint"), useOwn = $("#useOwn");
-  let t = null, reqId = 0;
+  const inst = $("#inst"), listEl = $("#pickList"), hint = $("#pickHint");
+  let t = null, reqId = 0, chosen = "";
 
-  // The picker is a view inside the sheet, swapped in place of the form.
-  const open = () => {
-    const school = S.type === "School";
-    $("#pickTitle").textContent = school ? "Find your school" : "Find your college";
-    q.placeholder = school ? "Type your school name" : "Type your college name";
-    q.value = tidy($("#inst").value);
-    render([]);
-    $("#formView").hidden = true;
-    $("#pickView").hidden = false;
-    $("#sheet").scrollTop = 0;
-    setTimeout(() => q.focus(), 60);
-    if (q.value.length >= 2) search();
-  };
-  const close = () => {
-    $("#pickView").hidden = true;
-    $("#formView").hidden = false;
-    $("#sheet").scrollTop = 0;
-    setTimeout(() => $("#instBtn").focus(), 40);
-  };
+  function hideList(){
+    listEl.hidden = true; listEl.innerHTML = "";
+    hint.hidden = true;
+    inst.setAttribute("aria-expanded", "false");
+  }
 
   function render(rows){
-    const typed = tidy(q.value);
-    listEl.innerHTML = rows.map(r => {
+    const typed = tidy(inst.value);
+    const items = rows.map(r => {
       const nm = esc(r[0]), ct = esc(r[1] || ""), n = +r[2] || 0;
-      const meta = [ct, n ? `<span class="pcount">${fmt(n)} signed</span>` : ""].filter(Boolean).join(" · ");
+      const meta = [ct, n ? `<span class="pcount">${fmt(n)} signed</span>` : ""].filter(Boolean).join(" \u00b7 ");
       return `<li><button type="button" data-pick="${nm}" data-city="${ct}">
         <span class="pn">${nm}</span>${meta ? `<span class="pc">${meta}</span>` : ""}</button></li>`;
-    }).join("");
-    if (typed.length >= 3){
-      useOwn.hidden = false;
-      useOwn.textContent = `Can't find it — use "${typed}"`;
-    } else useOwn.hidden = true;
-    hint.textContent = typed.length < 2
-      ? (S.type === "School" ? "Start typing your school's name." : "Start typing your college's name.")
-      : (rows.length ? `${rows.length} match${rows.length === 1 ? "" : "es"} — tap yours.`
-                     : "No match in the directory. You can still add it below.");
+    });
+    // always offer exactly what they typed, so nobody is blocked by a missing campus
+    if (typed.length >= 3 && !rows.some(r => key(r[0]) === key(typed))){
+      items.push(`<li><button type="button" class="addown" data-pick="${esc(typed)}" data-city="">
+        <span class="pn">Use "${esc(typed)}"</span>
+        <span class="pc">Not in the list? Add your campus</span></button></li>`);
+    }
+    if (!items.length) return hideList();
+    listEl.innerHTML = items.join("");
+    listEl.hidden = false;
+    inst.setAttribute("aria-expanded", "true");
+    hint.hidden = false;
+    hint.textContent = rows.length
+      ? `${rows.length} match${rows.length === 1 ? "" : "es"} — tap yours.`
+      : "Not in our directory — tap above to add it.";
   }
 
   async function search(){
-    const typed = tidy(q.value);
-    if (typed.length < 2) return render([]);
+    const typed = tidy(inst.value);
+    if (typed.length < 2) return hideList();
+    if (typed === chosen) return;            // already picked this one
     const mine = ++reqId;
     try {
       const rows = await rpc("suggest_institutions", {
-        q: typed, city: tidy($("#city").value) || null, lim: 25, kind: S.type });
-      if (mine !== reqId) return;          // a newer keystroke already won
+        q: typed, city: tidy($("#city").value) || null, lim: 20, kind: S.type });
+      if (mine !== reqId) return;            // a newer keystroke already won
       render(Array.isArray(rows) ? rows : []);
     } catch(e){ if (mine === reqId) render([]); }
   }
 
-  $("#instBtn").addEventListener("click", open);
-  $("#pickClose").addEventListener("click", close);
-  q.addEventListener("input", () => { clearTimeout(t); t = setTimeout(search, 180); });
-  q.addEventListener("keydown", e => { if (e.key === "Enter"){ e.preventDefault(); } });
-  useOwn.addEventListener("click", () => { setCampus(tidy(q.value), ""); close(); });
+  inst.addEventListener("input", () => { chosen = ""; clearTimeout(t); t = setTimeout(search, 200); });
+  inst.addEventListener("focus", () => { if (tidy(inst.value).length >= 2 && !chosen) search(); });
+  inst.addEventListener("keydown", e => {
+    if (e.key === "Enter"){ e.preventDefault(); hideList(); }
+    if (e.key === "Escape" && !listEl.hidden){ e.stopPropagation(); hideList(); }
+  });
+
   listEl.addEventListener("click", e => {
     const b = e.target.closest("[data-pick]");
     if (!b) return;
+    chosen = b.dataset.pick;
     setCampus(b.dataset.pick, b.dataset.city || "");
-    close();
+    hideList();
+    $("#city").focus();
   });
-  document.addEventListener("keydown", e => {
-    if (e.key === "Escape" && !$("#pickView").hidden){ e.stopPropagation(); close(); }
-  }, true);
+
+  // tapping elsewhere in the form dismisses the list
+  document.addEventListener("click", e => {
+    if (!listEl.hidden && !e.target.closest("#pickList") && e.target !== inst) hideList();
+  });
+
+  $("#city").addEventListener("change", () => { if (tidy(inst.value).length >= 2 && !chosen) search(); });
 }
 
 if ("IntersectionObserver" in window){
