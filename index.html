@@ -177,6 +177,14 @@ textarea.in{min-height:84px;resize:vertical}
 .qtag[aria-pressed=true]{background:var(--butter)}
 .photos{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
 .tapHint{margin:2px 0 8px}
+.celebs{padding:34px 0 10px}
+.celebs h2 span{color:var(--red)}
+.celebs-sub{margin:8px 0 18px;color:var(--muted);max-width:40em}
+.celeb-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr;gap:12px}
+.celeb-list li{display:flex;align-items:center;gap:10px;padding:14px 16px;border:2.5px solid var(--ink);background:var(--paper);box-shadow:var(--shadow);font-weight:700;font-size:16px}
+.celeb-list li::before{content:"\2605";color:var(--red);font-size:18px;line-height:1}
+@media (min-width:560px){ .celeb-list{grid-template-columns:1fr 1fr} }
+@media (min-width:900px){ .celeb-list{grid-template-columns:repeat(4,1fr)} }
 
 /* campus suggestions, inline directly under the field */
 .picklist{list-style:none;margin:-6px 0 10px;padding:0;max-height:46vh;overflow-y:auto;-webkit-overflow-scrolling:touch;border:2.5px solid var(--ink);border-top:0;background:#fff}
@@ -305,6 +313,19 @@ textarea.short{min-height:64px}
     </div>
     <p class="status" id="status">Loading the list…</p>
     <div class="cities" id="cities"></div>
+  </div>
+</section>
+
+<section class="celebs">
+  <div class="wrap">
+    <h2>Celebrities <span>supporting this movement</span></h2>
+    <p class="celebs-sub">Public voices backing the demand for hygienic, healthy canteens in every school and college.</p>
+    <ul class="celeb-list">
+      <li>Dia Mirza</li>
+      <li>Bhumi Pednekar</li>
+      <li>Siddhant Chaturvedi</li>
+      <li>Kuldeep Yadav</li>
+    </ul>
   </div>
 </section>
 
