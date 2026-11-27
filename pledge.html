@@ -259,6 +259,7 @@ select.in{appearance:none;-webkit-appearance:none;background:#fff url("data:imag
 .wall li{padding:14px 16px;border:2.5px solid var(--ink);background:var(--paper);box-shadow:var(--shadow)}
 .wall .pw-name{font-weight:700;display:block}
 .wall .pw-meta{font-size:13px;color:var(--muted)}
+.wall .pw-when{display:inline-block;margin-top:8px;font-size:12px;font-weight:700;padding:3px 9px;border:2px solid var(--ink);background:var(--butter)}
 @media (min-width:640px){ .wall{grid-template-columns:1fr 1fr} }
 </style>
 </head>
@@ -339,7 +340,8 @@ select.in{appearance:none;-webkit-appearance:none;background:#fff url("data:imag
       <div class="notice">
         <b>Who is pledging?</b><br>
         We need a real contact so a pledge cannot be filed in someone else's name.
-        Contact details are never published — only the institution's name and city, and only if you tick the box below.
+        Contact details are never published — only your institution's name, city, what you
+        committed to and by when, and only if you tick the box below.
       </div>
 
       <label class="f" for="pcontact">Your name</label>
@@ -356,7 +358,7 @@ select.in{appearance:none;-webkit-appearance:none;background:#fff url("data:imag
 
       <div class="commit" style="margin-top:14px">
         <label><input type="checkbox" id="pconsent" checked>
-          <span>Publish our name and city on the list of institutions that have pledged.</span></label>
+          <span>Publish our name, city, commitments and timeframe on the list of institutions that have pledged.</span></label>
       </div>
 
       <input id="pwebsite" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
@@ -393,7 +395,7 @@ select.in{appearance:none;-webkit-appearance:none;background:#fff url("data:imag
 <footer>
   <div class="wrap">
     <div><span class="logo sm"><img src="logo.png" width="300" height="369" alt="Canteen Sudharega India"></span><br><br>A movement for hygienic and healthy campus food.</div>
-    <div><b>Contact details stay private.</b><br>We publish only the institution's name and city, and only with permission.<br>Pledges may be verified before they are published.</div>
+    <div><b>Contact details stay private.</b><br>We publish the institution's name, city, commitments and timeframe — and only with permission.<br>Pledges may be verified before they are published.</div>
   </div>
 </footer>
 
@@ -469,7 +471,8 @@ async function loadWall(){
       : "No pledges yet. Yours could be the first.";
     $("#pwall").innerHTML = list.map(r =>
       `<li><span class="pw-name">${esc(r[0])}</span>
-        <span class="pw-meta">${esc(r[1])} · ${esc(r[2])} · ${fmt(r[3])} commitment${+r[3] === 1 ? "" : "s"}</span></li>`).join("");
+        <span class="pw-meta">${esc(r[1])} · ${esc(r[2])} · ${fmt(r[3])} commitment${+r[3] === 1 ? "" : "s"}</span>
+        ${r[4] ? `<span class="pw-when">${esc(r[4])}</span>` : ""}</li>`).join("");
   } catch(e){
     $("#pwallSub").textContent = "Couldn't load the list right now. Please refresh in a minute.";
   }
